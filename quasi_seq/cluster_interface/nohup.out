@@ -1,0 +1,2563 @@
+*****startPipeline for pro19*****
+getConsensusLength took 0.0529909133911seconds
+('startPipeline parameters:', {'initialFastq': '/data/pro19_subread.fastq', 'startIndex': 800, 'estimatedErrorRate': '0.01', 'm5File': '/data/quasiSeqOut/multiPro19/pro19.initial.m5', 'start': 1600953607.583614, 'readCountSNPVarFreqThresh': 0.001, 'minorAlleleReadThresh': 30, 'rankingMethod': 'percentage', 'pvalThresh': '0.001', 'firstRoundConsensusFile': '/data/quasiSeqOut/multiPro19/HxB2.firstRoundSparc.consensus.fasta', 'percentThresh': 5.0, 'outDir': '/data/quasiSeqOut/multiPro19/', 'referenceLength': 9719, 'readCountSNPPvalThresh': 0.05, 'buffer': 30, 'sampleName': 'pro19', 'fullLengthReadFastq': '/data/quasiSeqOut/multiPro19/pro19_fullLength.fastq', 'optionalfilters': (), 'referenceFile': '/data/quasiSeqOut/multiPro19/HxB2.fasta', 'snpThresh': '40', 'pool': [], 'endIndex': 7900, 'readCountSNPCoverageThresh': 10, 'fullLengthReadIds': '/data/quasiSeqOut/multiPro19/pro19_fullLength', 'nonFullLengthReadIds': '/data/quasiSeqOut/multiPro19/pro19_nonFullLength', 'maxSignatures': '12000'})
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!blasr /data/pro19_subread.fastq /data/quasiSeqOut/multiPro19/HxB2.fasta -minMatch 19 -nproc 30 -bestn 1 -m 5 -out /data/quasiSeqOut/multiPro19/pro19.initial.m5 -unaligned /data/quasiSeqOut/multiPro19/pro19.initial.m5.ref_unaligned.fa
+
+[INFO] 2020-09-24T13:20:07 [blasr] started.
+[INFO] 2020-09-24T13:25:13 [blasr] ended.
+
+ m5File is done!
+/data/quasiSeqOut/multiPro19/pro19.initial.m5
+
+alignFastqBlasrM5 took 306.04156208seconds
+('getFullLengthReads parameters:', {'end': 7900, 'buffer': 30, 'sampleName': 'pro19', 'start': 800, 'm5File': '/data/quasiSeqOut/multiPro19/pro19.initial.m5', 'outDir': '/data/quasiSeqOut/multiPro19/'})
+start-end:800-7900
+5577 reads in /data/quasiSeqOut/multiPro19/pro19_fullLength
+getOrientedFastq took 79.5146200657seconds
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!blasr /data/quasiSeqOut/multiPro19/pro19_fullLength.fastq /data/quasiSeqOut/multiPro19/HxB2.fasta -minMatch 19 -nproc 30 -bestn 1 -m 5 -out /data/quasiSeqOut/multiPro19/pro19.m5 -unaligned /data/quasiSeqOut/multiPro19/pro19.m5.ref_unaligned.fa
+
+[INFO] 2020-09-24T13:26:49 [blasr] started.
+[INFO] 2020-09-24T13:27:33 [blasr] ended.
+
+ m5File is done!
+/data/quasiSeqOut/multiPro19/pro19.m5
+
+alignFastqBlasrM5 took 43.9375460148seconds
+/opt/Sparc/compiled/Sparc b /data/quasiSeqOut/multiPro19/HxB2.fasta m /data/quasiSeqOut/multiPro19/pro19.m5 k 1 g 1 c 2 t 0.2 o /data/quasiSeqOut/multiPro19/HxB2.firstRoundSparc
+For help: Sparc -h
+Backbone size: 7100
+Finished.
+
+ consensus file is done!
+/data/quasiSeqOut/multiPro19/HxB2.firstRoundSparc.consensus.fasta
+
+Created Consensus!
+bwa index /data/quasiSeqOut/multiPro19/HxB2.firstRoundSparc.consensus.fasta
+samtools faidx /data/quasiSeqOut/multiPro19/HxB2.firstRoundSparc.consensus.fasta
+indexReference took 0.0715119838715seconds
+getConsensusSparc took 12.7919869423seconds
+getConsensusLength took 0.00340700149536seconds
+*****Running pipeline for pro19*****
+*****startIndex=30*****
+*****endIndex=7099*****
+*****snpThresh=40*****
+*****percentThresh=5.0*****
+('pipeline parameters:', {'initialBamfile': '/data/quasiSeqOut/multiPro19/pro19.bam', 'initialFastq': '/data/quasiSeqOut/multiPro19/pro19_fullLength.fastq', 'rankedFile': '/data/quasiSeqOut/multiPro19/pro19.realign.rankedsnp', 'startIndex': 30, 'estimatedErrorRate': '0.01', 'consensusFile': '/data/quasiSeqOut/multiPro19/pro19.consensus.fasta', 'ranking_method': 'percentage', 'clusterFile': '/data/quasiSeqOut/multiPro19/pro19_clusters', 'readCountSNPVarFreqThresh': 0.001, 'start': 1600954065.995463, 'readCountsFile': '/data/quasiSeqOut/multiPro19/pro19.readcounts', 'minorAlleleReadThresh': 30, 'rankingMethod': 'percentage', 'pvalThresh': '0.001', 'sampleNameSplit': ('', 'pro19'), 'percentThresh': 5.0, 'outDir': '/data/quasiSeqOut/multiPro19/', 'readCountSNPPvalThresh': 0.05, 'sampleName': 'pro19', 'optionalfilters': (), 'referenceFile': '/data/quasiSeqOut/multiPro19/HxB2.firstRoundSparc.consensus.fasta', 'snpThresh': 40, 'pool': [], 'exc': OSError(17, 'File exists'), 'endIndex': 7099, 'realignedPileupFile': '/data/quasiSeqOut/multiPro19/pro19.realign.pileup', 'realignedSampleName': 'pro19.realign', 'realignedSnpFile': '/data/quasiSeqOut/multiPro19/pro19.realign.readcounts.snp', 'readCountSNPCoverageThresh': 10, 'realignedBamfile': '/data/quasiSeqOut/multiPro19/pro19.realign.bam', 'maxSignatures': '12000'})
+consenseAndRealignSparc:/data/quasiSeqOut/multiPro19/pro19_fullLength.fastq, /data/quasiSeqOut/multiPro19/HxB2.firstRoundSparc.consensus.fasta, /data/quasiSeqOut/multiPro19/pro19.bam, /data/quasiSeqOut/multiPro19/pro19.readcounts, /data/quasiSeqOut/multiPro19/pro19.consensus.fasta, /data/quasiSeqOut/multiPro19/pro19.realign.bam
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!blasr /data/quasiSeqOut/multiPro19/pro19_fullLength.fastq /data/quasiSeqOut/multiPro19/HxB2.firstRoundSparc.consensus.fasta -minMatch 19 -nproc 30 -bestn 1 -m 5 -out /data/quasiSeqOut/multiPro19/pro19.m5 -unaligned /data/quasiSeqOut/multiPro19/pro19.m5.ref_unaligned.fa
+
+[INFO] 2020-09-24T13:27:46 [blasr] started.
+[INFO] 2020-09-24T13:28:28 [blasr] ended.
+
+ m5File is done!
+/data/quasiSeqOut/multiPro19/pro19.m5
+
+alignFastqBlasrM5 took 42.5934579372seconds
+/opt/Sparc/compiled/Sparc b /data/quasiSeqOut/multiPro19/HxB2.firstRoundSparc.consensus.fasta m /data/quasiSeqOut/multiPro19/pro19.m5 k 1 g 1 c 2 t 0.2 o /data/quasiSeqOut/multiPro19/pro19
+For help: Sparc -h
+Backbone size: 7129
+Finished.
+
+ consensus file is done!
+/data/quasiSeqOut/multiPro19/pro19.consensus.fasta
+
+Created Consensus!
+bwa index /data/quasiSeqOut/multiPro19/pro19.consensus.fasta
+samtools faidx /data/quasiSeqOut/multiPro19/pro19.consensus.fasta
+indexReference took 0.0443549156189seconds
+getConsensusSparc took 12.1682920456seconds
+blasr /data/quasiSeqOut/multiPro19/pro19_fullLength.fastq /data/quasiSeqOut/multiPro19/pro19.consensus.fasta -nproc 30 -bestn 1 -sam -out /data/quasiSeqOut/multiPro19/pro19.realign.sam -unaligned /data/quasiSeqOut/multiPro19/pro19.realign.unaligned.fa
+
+[INFO] 2020-09-24T13:28:40 [blasr] started.
+[INFO] 2020-09-24T13:29:29 [blasr] ended.
+
+ sam_file is done!
+/data/quasiSeqOut/multiPro19/pro19.realign.sam
+
+samtools view -Sb /data/quasiSeqOut/multiPro19/pro19.realign.sam | samtools sort - -o /data/quasiSeqOut/multiPro19/pro19.realign.bam
+
+
+ bam_file is done!
+/data/quasiSeqOut/multiPro19/pro19.realign.bam
+
+samtools index /data/quasiSeqOut/multiPro19/pro19.realign.bam
+
+alignFastqAndIndexPacBioSam_v1_3 took 90.7314870358seconds
+samtools mpileup -BQ0 -d100000 -f /data/quasiSeqOut/multiPro19/pro19.consensus.fasta /data/quasiSeqOut/multiPro19/pro19.realign.bam > /data/quasiSeqOut/multiPro19/pro19.realign.pileup
+
+[mpileup] 1 samples in 1 input files
+
+ pileup_file is done!
+/data/quasiSeqOut/multiPro19/pro19.realign.pileup
+
+java -jar VarScan.v2.4.2.jar readcounts /data/quasiSeqOut/multiPro19/pro19.realign.pileup  --output-file /data/quasiSeqOut/multiPro19/pro19.realign.readcounts --min-base-qual 5
+
+Min coverage:	1
+Min base qual:	5
+Reading input from /data/quasiSeqOut/multiPro19/pro19.realign.pileup
+7133 positions in pileup file
+7133 included in readcount analysis
+7133 met minimum coverage
+
+ readcounts_file done!
+/data/quasiSeqOut/multiPro19/pro19.realign.readcounts
+
+getReadCounts took 76.8705160618seconds
+java -cp ./ ReadCount_snp /data/quasiSeqOut/multiPro19/pro19.realign.readcounts /data/quasiSeqOut/multiPro19/pro19.realign.readcounts.snp 0.01 0.05 10 0.001
+
+getSNPs took 81.6032710075seconds
+samtools mpileup -BQ0 -d100000 -f /data/quasiSeqOut/multiPro19/pro19.consensus.fasta /data/quasiSeqOut/multiPro19/pro19.realign.bam > /data/quasiSeqOut/multiPro19/pro19.realign.pileup
+
+[mpileup] 1 samples in 1 input files
+
+ pileup_file is done!
+/data/quasiSeqOut/multiPro19/pro19.realign.pileup
+
+getPileup took 43.2765781879seconds
+consenseAndAlign took 347.303735018seconds
+('rankSNVs parameters:', {'endIndex': 7099, 'snpFile': '/data/quasiSeqOut/multiPro19/pro19.realign.readcounts.snp', 'startIndex': 30, 'rankedFile': '/data/quasiSeqOut/multiPro19/pro19.realign.rankedsnp', 'optionalfilters': (), 'minorAlleleReadThresh': 30, 'rankingMethod': 'percentage', 'pvalThresh': '0.001', 'maxSignatures': '12000', 'percentThresh': 5.0, 'consensusFile': '/data/quasiSeqOut/multiPro19/pro19.consensus.fasta'})
+~~~~~~~~~~~~~~~~~~ python rankSNVs.py /data/quasiSeqOut/multiPro19/pro19.realign.readcounts.snp /data/quasiSeqOut/multiPro19/pro19.realign.rankedsnp percentage /data/quasiSeqOut/multiPro19/pro19.consensus.fasta -s 30 -e 7099 -perc 5.0 -pval 0.001 -r 30 -numSig 12000 
+numSNPs:476>= snpThresh:40->True
+476 SNPs: Continuing with clustering
+java -classpath .:/usr/local/MATLAB/MATLAB_Runtime/v91/toolbox/javabuilder/jar/javabuilder.jar:SigClust.jar getClust /data/quasiSeqOut/multiPro19/pro19.realign.bam /data/quasiSeqOut/multiPro19/pro19.realign.rankedsnp /data/quasiSeqOut/multiPro19/pro19
+top SNVs qualified for constructing signature:476 	total signatures: 5577
+
+ No self_tuning. 
+Final Signatures for Clustering: 5577 X 476 
+evecs took 626.6589 seconds
+RLS automatically determined 7 clusters.
+processClusterOutput next
+7 clusters
+Reading /data/quasiSeqOut/multiPro19/pro19_clusters
+Reading clusters
+/data/quasiSeqOut/multiPro19/pro19_1
+2896 reads in /data/quasiSeqOut/multiPro19/pro19_1
+getClusterFastq took 15.2836341858seconds
+!!!!!!!!!! Recursive call for /data/quasiSeqOut/multiPro19/pro19_1 !!!!!!!!!!
+Reading clusters
+*****Running pipeline for /data/quasiSeqOut/multiPro19/pro19_1*****
+*****startIndex=30*****
+*****endIndex=7099*****
+/data/quasiSeqOut/multiPro19/pro19_2
+*****snpThresh=40*****
+*****percentThresh=5.0*****
+('pipeline parameters:', 686 reads in /data/quasiSeqOut/multiPro19/pro19_2{'initialBamfile': '/data/quasiSeqOut/multiPro19/pro19_1.bam', 'initialFastq': '/data/quasi
+SeqOut/multiPro19/pro19_1.fastq', 'rankedFile': '/data/quasiSeqOut/multiPro19/pro19_1.realign.rankedsnp', 'startIndex': 30, 'estimatedErrorRate': '0.01', 'consensusFile': '/data/quasiSeqOut/multiPro19/pro19_1.consensus.fasta', 'ranking_method': 'percentage', 'clusterFile': '/data/quasiSeqOut/multiPro19/pro19_1_clusters', 'readCountSNPVarFreqThresh': 0.001, 'start': 1600955780.138866, 'readCountsFile': '/data/quasiSeqOut/multiPro19/pro19_1.readcounts', 'minorAlleleReadThresh': 30, 'rankingMethod': 'percentage', 'pvalThresh': '0.001', 'sampleNameSplit': ('/data/quasiSeqOut/multiPro19', 'pro19_1'), 'percentThresh': 5.0, 'outDir': '/data/quasiSeqOut/multiPro19/', 'readCountSNPPvalThresh': 0.05, 'sampleName': 'pro19_1', 'optionalfilters': (), 'referenceFile': '/data/quasiSeqOut/multiPro19/pro19.consensus.fasta', 'snpThresh': 40, 'pool': [], 'exc': OSError(17, 'File exists'), 'endIndex': 7099, 'realignedPileupFile': '/data/quasiSeqOut/multiPro19/pro19_1.realign.pileup', 'realignedSampleName': 'pro19_1.realign', 'realignedSnpFile': '/data/quasiSeqOut/multiPro19/pro19_1.realign.readcounts.snp', 'readCountSNPCoverageThresh': 10, 'realignedBamfile': '/data/quasiSeqOut/multiPro19/pro19_1.realign.bam', 'maxSignatures': '12000'})
+consenseAndRealignSparc:/data/quasiSeqOut/multiPro19/pro19_1.fastq, /data/quasiSeqOut/multiPro19/pro19.consensus.fasta, /data/quasiSeqOut/multiPro19/pro19_1.bam, /data/quasiSeqOut/multiPro19/pro19_1.readcounts, /data/quasiSeqOut/multiPro19/pro19_1.consensus.fasta, /data/quasiSeqOut/multiPro19/pro19_1.realign.bam
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!blasr /data/quasiSeqOut/multiPro19/pro19_1.fastq /data/quasiSeqOut/multiPro19/pro19.consensus.fasta -minMatch 19 -nproc 30 -bestn 1 -m 5 -out /data/quasiSeqOut/multiPro19/pro19_1.m5 -unaligned /data/quasiSeqOut/multiPro19/pro19_1.m5.ref_unaligned.fa
+
+[INFO] 2020-09-24T13:56:21 [blasr] started.
+[INFO] 2020-09-24T13:56:46 [blasr] ended.
+
+ m5File is done!
+/data/quasiSeqOut/multiPro19/pro19_1.m5
+
+alignFastqBlasrM5 took 25.7876939774seconds
+/opt/Sparc/compiled/Sparc b /data/quasiSeqOut/multiPro19/pro19.consensus.fasta m /data/quasiSeqOut/multiPro19/pro19_1.m5 k 1 g 1 c 2 t 0.2 o /data/quasiSeqOut/multiPro19/pro19_1
+For help: Sparc -h
+Backbone size: 7133
+getClusterFastq took 31.4961791039seconds
+!!!!!!!!!! Recursive call for /data/quasiSeqOut/multiPro19/pro19_2 !!!!!!!!!!
+Reading clusters
+*****Running pipeline for /data/quasiSeqOut/multiPro19/pro19_2*****
+*****startIndex=30*****/data/quasiSeqOut/multiPro19/pro19_3
+
+*****endIndex=7099*****
+*****snpThresh=40*****
+84 reads in /data/quasiSeqOut/multiPro19/pro19_3
+*****percentThresh=5.0*****
+('pipeline parameters:', {'initialBamfile': '/data/quasiSeqOut/multiPro19/pro19_2.bam', 'initialFastq': '/data/quasiSeqOut/multiPro19/pro19_2.fastq', 'rankedFile': '/data/quasiSeqOut/multiPro19/pro19_2.realign.rankedsnp', 'startIndex': 30, 'estimatedErrorRate': '0.01', 'consensusFile': '/data/quasiSeqOut/multiPro19/pro19_2.consensus.fasta', 'ranking_method': 'percentage', 'clusterFile': '/data/quasiSeqOut/multiPro19/pro19_2_clusters', 'readCountSNPVarFreqThresh': 0.001, 'start': 1600955811.652487, 'readCountsFile': '/data/quasiSeqOut/multiPro19/pro19_2.readcounts', 'minorAlleleReadThresh': 30, 'rankingMethod': 'percentage', 'pvalThresh': '0.001', 'sampleNameSplit': ('/data/quasiSeqOut/multiPro19', 'pro19_2'), 'percentThresh': 5.0, 'outDir': '/data/quasiSeqOut/multiPro19/', 'readCountSNPPvalThresh': 0.05, 'sampleName': 'pro19_2', 'optionalfilters': (), 'referenceFile': '/data/quasiSeqOut/multiPro19/pro19.consensus.fasta', 'snpThresh': 40, 'pool': [<Process(Process-1, unknown)>], 'exc': OSError(17, 'File exists'), 'endIndex': 7099, 'realignedPileupFile': '/data/quasiSeqOut/multiPro19/pro19_2.realign.pileup', 'realignedSampleName': 'pro19_2.realign', 'realignedSnpFile': '/data/quasiSeqOut/multiPro19/pro19_2.realign.readcounts.snp', 'readCountSNPCoverageThresh': 10, 'realignedBamfile': '/data/quasiSeqOut/multiPro19/pro19_2.realign.bam', 'maxSignatures': '12000'})
+consenseAndRealignSparc:/data/quasiSeqOut/multiPro19/pro19_2.fastq, /data/quasiSeqOut/multiPro19/pro19.consensus.fasta, /data/quasiSeqOut/multiPro19/pro19_2.bam, /data/quasiSeqOut/multiPro19/pro19_2.readcounts, /data/quasiSeqOut/multiPro19/pro19_2.consensus.fasta, /data/quasiSeqOut/multiPro19/pro19_2.realign.bam
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!blasr /data/quasiSeqOut/multiPro19/pro19_2.fastq /data/quasiSeqOut/multiPro19/pro19.consensus.fasta -minMatch 19 -nproc 30 -bestn 1 -m 5 -out /data/quasiSeqOut/multiPro19/pro19_2.m5 -unaligned /data/quasiSeqOut/multiPro19/pro19_2.m5.ref_unaligned.fa
+
+Finished.
+
+ consensus file is done!
+/data/quasiSeqOut/multiPro19/pro19_1.consensus.fasta
+
+Created Consensus!
+bwa index /data/quasiSeqOut/multiPro19/pro19_1.consensus.fasta
+samtools faidx /data/quasiSeqOut/multiPro19/pro19_1.consensus.fasta
+[INFO] 2020-09-24T13:56:54 [blasr] started.
+indexReference took 0.0563960075378seconds
+getConsensusSparc took 7.25772309303seconds
+blasr /data/quasiSeqOut/multiPro19/pro19_1.fastq /data/quasiSeqOut/multiPro19/pro19_1.consensus.fasta -nproc 30 -bestn 1 -sam -out /data/quasiSeqOut/multiPro19/pro19_1.realign.sam -unaligned /data/quasiSeqOut/multiPro19/pro19_1.realign.unaligned.fa
+
+[INFO] 2020-09-24T13:56:54 [blasr] started.
+[INFO] 2020-09-24T13:57:02 [blasr] ended.
+
+ m5File is done!
+/data/quasiSeqOut/multiPro19/pro19_2.m5
+
+alignFastqBlasrM5 took 7.74737906456seconds
+/opt/Sparc/compiled/Sparc b /data/quasiSeqOut/multiPro19/pro19.consensus.fasta m /data/quasiSeqOut/multiPro19/pro19_2.m5 k 1 g 1 c 2 t 0.2 o /data/quasiSeqOut/multiPro19/pro19_2
+For help: Sparc -h
+Backbone size: 7133
+Finished.
+
+ consensus file is done!
+/data/quasiSeqOut/multiPro19/pro19_2.consensus.fasta
+
+Created Consensus!
+bwa index /data/quasiSeqOut/multiPro19/pro19_2.consensus.fasta
+samtools faidx /data/quasiSeqOut/multiPro19/pro19_2.consensus.fasta
+indexReference took 0.700525045395seconds
+getConsensusSparc took 7.40043497086seconds
+blasr /data/quasiSeqOut/multiPro19/pro19_2.fastq /data/quasiSeqOut/multiPro19/pro19_2.consensus.fasta -nproc 30 -bestn 1 -sam -out /data/quasiSeqOut/multiPro19/pro19_2.realign.sam -unaligned /data/quasiSeqOut/multiPro19/pro19_2.realign.unaligned.fa
+
+[INFO] 2020-09-24T13:57:10 [blasr] started.
+getClusterFastq took 34.3860011101seconds
+!!!!!!!!!! Recursive call for /data/quasiSeqOut/multiPro19/pro19_3 !!!!!!!!!!
+Reading clusters
+*****Running pipeline for /data/quasiSeqOut/multiPro19/pro19_3*****
+*****startIndex=30*****
+*****endIndex=7099*****
+*****snpThresh=40*****
+/data/quasiSeqOut/multiPro19/pro19_4
+*****percentThresh=5.0*****
+('pipeli669 reads in /data/quasiSeqOut/multiPro19/pro19_4
+ne parameters:', {'initialBamfile': '/data/quasiSeqOut/multiPro19/pro19_3.bam', 'initialFastq': '/data/quasiSeqOut/multiPro19/pro19_3.fastq', 'rankedFile': '/data/quasiSeqOut/multiPro19/pro19_3.realign.rankedsnp', 'startIndex': [INFO] [INFO] 2020-09-24T13:57:33 [blasr] ended.
+30, 'estimatedErrorRate': '0.01', 'consensusFile': '/data/quasiSeq2020-09-24T13:57:33 [blasr] ended.
+
+ sam_file is done!
+/data/quasiSeqOut/multiPro19/pro19_1.realign.sam
+
+Out/multiPro19/pro19_3.consensus.fasta', 'ranking_method': 'percentage', 'clusterFile': '/data/quasiSeqOut/multiPro19/pro19_3_clusters', 'readCountSNPVarFreqThresh': samtools view -Sb /data/quasiSeqOut/multiPro19/pro19_1.realign.sam | samtools sort - -o /data/quasiSeqOut/multiPro19/pro19_1.realign.bam
+
+
+ sam_file is done!
+/data/quasiSeqOut/multiPro19/pro19_2.realign.sam
+0.001
+, 'start': samtools view -Sb /data/quasiSeqOut/multiPro19/pro19_2.realign.sam | samtools sort - -o /data/quasiSeqOut/multiPro19/pro19_2.realign.bam
+
+1600955846.421807, 'readCountsFile': '/data/quasiSeqOut/multiPro19/pro19_3.readcounts', 'minorAlleleReadThresh': 30, 'rankingMethod': 'percentage', 'pvalThresh': '0.001', 'sampleNameSplit': ('/data/quasiSeqOut/multiPro19', 'pro19_3'), 'percentThresh': 5.0, 'outDir': '/data/quasiSeqOut/multiPro19/', 'readCountSNPPvalThresh': 0.05, 'sampleName': 'pro19_3', 'optionalfilters': (), 'referenceFile': '/data/quasiSeqOut/multiPro19/pro19.consensus.fasta', 'snpThresh': 40, 'pool': [<Process(Process-1, unknown)>, <Process(Process-2, unknown)>], 'exc': OSError(17, 'File exists'), 'endIndex': 7099, 'realignedPileupFile': '/data/quasiSeqOut/multiPro19/pro19_3.realign.pileup', 'realignedSampleName': 'pro19_3.realign', 'realignedSnpFile': '/data/quasiSeqOut/multiPro19/pro19_3.realign.readcounts.snp', 'readCountSNPCoverageThresh': 10, 'realignedBamfile': '/data/quasiSeqOut/multiPro19/pro19_3.realign.bam', 'maxSignatures': '12000'})
+consenseAndRealignSparc:/data/quasiSeqOut/multiPro19/pro19_3.fastq, /data/quasiSeqOut/multiPro19/pro19.consensus.fasta, /data/quasiSeqOut/multiPro19/pro19_3.bam, /data/quasiSeqOut/multiPro19/pro19_3.readcounts, /data/quasiSeqOut/multiPro19/pro19_3.consensus.fasta, /data/quasiSeqOut/multiPro19/pro19_3.realign.bam
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!blasr /data/quasiSeqOut/multiPro19/pro19_3.fastq /data/quasiSeqOut/multiPro19/pro19.consensus.fasta -minMatch 19 -nproc 30 -bestn 1 -m 5 -out /data/quasiSeqOut/multiPro19/pro19_3.m5 -unaligned /data/quasiSeqOut/multiPro19/pro19_3.m5.ref_unaligned.fa
+
+[INFO] 2020-09-24T13:57:34 [blasr] started.
+[INFO] 2020-09-24T13:57:35 [blasr] ended.
+
+ m5File is done!
+/data/quasiSeqOut/multiPro19/pro19_3.m5
+
+alignFastqBlasrM5 took 1.10689902306seconds
+/opt/Sparc/compiled/Sparc b /data/quasiSeqOut/multiPro19/pro19.consensus.fasta m /data/quasiSeqOut/multiPro19/pro19_3.m5 k 1 g 1 c 2 t 0.2 o /data/quasiSeqOut/multiPro19/pro19_3
+For help: Sparc -h
+Backbone size: 7133
+Finished.
+
+ consensus file is done!
+/data/quasiSeqOut/multiPro19/pro19_3.consensus.fasta
+
+Created Consensus!
+bwa index /data/quasiSeqOut/multiPro19/pro19_3.consensus.fasta
+samtools faidx /data/quasiSeqOut/multiPro19/pro19_3.consensus.fasta
+indexReference took 0.0293669700623seconds
+getConsensusSparc took 0.206999063492seconds
+blasr /data/quasiSeqOut/multiPro19/pro19_3.fastq /data/quasiSeqOut/multiPro19/pro19_3.consensus.fasta -nproc 30 -bestn 1 -sam -out /data/quasiSeqOut/multiPro19/pro19_3.realign.sam -unaligned /data/quasiSeqOut/multiPro19/pro19_3.realign.unaligned.fa
+
+[INFO] 2020-09-24T13:57:36 [blasr] started.
+[INFO] 2020-09-24T13:57:37 [blasr] ended.
+
+ sam_file is done!
+/data/quasiSeqOut/multiPro19/pro19_3.realign.sam
+
+samtools view -Sb /data/quasiSeqOut/multiPro19/pro19_3.realign.sam | samtools sort - -o /data/quasiSeqOut/multiPro19/pro19_3.realign.bam
+
+
+ bam_file is done!
+/data/quasiSeqOut/multiPro19/pro19_3.realign.bam
+
+samtools index /data/quasiSeqOut/multiPro19/pro19_3.realign.bam
+
+alignFastqAndIndexPacBioSam_v1_3 took 1.83645391464seconds
+samtools mpileup -BQ0 -d100000 -f /data/quasiSeqOut/multiPro19/pro19_3.consensus.fasta /data/quasiSeqOut/multiPro19/pro19_3.realign.bam > /data/quasiSeqOut/multiPro19/pro19_3.realign.pileup
+
+[mpileup] 1 samples in 1 input files
+
+ pileup_file is done!
+/data/quasiSeqOut/multiPro19/pro19_3.realign.pileup
+
+java -jar VarScan.v2.4.2.jar readcounts /data/quasiSeqOut/multiPro19/pro19_3.realign.pileup  --output-file /data/quasiSeqOut/multiPro19/pro19_3.realign.readcounts --min-base-qual 5
+
+Min coverage:	1
+Min base qual:	5
+Reading input from /data/quasiSeqOut/multiPro19/pro19_3.realign.pileup
+5869 positions in pileup file
+5869 included in readcount analysis
+5869 met minimum coverage
+
+ readcounts_file done!
+/data/quasiSeqOut/multiPro19/pro19_3.realign.readcounts
+
+getReadCounts took 2.91926622391seconds
+java -cp ./ ReadCount_snp /data/quasiSeqOut/multiPro19/pro19_3.realign.readcounts /data/quasiSeqOut/multiPro19/pro19_3.realign.readcounts.snp 0.01 0.05 10 0.001
+
+
+ bam_file is done!
+/data/quasiSeqOut/multiPro19/pro19_2.realign.bam
+
+samtools index /data/quasiSeqOut/multiPro19/pro19_2.realign.bam
+
+alignFastqAndIndexPacBioSam_v1_3 took 31.4849119186seconds
+samtools mpileup -BQ0 -d100000 -f /data/quasiSeqOut/multiPro19/pro19_2.consensus.fasta /data/quasiSeqOut/multiPro19/pro19_2.realign.bam > /data/quasiSeqOut/multiPro19/pro19_2.realign.pileup
+
+[mpileup] 1 samples in 1 input files
+
+ pileup_file is done!
+/data/quasiSeqOut/multiPro19/pro19_2.realign.pileup
+
+java -jar VarScan.v2.4.2.jar readcounts /data/quasiSeqOut/multiPro19/pro19_2.realign.pileup  --output-file /data/quasiSeqOut/multiPro19/pro19_2.realign.readcounts --min-base-qual 5
+
+Min coverage:	1
+Min base qual:	5
+Reading input from /data/quasiSeqOut/multiPro19/pro19_2.realign.pileup
+getClusterFastq took 21.196849823seconds
+!!!!!!!!!! Recursive call for /data/quasiSeqOut/multiPro19/pro19_4 !!!!!!!!!!
+Reading clusters
+*****Running pipeline for /data/quasiSeqOut/multiPro19/pro19_4*****
+*****startIndex=30*****
+*****endIndex=7099*****
+*****snpThresh=40*****
+/data/quasiSeqOut/multiPro19/pro19_5
+*****percentThresh=5.0*****
+('pipeline parameters:', 520 reads in /data/quasiSeqOut/multiPro19/pro19_5{'initialBamfile': 
+'/data/quasiSeqOut/multiPro19/pro19_4.bam', 'initialFastq': '/data/quasiSeqOut/multiPro19/pro19_4.fastq', 'rankedFile': '/data/quasiSeqOut/multiPro19/pro19_4.realign.rankedsnp', 'startIndex': 30, 'estimatedErrorRate': '0.01', 'consensusFile': '/data/quasiSeqOut/multiPro19/pro19_4.consensus.fasta', 'ranking_method': 'percentage', 'clusterFile': '/data/quasiSeqOut/multiPro19/pro19_4_clusters', 'readCountSNPVarFreqThresh': 0.001, 'start': 1600955867.915911, 'readCountsFile': '/data/quasiSeqOut/multiPro19/pro19_4.readcounts', 'minorAlleleReadThresh': 30, 'rankingMethod': 'percentage', 'pvalThresh': '0.001', 'sampleNameSplit': ('/data/quasiSeqOut/multiPro19', 'pro19_4'), 'percentThresh': 5.0, 'outDir': '/data/quasiSeqOut/multiPro19/', 'readCountSNPPvalThresh': 0.05, 'sampleName': 'pro19_4', 'optionalfilters': (), 'referenceFile': '/data/quasiSeqOut/multiPro19/pro19.consensus.fasta', 'snpThresh': 40, 'pool': [<Process(Process-1, unknown)>, <Process(Process-2, unknown)>, <Process(Process-3, unknown)>], 'exc': OSError(17, 'File exists'), 'endIndex': 7099, 'realignedPileupFile': '/data/quasiSeqOut/multiPro19/pro19_4.realign.pileup', 'realignedSampleName': 'pro19_4.realign', 'realignedSnpFile': '/data/quasiSeqOut/multiPro19/pro19_4.realign.readcounts.snp', 'readCountSNPCoverageThresh': 10, 'realignedBamfile': '/data/quasiSeqOut/multiPro19/pro19_4.realign.bam', 'maxSignatures': '12000'})
+consenseAndRealignSparc:/data/quasiSeqOut/multiPro19/pro19_4.fastq, /data/quasiSeqOut/multiPro19/pro19.consensus.fasta, /data/quasiSeqOut/multiPro19/pro19_4.bam, /data/quasiSeqOut/multiPro19/pro19_4.readcounts, /data/quasiSeqOut/multiPro19/pro19_4.consensus.fasta, /data/quasiSeqOut/multiPro19/pro19_4.realign.bam
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!blasr /data/quasiSeqOut/multiPro19/pro19_4.fastq /data/quasiSeqOut/multiPro19/pro19.consensus.fasta -minMatch 19 -nproc 30 -bestn 1 -m 5 -out /data/quasiSeqOut/multiPro19/pro19_4.m5 -unaligned /data/quasiSeqOut/multiPro19/pro19_4.m5.ref_unaligned.fa
+
+[INFO] 2020-09-24T13:57:50 [blasr] started.
+[INFO] 2020-09-24T13:57:58 [blasr] ended.7138 positions in pileup file
+
+7138 included in readcount analysis
+ m5File is done!
+/data/quasiSeqOut/multiPro19/pro19_4.m5
+
+
+alignFastqBlasrM5 took 8.28032493591seconds
+7138 met minimum coverage/opt/Sparc/compiled/Sparc b /data/quasiSeqOut/multiPro19/pro19.consensus.fasta m /data/quasiSeqOut/multiPro19/pro19_4.m5 k 1 g 1 c 2 t 0.2 o /data/quasiSeqOut/multiPro19/pro19_4
+
+For help: Sparc -h
+Backbone size: 7133
+
+ readcounts_file done!
+/data/quasiSeqOut/multiPro19/pro19_2.realign.readcounts
+
+getReadCounts took 17.5772140026seconds
+java -cp ./ ReadCount_snp /data/quasiSeqOut/multiPro19/pro19_2.realign.readcounts /data/quasiSeqOut/multiPro19/pro19_2.realign.readcounts.snp 0.01 0.05 10 0.001
+
+Finished.
+
+ consensus file is done!
+/data/quasiSeqOut/multiPro19/pro19_4.consensus.fasta
+
+Created Consensus!
+bwa index /data/quasiSeqOut/multiPro19/pro19_4.consensus.fasta
+samtools faidx /data/quasiSeqOut/multiPro19/pro19_4.consensus.fasta
+indexReference took 0.0374028682709seconds
+getConsensusSparc took 1.54036402702seconds
+blasr /data/quasiSeqOut/multiPro19/pro19_4.fastq /data/quasiSeqOut/multiPro19/pro19_4.consensus.fasta -nproc 30 -bestn 1 -sam -out /data/quasiSeqOut/multiPro19/pro19_4.realign.sam -unaligned /data/quasiSeqOut/multiPro19/pro19_4.realign.unaligned.fa
+
+[INFO] 2020-09-24T13:58:00 [blasr] started.
+[INFO] 2020-09-24T13:58:08 [blasr] ended.
+
+ sam_file is done!
+/data/quasiSeqOut/multiPro19/pro19_4.realign.sam
+
+samtools view -Sb /data/quasiSeqOut/multiPro19/pro19_4.realign.sam | samtools sort - -o /data/quasiSeqOut/multiPro19/pro19_4.realign.bam
+
+
+ bam_file is done!
+/data/quasiSeqOut/multiPro19/pro19_1.realign.bam
+
+samtools index /data/quasiSeqOut/multiPro19/pro19_1.realign.bam
+
+alignFastqAndIndexPacBioSam_v1_3 took 77.3380060196seconds
+samtools mpileup -BQ0 -d100000 -f /data/quasiSeqOut/multiPro19/pro19_1.consensus.fasta /data/quasiSeqOut/multiPro19/pro19_1.realign.bam > /data/quasiSeqOut/multiPro19/pro19_1.realign.pileup
+
+[mpileup] 1 samples in 1 input files
+getClusterFastq took 24.7477679253seconds
+!!!!!!!!!! Recursive call for /data/quasiSeqOut/multiPro19/pro19_5 !!!!!!!!!!
+Reading clusters*****Running pipeline for /data/quasiSeqOut/multiPro19/pro19_5*****
+
+*****startIndex=30*****
+*****endIndex=7099*****
+*****snpThresh=40*****
+/data/quasiSeqOut/multiPro19/pro19_6
+*****percentThresh=5.0*****
+('pipeline parameters:', 293 reads in /data/quasiSeqOut/multiPro19/pro19_6{'initialBamfile': '/data/quasiSeqOut/multiPro19/pro19_5.bam', 'initialFastq': '/data/quasiSeqOut/multiPro19/pro19_5.fastq
+', 'rankedFile': '/data/quasiSeqOut/multiPro19/pro19_5.realign.rankedsnp', 'startIndex': 30, 'estimatedErrorRate': '0.01', 'consensusFile': '/data/quasiSeqOut/multiPro19/pro19_5.consensus.fasta', 'ranking_method': 'percentage', 'clusterFile': '/data/quasiSeqOut/multiPro19/pro19_5_clusters', 'readCountSNPVarFreqThresh': 0.001, 'start': 1600955892.699929, 'readCountsFile': '/data/quasiSeqOut/multiPro19/pro19_5.readcounts', 'minorAlleleReadThresh': 30, 'rankingMethod': 'percentage', 'pvalThresh': '0.001', 'sampleNameSplit': ('/data/quasiSeqOut/multiPro19', 'pro19_5'), 'percentThresh': 5.0, 'outDir': '/data/quasiSeqOut/multiPro19/', 'readCountSNPPvalThresh': 0.05, 'sampleName': 'pro19_5', 'optionalfilters': (), 'referenceFile': '/data/quasiSeqOut/multiPro19/pro19.consensus.fasta', 'snpThresh': 40, 'pool': [<Process(Process-1, unknown)>, <Process(Process-2, unknown)>, <Process(Process-3, unknown)>, <Process(Process-4, unknown)>], 'exc': OSError(17, 'File exists'), 'endIndex': 7099, 'realignedPileupFile': '/data/quasiSeqOut/multiPro19/pro19_5.realign.pileup', 'realignedSampleName': 'pro19_5.realign', 'realignedSnpFile': '/data/quasiSeqOut/multiPro19/pro19_5.rea
+ bam_file is done!
+/data/quasiSeqOut/multiPro19/pro19_4.realign.bam
+
+lign.readcounts.snp', 'readCosamtools index /data/quasiSeqOut/multiPro19/pro19_4.realign.bam
+
+untSNPCoverageThresh': 10, 'realignedBamfile': '/data/quasiSeqOut/multiPro19/pro19_5.realign.bam', 'maxSignatures': '12000'})
+consenseAndRealignSparc:/data/quasiSeqOut/multiPro19/pro19_5.fastq, /data/quasiSeqOut/multiPro19/pro19.consensus.fasta, /data/quasiSeqOut/multiPro19/pro19_5.bam, /data/quasiSeqOut/multiPro19/pro19_5.readcounts, /data/quasiSeqOut/multiPro19/pro19_5.consensus.fasta, /data/quasiSeqOut/multiPro19/pro19_5.realign.bam
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!blasr /data/quasiSeqOut/multiPro19/pro19_5.fastq /data/quasiSeqOut/multiPro19/pro19.consensus.fasta -minMatch 19 -nproc 30 -bestn 1 -m 5 -out /data/quasiSeqOut/multiPro19/pro19_5.m5 -unaligned /data/quasiSeqOut/multiPro19/pro19_5.m5.ref_unaligned.fa
+
+[INFO] 2020-09-24T13:58:14 [blasr] started.
+alignFastqAndIndexPacBioSam_v1_3 took 14.6887340546seconds
+samtools mpileup -BQ0 -d100000 -f /data/quasiSeqOut/multiPro19/pro19_4.consensus.fasta /data/quasiSeqOut/multiPro19/pro19_4.realign.bam > /data/quasiSeqOut/multiPro19/pro19_4.realign.pileup
+
+[mpileup] 1 samples in 1 input files
+[INFO] 2020-09-24T13:58:21 [blasr] ended.
+
+ m5File is done!
+/data/quasiSeqOut/multiPro19/pro19_5.m5
+
+alignFastqBlasrM5 took 6.33782315254seconds
+/opt/Sparc/compiled/Sparc b /data/quasiSeqOut/multiPro19/pro19.consensus.fasta m /data/quasiSeqOut/multiPro19/pro19_5.m5 k 1 g 1 c 2 t 0.2 o /data/quasiSeqOut/multiPro19/pro19_5
+For help: Sparc -h
+Backbone size: 7133
+
+ pileup_file is done!
+/data/quasiSeqOut/multiPro19/pro19_4.realign.pileup
+
+java -jar VarScan.v2.4.2.jar readcounts /data/quasiSeqOut/multiPro19/pro19_4.realign.pileup  --output-file /data/quasiSeqOut/multiPro19/pro19_4.realign.readcounts --min-base-qual 5
+
+Min coverage:	1
+Min base qual:	5
+Reading input from /data/quasiSeqOut/multiPro19/pro19_4.realign.pileup
+Finished.
+
+ consensus file is done!
+/data/quasiSeqOut/multiPro19/pro19_5.consensus.fasta
+
+Created Consensus!
+bwa index /data/quasiSeqOut/multiPro19/pro19_5.consensus.fasta
+samtools faidx /data/quasiSeqOut/multiPro19/pro19_5.consensus.fasta
+indexReference took 0.033360004425seconds
+getConsensusSparc took 1.80326008797seconds
+blasr /data/quasiSeqOut/multiPro19/pro19_5.fastq /data/quasiSeqOut/multiPro19/pro19_5.consensus.fasta -nproc 30 -bestn 1 -sam -out /data/quasiSeqOut/multiPro19/pro19_5.realign.sam -unaligned /data/quasiSeqOut/multiPro19/pro19_5.realign.unaligned.fa
+
+[INFO] 2020-09-24T13:58:23 [blasr] started.
+getSNPs took 49.3422310352seconds
+samtools mpileup -BQ0 -d100000 -f /data/quasiSeqOut/multiPro19/pro19_3.consensus.fasta /data/quasiSeqOut/multiPro19/pro19_3.realign.bam > /data/quasiSeqOut/multiPro19/pro19_3.realign.pileup
+
+[INFO] 2020-09-24T13:58:30 [blasr] ended.
+
+ sam_file is done!
+/data/quasiSeqOut/multiPro19/pro19_5.realign.sam
+
+samtools view -Sb /data/quasiSeqOut/multiPro19/pro19_5.realign.sam | samtools sort - -o /data/quasiSeqOut/multiPro19/pro19_5.realign.bam
+
+[mpileup] 1 samples in 1 input files
+
+ pileup_file is done!
+/data/quasiSeqOut/multiPro19/pro19_3.realign.pileup
+
+getPileup took 0.378787994385seconds
+consenseAndAlign took 55.8991391659seconds
+('rankSNVs parameters:', {'endIndex': 7099, 'snpFile': '/data/quasiSeqOut/multiPro19/pro19_3.realign.readcounts.snp', 'startIndex': 30, 'rankedFile': '/data/quasiSeqOut/multiPro19/pro19_3.realign.rankedsnp', 'optionalfilters': (), 'minorAlleleReadThresh': 30, 'rankingMethod': 'percentage', 'pvalThresh': '0.001', 'maxSignatures': '12000', 'percentThresh': 5.0, 'consensusFile': '/data/quasiSeqOut/multiPro19/pro19_3.consensus.fasta'})
+~~~~~~~~~~~~~~~~~~ python rankSNVs.py /data/quasiSeqOut/multiPro19/pro19_3.realign.readcounts.snp /data/quasiSeqOut/multiPro19/pro19_3.realign.rankedsnp percentage /data/quasiSeqOut/multiPro19/pro19_3.consensus.fasta -s 30 -e 7099 -perc 5.0 -pval 0.001 -r 30 -numSig 12000 
+numSNPs:0>= snpThresh:40->False
+0 SNPs: Creating consensus for pro19_3(cluster)
+!!!!!!!!!!Writing final consensus for pro19_3
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!blasr /data/quasiSeqOut/multiPro19/pro19_3.fastq /data/quasiSeqOut/multiPro19/pro19_3.consensus.fasta -minMatch 19 -nproc 30 -bestn 1 -m 5 -out /data/quasiSeqOut/multiPro19/pro19_3.m5 -unaligned /data/quasiSeqOut/multiPro19/pro19_3.m5.ref_unaligned.fa
+
+[INFO] 2020-09-24T13:58:32 [blasr] started.
+[INFO] 2020-09-24T13:58:33 [blasr] ended.
+
+ m5File is done!
+/data/quasiSeqOut/multiPro19/pro19_3.m5
+
+alignFastqBlasrM5 took 1.60636687279seconds
+/opt/Sparc/compiled/Sparc b /data/quasiSeqOut/multiPro19/pro19_3.consensus.fasta m /data/quasiSeqOut/multiPro19/pro19_3.m5 k 1 g 1 c 2 t 0.2 o /data/quasiSeqOut/multiPro19/pro19_3.finalRoundSparc
+For help: Sparc -h
+Backbone size: 5869
+Finished.
+
+ consensus file is done!
+/data/quasiSeqOut/multiPro19/pro19_3.finalRoundSparc.consensus.fasta
+
+Created Consensus!
+bwa index /data/quasiSeqOut/multiPro19/pro19_3.finalRoundSparc.consensus.fasta
+samtools faidx /data/quasiSeqOut/multiPro19/pro19_3.finalRoundSparc.consensus.fasta
+indexReference took 0.0313360691071seconds
+getConsensusSparc took 0.375054836273seconds
+!!!!!!!!!!Writing final consensus stats for pro19_3
+Pipeline round for pro19_3 took 67.7328970432seconds
+
+ bam_file is done!
+/data/quasiSeqOut/multiPro19/pro19_5.realign.bam
+
+samtools index /data/quasiSeqOut/multiPro19/pro19_5.realign.bam
+
+alignFastqAndIndexPacBioSam_v1_3 took 13.8100969791seconds
+samtools mpileup -BQ0 -d100000 -f /data/quasiSeqOut/multiPro19/pro19_5.consensus.fasta /data/quasiSeqOut/multiPro19/pro19_5.realign.bam > /data/quasiSeqOut/multiPro19/pro19_5.realign.pileup
+
+[mpileup] 1 samples in 1 input files
+
+ pileup_file is done!
+/data/quasiSeqOut/multiPro19/pro19_1.realign.pileup
+
+java -jar VarScan.v2.4.2.jar readcounts /data/quasiSeqOut/multiPro19/pro19_1.realign.pileup  --output-file /data/quasiSeqOut/multiPro19/pro19_1.realign.readcounts --min-base-qual 5
+
+
+ pileup_file is done!
+/data/quasiSeqOut/multiPro19/pro19_5.realign.pileup
+
+java -jar VarScan.v2.4.2.jar readcounts /data/quasiSeqOut/multiPro19/pro19_5.realign.pileup  --output-file /data/quasiSeqOut/multiPro19/pro19_5.realign.readcounts --min-base-qual 5
+
+7133 positions in pileup file
+7133 included in readcount analysis
+7133 met minimum coverage
+Min coverage:	1
+Min coverage:	1Min base qual:	5
+
+Min base qual:	5
+Reading input from /data/quasiSeqOut/multiPro19/pro19_5.realign.pileup
+Reading input from /data/quasiSeqOut/multiPro19/pro19_1.realign.pileup
+
+ readcounts_file done!
+/data/quasiSeqOut/multiPro19/pro19_4.realign.readcounts
+
+getReadCounts took 24.7925701141seconds
+java -cp ./ ReadCount_snp /data/quasiSeqOut/multiPro19/pro19_4.realign.readcounts /data/quasiSeqOut/multiPro19/pro19_4.realign.readcounts.snp 0.01 0.05 10 0.001
+
+getClusterFastq took 27.298858881seconds
+!!!!!!!!!! Recursive call for /data/quasiSeqOut/multiPro19/pro19_6 !!!!!!!!!!
+Reading clusters
+/data/quasiSeqOut/multiPro19/pro19_7
+*****Running pipeline for /data/quasiSeqOut/multiPro19/pro19_6*****
+*****startIndex=30*****
+*****endIndex=7099*****
+*****snpThresh=40*****
+429 reads in /data/quasiSeqOut/multiPro19/pro19_7
+*****percentThresh=5.0*****
+('pipeline parameters:', {'initialBamfile': '/data/quasiSeqOut/multiPro19/pro19_6.bam', 'initialFastq': '/data/quasiSeqOut/multiPro19/pro19_6.fastq', 'rankedFile': '/data/quasiSeqOut/multiPro19/pro19_6.realign.rankedsnp', 'startIndex': 30, 'estimatedErrorRate': '0.01', 'consensusFile': '/data/quasiSeqOut/multiPro19/pro19_6.consensus.fasta', 'ranking_method': 'percentage', 'clusterFile': '/data/quasiSeqOut/multiPro19/pro19_6_clusters', 'readCountSNPVarFreqThresh': 0.001, 'start': 1600955920.016593, 'readCountsFile': '/data/quasiSeqOut/multiPro19/pro19_6.readcounts', 'minorAlleleReadThresh': 30, 'rankingMethod': 'percentage', 'pvalThresh': '0.001', 'sampleNameSplit': ('/data/quasiSeqOut/multiPro19', 'pro19_6'), 'percentThresh': 5.0, 'outDir': '/data/quasiSeqOut/multiPro19/', 'readCountSNPPvalThresh': 0.05, 'sampleName': 'pro19_6', 'optionalfilters': (), 'referenceFile': '/data/quasiSeqOut/multiPro19/pro19.consensus.fasta', 'snpThresh': 40, 'pool': [<Process(Process-1, unknown)>, <Process(Process-2, unknown)>, <Process(Process-3, unknown)>, <Process(Process-4, unknown)>, <Process(Process-5, unknown)>], 'exc': OSError(17, 'File exists'), 'endIndex': 7099, 'realignedPileupFile': '/data/quasiSeqOut/multiPro19/pro19_6.realign.pileup', 'realignedSampleName': 'pro19_6.realign', 'realignedSnpFile': '/data/quasiSeqOut/multiPro19/pro19_6.realign.readcounts.snp', 'readCountSNPCoverageThresh': 10, 'realignedBamfile': '/data/quasiSeqOut/multiPro19/pro19_6.realign.bam', 'maxSignatures': '12000'})
+consenseAndRealignSparc:/data/quasiSeqOut/multiPro19/pro19_6.fastq, /data/quasiSeqOut/multiPro19/pro19.consensus.fasta, /data/quasiSeqOut/multiPro19/pro19_6.bam, /data/quasiSeqOut/multiPro19/pro19_6.readcounts, /data/quasiSeqOut/multiPro19/pro19_6.consensus.fasta, /data/quasiSeqOut/multiPro19/pro19_6.realign.bam
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!blasr /data/quasiSeqOut/multiPro19/pro19_6.fastq /data/quasiSeqOut/multiPro19/pro19.consensus.fasta -minMatch 19 -nproc 30 -bestn 1 -m 5 -out /data/quasiSeqOut/multiPro19/pro19_6.m5 -unaligned /data/quasiSeqOut/multiPro19/pro19_6.m5.ref_unaligned.fa
+
+[INFO] 2020-09-24T13:58:42 [blasr] started.
+[INFO] 2020-09-24T13:58:46 [blasr] ended.
+
+ m5File is done!
+/data/quasiSeqOut/multiPro19/pro19_6.m5
+
+alignFastqBlasrM5 took 4.8941450119seconds
+/opt/Sparc/compiled/Sparc b /data/quasiSeqOut/multiPro19/pro19.consensus.fasta m /data/quasiSeqOut/multiPro19/pro19_6.m5 k 1 g 1 c 2 t 0.2 o /data/quasiSeqOut/multiPro19/pro19_6
+For help: Sparc -h
+Backbone size: 7133
+Finished.
+
+ consensus file is done!
+/data/quasiSeqOut/multiPro19/pro19_6.consensus.fasta
+
+Created Consensus!
+bwa index /data/quasiSeqOut/multiPro19/pro19_6.consensus.fasta
+samtools faidx /data/quasiSeqOut/multiPro19/pro19_6.consensus.fasta
+indexReference took 0.0360078811646seconds
+getConsensusSparc took 1.31000113487seconds
+blasr /data/quasiSeqOut/multiPro19/pro19_6.fastq /data/quasiSeqOut/multiPro19/pro19_6.consensus.fasta -nproc 30 -bestn 1 -sam -out /data/quasiSeqOut/multiPro19/pro19_6.realign.sam -unaligned /data/quasiSeqOut/multiPro19/pro19_6.realign.unaligned.fa
+
+[INFO] 2020-09-24T13:58:48 [blasr] started.
+[INFO] 2020-09-24T13:58:52 [blasr] ended.
+
+ sam_file is done!
+/data/quasiSeqOut/multiPro19/pro19_6.realign.sam
+
+samtools view -Sb /data/quasiSeqOut/multiPro19/pro19_6.realign.sam | samtools sort - -o /data/quasiSeqOut/multiPro19/pro19_6.realign.bam
+
+7158 positions in pileup file
+7158 included in readcount analysis
+7158 met minimum coverage
+
+ readcounts_file done!
+/data/quasiSeqOut/multiPro19/pro19_5.realign.readcounts
+
+getReadCounts took 19.4015247822seconds
+java -cp ./ ReadCount_snp /data/quasiSeqOut/multiPro19/pro19_5.realign.readcounts /data/quasiSeqOut/multiPro19/pro19_5.realign.readcounts.snp 0.01 0.05 10 0.001
+
+
+ bam_file is done!
+/data/quasiSeqOut/multiPro19/pro19_6.realign.bam
+
+samtools index /data/quasiSeqOut/multiPro19/pro19_6.realign.bam
+
+alignFastqAndIndexPacBioSam_v1_3 took 8.90192198753seconds
+samtools mpileup -BQ0 -d100000 -f /data/quasiSeqOut/multiPro19/pro19_6.consensus.fasta /data/quasiSeqOut/multiPro19/pro19_6.realign.bam > /data/quasiSeqOut/multiPro19/pro19_6.realign.pileup
+
+[mpileup] 1 samples in 1 input files
+
+ pileup_file is done!
+/data/quasiSeqOut/multiPro19/pro19_6.realign.pileup
+
+java -jar VarScan.v2.4.2.jar readcounts /data/quasiSeqOut/multiPro19/pro19_6.realign.pileup  --output-file /data/quasiSeqOut/multiPro19/pro19_6.realign.readcounts --min-base-qual 5
+
+Min coverage:	1
+Min base qual:	5
+Reading input from /data/quasiSeqOut/multiPro19/pro19_6.realign.pileup
+7140 positions in pileup file
+7140 included in readcount analysis
+7140 met minimum coverage
+
+ readcounts_file done!
+/data/quasiSeqOut/multiPro19/pro19_6.realign.readcounts
+
+getReadCounts took 10.5685501099seconds
+java -cp ./ ReadCount_snp /data/quasiSeqOut/multiPro19/pro19_6.realign.readcounts /data/quasiSeqOut/multiPro19/pro19_6.realign.readcounts.snp 0.01 0.05 10 0.001
+
+getClusterFastq took 28.8238890171seconds
+!!!!!!!!!! Recursive call for /data/quasiSeqOut/multiPro19/pro19_7 !!!!!!!!!!
+Pipeline round for pro19 took 1882.84945202seconds
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+7 processes
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+*****Running pipeline for /data/quasiSeqOut/multiPro19/pro19_7*****
+*****startIndex=30*****
+*****endIndex=7099*****
+*****snpThresh=40*****
+*****percentThresh=5.0*****
+('pipeline parameters:', {'initialBamfile': '/data/quasiSeqOut/multiPro19/pro19_7.bam', 'initialFastq': '/data/quasiSeqOut/multiPro19/pro19_7.fastq', 'rankedFile': '/data/quasiSeqOut/multiPro19/pro19_7.realign.rankedsnp', 'startIndex': 30, 'estimatedErrorRate': '0.01', 'consensusFile': '/data/quasiSeqOut/multiPro19/pro19_7.consensus.fasta', 'ranking_method': 'percentage', 'clusterFile': '/data/quasiSeqOut/multiPro19/pro19_7_clusters', 'readCountSNPVarFreqThresh': 0.001, 'start': 1600955948.852455, 'readCountsFile': '/data/quasiSeqOut/multiPro19/pro19_7.readcounts', 'minorAlleleReadThresh': 30, 'rankingMethod': 'percentage', 'pvalThresh': '0.001', 'sampleNameSplit': ('/data/quasiSeqOut/multiPro19', 'pro19_7'), 'percentThresh': 5.0, 'outDir': '/data/quasiSeqOut/multiPro19/', 'readCountSNPPvalThresh': 0.05, 'sampleName': 'pro19_7', 'optionalfilters': (), 'referenceFile': '/data/quasiSeqOut/multiPro19/pro19.consensus.fasta', 'snpThresh': 40, 'pool': [<Process(Process-1, unknown)>, <Process(Process-2, unknown)>, <Process(Process-3, unknown)>, <Process(Process-4, unknown)>, <Process(Process-5, unknown)>, <Process(Process-6, unknown)>], 'exc': OSError(17, 'File exists'), 'endIndex': 7099, 'realignedPileupFile': '/data/quasiSeqOut/multiPro19/pro19_7.realign.pileup', 'realignedSampleName': 'pro19_7.realign', 'realignedSnpFile': '/data/quasiSeqOut/multiPro19/pro19_7.realign.readcounts.snp', 'readCountSNPCoverageThresh': 10, 'realignedBamfile': '/data/quasiSeqOut/multiPro19/pro19_7.realign.bam', 'maxSignatures': '12000'})
+consenseAndRealignSparc:/data/quasiSeqOut/multiPro19/pro19_7.fastq, /data/quasiSeqOut/multiPro19/pro19.consensus.fasta, /data/quasiSeqOut/multiPro19/pro19_7.bam, /data/quasiSeqOut/multiPro19/pro19_7.readcounts, /data/quasiSeqOut/multiPro19/pro19_7.consensus.fasta, /data/quasiSeqOut/multiPro19/pro19_7.realign.bam
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!blasr /data/quasiSeqOut/multiPro19/pro19_7.fastq /data/quasiSeqOut/multiPro19/pro19.consensus.fasta -minMatch 19 -nproc 30 -bestn 1 -m 5 -out /data/quasiSeqOut/multiPro19/pro19_7.m5 -unaligned /data/quasiSeqOut/multiPro19/pro19_7.m5.ref_unaligned.fa
+
+[INFO] 2020-09-24T13:59:10 [blasr] started.
+[INFO] 2020-09-24T13:59:16 [blasr] ended.
+
+ m5File is done!
+/data/quasiSeqOut/multiPro19/pro19_7.m5
+
+alignFastqBlasrM5 took 5.58893084526seconds
+/opt/Sparc/compiled/Sparc b /data/quasiSeqOut/multiPro19/pro19.consensus.fasta m /data/quasiSeqOut/multiPro19/pro19_7.m5 k 1 g 1 c 2 t 0.2 o /data/quasiSeqOut/multiPro19/pro19_7
+For help: Sparc -h
+Backbone size: 7133
+Finished.
+
+ consensus file is done!
+/data/quasiSeqOut/multiPro19/pro19_7.consensus.fasta
+
+Created Consensus!
+bwa index /data/quasiSeqOut/multiPro19/pro19_7.consensus.fasta
+samtools faidx /data/quasiSeqOut/multiPro19/pro19_7.consensus.fasta
+indexReference took 0.0524830818176seconds
+getConsensusSparc took 1.1964609623seconds
+blasr /data/quasiSeqOut/multiPro19/pro19_7.fastq /data/quasiSeqOut/multiPro19/pro19_7.consensus.fasta -nproc 30 -bestn 1 -sam -out /data/quasiSeqOut/multiPro19/pro19_7.realign.sam -unaligned /data/quasiSeqOut/multiPro19/pro19_7.realign.unaligned.fa
+
+[INFO] 2020-09-24T13:59:17 [blasr] started.
+[INFO] 2020-09-24T13:59:23 [blasr] ended.
+
+ sam_file is done!
+/data/quasiSeqOut/multiPro19/pro19_7.realign.sam
+
+samtools view -Sb /data/quasiSeqOut/multiPro19/pro19_7.realign.sam | samtools sort - -o /data/quasiSeqOut/multiPro19/pro19_7.realign.bam
+
+
+ bam_file is done!
+/data/quasiSeqOut/multiPro19/pro19_7.realign.bam
+
+samtools index /data/quasiSeqOut/multiPro19/pro19_7.realign.bam
+
+alignFastqAndIndexPacBioSam_v1_3 took 10.9295079708seconds
+samtools mpileup -BQ0 -d100000 -f /data/quasiSeqOut/multiPro19/pro19_7.consensus.fasta /data/quasiSeqOut/multiPro19/pro19_7.realign.bam > /data/quasiSeqOut/multiPro19/pro19_7.realign.pileup
+
+[mpileup] 1 samples in 1 input files
+
+ pileup_file is done!
+/data/quasiSeqOut/multiPro19/pro19_7.realign.pileup
+
+java -jar VarScan.v2.4.2.jar readcounts /data/quasiSeqOut/multiPro19/pro19_7.realign.pileup  --output-file /data/quasiSeqOut/multiPro19/pro19_7.realign.readcounts --min-base-qual 5
+
+Min coverage:	1
+Min base qual:	5
+Reading input from /data/quasiSeqOut/multiPro19/pro19_7.realign.pileup
+7137 positions in pileup file
+7137 included in readcount analysis
+7137 met minimum coverage
+
+ readcounts_file done!
+/data/quasiSeqOut/multiPro19/pro19_1.realign.readcounts
+
+getReadCounts took 86.0498631001seconds
+java -cp ./ ReadCount_snp /data/quasiSeqOut/multiPro19/pro19_1.realign.readcounts /data/quasiSeqOut/multiPro19/pro19_1.realign.readcounts.snp 0.01 0.05 10 0.001
+
+7143 positions in pileup file
+7143 included in readcount analysis
+7143 met minimum coverage
+
+ readcounts_file done!
+/data/quasiSeqOut/multiPro19/pro19_7.realign.readcounts
+
+getReadCounts took 13.0689439774seconds
+java -cp ./ ReadCount_snp /data/quasiSeqOut/multiPro19/pro19_7.realign.readcounts /data/quasiSeqOut/multiPro19/pro19_7.realign.readcounts.snp 0.01 0.05 10 0.001
+
+getSNPs took 156.540093184seconds
+samtools mpileup -BQ0 -d100000 -f /data/quasiSeqOut/multiPro19/pro19_2.consensus.fasta /data/quasiSeqOut/multiPro19/pro19_2.realign.bam > /data/quasiSeqOut/multiPro19/pro19_2.realign.pileup
+
+[mpileup] 1 samples in 1 input files
+
+ pileup_file is done!
+/data/quasiSeqOut/multiPro19/pro19_2.realign.pileup
+
+getPileup took 3.14555907249seconds
+consenseAndAlign took 223.91076088seconds
+('rankSNVs parameters:', {'endIndex': 7099, 'snpFile': '/data/quasiSeqOut/multiPro19/pro19_2.realign.readcounts.snp', 'startIndex': 30, 'rankedFile': '/data/quasiSeqOut/multiPro19/pro19_2.realign.rankedsnp', 'optionalfilters': (), 'minorAlleleReadThresh': 30, 'rankingMethod': 'percentage', 'pvalThresh': '0.001', 'maxSignatures': '12000', 'percentThresh': 5.0, 'consensusFile': '/data/quasiSeqOut/multiPro19/pro19_2.consensus.fasta'})
+~~~~~~~~~~~~~~~~~~ python rankSNVs.py /data/quasiSeqOut/multiPro19/pro19_2.realign.readcounts.snp /data/quasiSeqOut/multiPro19/pro19_2.realign.rankedsnp percentage /data/quasiSeqOut/multiPro19/pro19_2.consensus.fasta -s 30 -e 7099 -perc 5.0 -pval 0.001 -r 30 -numSig 12000 
+numSNPs:102>= snpThresh:40->True
+102 SNPs: Continuing with clustering
+java -classpath .:/usr/local/MATLAB/MATLAB_Runtime/v91/toolbox/javabuilder/jar/javabuilder.jar:SigClust.jar getClust /data/quasiSeqOut/multiPro19/pro19_2.realign.bam /data/quasiSeqOut/multiPro19/pro19_2.realign.rankedsnp /data/quasiSeqOut/multiPro19/pro19_2
+top SNVs qualified for constructing signature:102 	total signatures: 686
+
+ No self_tuning. 
+Final Signatures for Clustering: 686 X 102 
+getSNPs took 119.495807886seconds
+samtools mpileup -BQ0 -d100000 -f /data/quasiSeqOut/multiPro19/pro19_6.consensus.fasta /data/quasiSeqOut/multiPro19/pro19_6.realign.bam > /data/quasiSeqOut/multiPro19/pro19_6.realign.pileup
+
+[mpileup] 1 samples in 1 input files
+
+ pileup_file is done!
+/data/quasiSeqOut/multiPro19/pro19_6.realign.pileup
+
+getPileup took 3.68544888496seconds
+consenseAndAlign took 148.867746115seconds
+('rankSNVs parameters:', {'endIndex': 7099, 'snpFile': '/data/quasiSeqOut/multiPro19/pro19_6.realign.readcounts.snp', 'startIndex'getSNPs took 152.159316063seconds: 30
+, 'rankedFile': samtools mpileup -BQ0 -d100000 -f /data/quasiSeqOut/multiPro19/pro19_4.consensus.fasta /data/quasiSeqOut/multiPro19/pro19_4.realign.bam > /data/quasiSeqOut/multiPro19/pro19_4.realign.pileup'/data/quasiSeqOut/
+multiPro19/pro19_6.realign.ra
+nkedsnp', 'optionalfilters': (), 'minorAlleleReadThresh': 30, 'rankingMethod': 'percentage', 'pvalThresh': [mpileup] 1 samples in 1 input files
+'0.001', 'maxSignatures': '12000', 'percentThresh': 5.0, 'consensusFile': '/data/quasiSeqOut/multiPro19/pro19_6.consensus.fasta'})
+~~~~~~~~~~~~~~~~~~ python rankSNVs.py /data/quasiSeqOut/multiPro19/pro19_6.realign.readcounts.snp /data/quasiSeqOut/multiPro19/pro19_6.realign.rankedsnp percentage /data/quasiSeqOut/multiPro19/pro19_6.consensus.fasta -s 30 -e 7099 -perc 5.0 -pval 0.001 -r 30 -numSig 12000 
+numSNPs:4>= snpThresh:40->False
+4 SNPs: Creating consensus for pro19_6(cluster)
+!!!!!!!!!!Writing final consensus for pro19_6
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!blasr /data/quasiSeqOut/multiPro19/pro19_6.fastq /data/quasiSeqOut/multiPro19/pro19_6.consensus.fasta -minMatch 19 -nproc 30 -bestn 1 -m 5 -out /data/quasiSeqOut/multiPro19/pro19_6.m5 -unaligned /data/quasiSeqOut/multiPro19/pro19_6.m5.ref_unaligned.fa
+
+[INFO] 2020-09-24T14:01:15 [blasr] started.
+evecs took 12.1839 seconds
+
+ pileup_file is done!
+/data/quasiSeqOut/multiPro19/pro19_4.realign.pileup
+
+getPileup took 9.39030814171seconds
+consenseAndAlign took 211.104483128seconds
+('rankSNVs parameters:', {'endIndex': 7099, 'snpFile': '/data/quasiSeqOut/multiPro19/pro19_4.realign.readcounts.snp', 'startIndex': [INFO] 2020-09-24T14:01:23 [blasr] ended.
+30, 'rankedFile'
+ m5File is done!
+/data/quasiSeqOut/multiPro19/pro19_6.m5
+
+: alignFastqBlasrM5 took 8.37900304794seconds
+'/opt/Sparc/compiled/Sparc b /data/quasiSeqOut/multiPro19/pro19_6.consensus.fasta m /data/quasiSeqOut/multiPro19/pro19_6.m5 k 1 g 1 c 2 t 0.2 o /data/quasiSeqOut/multiPro19/pro19_6.finalRoundSparc
+/data/quasiSeqOut/multiPro19/pro19_4.realign.rankeFor help: Sparc -h
+dsnp', 'optionalfilters': Backbone size: 7140
+(), 'minorAlleleReadThresh': 30, 'rankingMethod': 'percentage', 'pvalThresh': '0.00getSNPs took 150.400840998seconds1
+', 'maxSignatures'samtools mpileup -BQ0 -d100000 -f /data/quasiSeqOut/multiPro19/pro19_5.consensus.fasta /data/quasiSeqOut/multiPro19/pro19_5.realign.bam > /data/quasiSeqOut/multiPro19/pro19_5.realign.pileupFinished.
+: '12000', 'percentThresh'
+
+ consensus file is done!
+/data/quasiSeqOut/multiPro19/pro19_6.finalRoundSparc.consensus.fasta
+: 
+
+5.0Created Consensus!, 'consensusFile': '/data/quasiSeqOut/multiPro19/pro19_4.
+[mpileup] 1 samples in 1 input files
+consensus.fasta'})
+~~~~~~~~~~~~~~~~~~ python rankSNVs.py /data/quasiSeqOut/multiPro19/pro19_4.realign.readcounts.snp /data/quasiSeqOut/multiPro19/pro19_4.realign.rankedsnp percentage /data/quasiSeqOut/multiPro19/pro19_4.consensus.fasta -s 30 -e 7099 -perc 5.0 -pval 0.001 -r 30 -numSig 12000 
+bwa index /data/quasiSeqOut/multiPro19/pro19_6.finalRoundSparc.consensus.fasta
+samtools faidx /data/quasiSeqOut/multiPro19/pro19_6.finalRoundSparc.consensus.fasta
+indexReference took 0.201256990433seconds
+getConsensusSparc took 5.50762796402seconds
+!!!!!!!!!!Writing final consensus stats for pro19_6
+Pipeline round for pro19_6 took 169.111975908seconds
+numSNPs:7>= snpThresh:40->False
+7 SNPs: Creating consensus for pro19_4(cluster)
+!!!!!!!!!!Writing final consensus for pro19_4
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!blasr /data/quasiSeqOut/multiPro19/pro19_4.fastq /data/quasiSeqOut/multiPro19/pro19_4.consensus.fasta -minMatch 19 -nproc 30 -bestn 1 -m 5 -out /data/quasiSeqOut/multiPro19/pro19_4.m5 -unaligned /data/quasiSeqOut/multiPro19/pro19_4.m5.ref_unaligned.fa
+
+[INFO] 2020-09-24T14:01:30 [blasr] started.
+
+ pileup_file is done!
+/data/quasiSeqOut/multiPro19/pro19_5.realign.pileup
+
+getPileup took 8.21076107025seconds
+consenseAndAlign took 200.438099146seconds
+('rankSNVs parameters:', {'endIndex': 7099, 'snpFile': '/data/quasiSeqOut/multiPro19/pro19_5.realign.readcounts.snp', 'startIndex': 30, 'rankedFile': '/data/quasiSeqOut/multiPro19/pro19_5.realign.rankedsnp', 'optionalfilters': (), 'minorAlleleReadThresh': 30, 'rankingMethod': 'percentage', 'pvalThresh': '0.001', 'maxSignatures': '12000', 'percentThresh': 5.0, [INFO] 'consensu2020-09-24T14:01:41sF [blasr] ended.
+ile': '/
+ m5File is done!
+/data/quasiSeqOut/multiPro19/pro19_4.m5
+data/quasiSeqOut/multiPro19/pro19_5.consensus.fasta'
+}alignFastqBlasrM5 took 12.2127220631seconds)
+/opt/Sparc/compiled/Sparc b /data/quasiSeqOut/multiPro19/pro19_4.consensus.fasta m /data/quasiSeqOut/multiPro19/pro19_4.m5 k 1 g 1 c 2 t 0.2 o /data/quasiSeqOut/multiPro19/pro19_4.finalRoundSparc
+
+~~~~~~~~~~~~~~~~~~ python rankSNVs.py /data/quasiSeqOut/multiPro19/pro19_5.realign.readcounts.snp /data/quasiSeqOut/multiPro19/pro19_5.realign.rankedsnp percentage /data/quasiSeqOut/multiPro19/pro19_5.consensus.fasta -s 30 -e 7099 -perc 5.0 -pval 0.001 -r 30 -numSig 12000 
+For help: Sparc -h
+Backbone size: 7133
+numSNPs:53>= snpThresh:40->True
+53 SNPs: Continuing with clustering
+java -classpath .:/usr/local/MATLAB/MATLAB_Runtime/v91/toolbox/javabuilder/jar/javabuilder.jar:SigClust.jar getClust /data/quasiSeqOut/multiPro19/pro19_5.realign.bam /data/quasiSeqOut/multiPro19/pro19_5.realign.rankedsnp /data/quasiSeqOut/multiPro19/pro19_5
+Finished.
+
+ consensus file is done!
+/data/quasiSeqOut/multiPro19/pro19_4.finalRoundSparc.consensus.fasta
+
+Created Consensus!
+bwa index /data/quasiSeqOut/multiPro19/pro19_4.finalRoundSparc.consensus.fasta
+samtools faidx /data/quasiSeqOut/multiPro19/pro19_4.finalRoundSparc.consensus.fasta
+indexReference took 0.295775175095seconds
+getConsensusSparc took 4.30062699318seconds
+!!!!!!!!!!Writing final consensus stats for pro19_4
+Pipeline round for pro19_4 took 238.794744968seconds
+RLS automatically determined 2 clusters.
+processClusterOutput next
+2 clusters
+Reading /data/quasiSeqOut/multiPro19/pro19_2_clusters
+Reading clusters
+/data/quasiSeqOut/multiPro19/pro19_2_1
+457 reads in /data/quasiSeqOut/multiPro19/pro19_2_1
+getClusterFastq took 1.71756291389seconds
+!!!!!!!!!! Recursive call for /data/quasiSeqOut/multiPro19/pro19_2_1 !!!!!!!!!!
+Reading clusters
+*****Running pipeline for /data/quasiSeqOut/multiPro19/pro19_2_1*****
+/data/quasiSeqOut/multiPro19/pro19_2_2
+*****startIndex=30*****
+*****endIndex=7099*****
+*****snpThresh=40*****
+*****percentThresh=5.0*****
+('pipeline parameters:', 229 reads in /data/quasiSeqOut/multiPro19/pro19_2_2{'initialBamfile': '/data/quasiSeqOut/multiPro19/pro19_2_1.bam', 'initialFastq': '/data/quasiSeqOut/multiPro19/pro19_2_1.fastq', 'rankedFile': '/data/qua
+siSeqOut/multiPro19/pro19_2_1.realign.rankedsnp', 'startIndex': 30, 'estimatedErrorRate': '0.01', 'consensusFile': '/data/quasiSeqOut/multiPro19/pro19_2_1.consensus.fasta', 'ranking_method': 'percentage', 'clusterFile': '/data/quasiSeqOut/multiPro19/pro19_2_1_clusters', 'readCountSNPVarFreqThresh': 0.001, 'start': 1600956131.669553, 'readCountsFile': '/data/quasiSeqOut/multiPro19/pro19_2_1.readcounts', 'minorAlleleReadThresh': 30, 'rankingMethod': 'percentage', 'pvalThresh': '0.001', 'sampleNameSplit': ('/data/quasiSeqOut/multiPro19', 'pro19_2_1'), 'percentThresh': 5.0, 'outDir': '/data/quasiSeqOut/multiPro19/', 'readCountSNPPvalThresh': 0.05, 'sampleName': 'pro19_2_1', 'optionalfilters': (), 'referenceFile': '/data/quasiSeqOut/multiPro19/pro19_2.consensus.fasta', 'snpThresh': 40, 'pool': [<Process(Process-1, unknown)>], 'exc': OSError(17, 'File exists'), 'endIndex': 7099, 'realignedPileupFile': '/data/quasiSeqOut/multiPro19/pro19_2_1.realign.pileup', 'realignedSampleName': 'pro19_2_1.realign', 'realignedSnpFile': '/data/quasiSeqOut/multiPro19/pro19_2_1.realign.readcounts.snp', 'readCountSNPCoverageThresh': 10, 'realignedBamfile': '/data/quasiSeqOut/multiPro19/pro19_2_1.realign.bam', 'maxSignatures': '12000'})
+getClusterFastq took 1.7153968811secondsconsenseAndRealignSparc:/data/quasiSeqOut/multiPro19/pro19_2_1.fastq, /data/quasiSeqOut/multiPro19/pro19_2.consensus.fasta, /data/quasiSeqOut/multiPro19/pro19_2_1.bam, /data/quasiSeqOut/multiPro19/pro19_2_1.readcounts, /data/quasiSeqOut/multiPro19/pro19_2_1.consensus.fasta, /data/quasiSeqOut/multiPro19/pro19_2_1.realign.bam
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!blasr /data/quasiSeqOut/multiPro19/pro19_2_1.fastq /data/quasiSeqOut/multiPro19/pro19_2.consensus.fasta -minMatch 19 -nproc 30 -bestn 1 -m 5 -out /data/quasiSeqOut/multiPro19/pro19_2_1.m5 -unaligned /data/quasiSeqOut/multiPro19/pro19_2_1.m5.ref_unaligned.fa
+
+!!!!!!!!!! Recursive call for /data/quasiSeqOut/multiPro19/pro19_2_2 !!!!!!!!!!
+Pipeline round for pro19_2 took 321.788689852seconds
+*****Running pipeline for /data/quasiSeqOut/multiPro19/pro19_2_2*****
+*****startIndex=30*****
+*****endIndex=7099*****
+*****snpThresh=40*****
+*****percentThresh=5.0*****
+('pipeline parameters:', {'initialBamfile': '/data/quasiSeqOut/multiPro19/pro19_2_2.bam', 'i[INFO] 2020-09-24T14:02:13 [blasr] started.
+nitialFastq': '/data/quasiSeqOut/multiPro19/pro19_2_2.fastq', 'rankedFile': '/data/quasiSeqOut/multiPro19/pro19_2_2.realign.rankedsnp', 'startIndex': 30, 'estimatedErrorRate': '0.01', 'consensusFile': '/data/quasiSeqOut/multiPro19/pro19_2_2.consensus.fasta', 'ranking_method': 'percentage', 'clusterFile': '/data/quasiSeqOut/multiPro19/pro19_2_2_clusters', 'readCountSNPVarFreqThresh': 0.001, 'start': 1600956133.445394, 'readCountsFile': '/data/quasiSeqOut/multiPro19/pro19_2_2.readcounts', 'minorAlleleReadThresh': 30top SNVs qualified for constructing signature:53 	total signatures: 515
+, 'rankingMethod': 
+ No self_tuning. 
+'percentage', 'pvalThresh': '0.001', 'sampleNameSplit': ('/data/quasiSeqOut/multFinal Signatures for Clustering: 515 X 53 
+iPro19', 'pro19_2_2'), 'percentThresh': 5.0, 'outDir': '/data/quasiSeqOut/multiPro19/', 'read[INFO] CountSNPPvalThresh': 2020-09-24T14:02:17 [blasr] ended.
+0.05, 'sampleName': 'pro19_2_2', 'optionalfilters': (), 'referenceFile': '/data/quasiSeqOut/multiPro19/pro19_2.consens
+ m5File is done!
+/data/quasiSeqOut/multiPro19/pro19_2_1.m5
+
+us.fasta', 'snpThresh': 40, 'pool': [alignFastqBlasrM5 took 4.48851299286seconds<Process(Process-1, unknown)>, 
+<Process(Process-2:1, unknown)>]/opt/Sparc/compiled/Sparc b /data/quasiSeqOut/multiPro19/pro19_2.consensus.fasta m /data/quasiSeqOut/multiPro19/pro19_2_1.m5 k 1 g 1 c 2 t 0.2 o /data/quasiSeqOut/multiPro19/pro19_2_1, 'exc': 
+OSError(17, 'File exists'), 'endIndex': 7099, 'realignedPileupFile': '/data/quasiSeqOut/multiPro19/pro19_2_2.realign.pileup', 'realignedSampleNamFor help: Sparc -h
+e': 'pro19_2_2.realign', 'realignedSnpFile': '/data/quasiSeqOut/multiPro19/pro19_2_2.realign.readcounts.snp', 'readCountSNPCoverageThresh': 10, 'realignedBamfile': '/data/quasiSeqOut/multiPro19/pro19_2_2.realign.bam', 'maxSignatures': '12000'})
+Backbone size: 7138
+consenseAndRealignSparc:/data/quasiSeqOut/multiPro19/pro19_2_2.fastq, /data/quasiSeqOut/multiPro19/pro19_2.consensus.fasta, /data/quasiSeqOut/multiPro19/pro19_2_2.bam, /data/quasiSeqOut/multiPro19/pro19_2_2.readcounts, /data/quasiSeqOut/multiPro19/pro19_2_2.consensus.fasta, /data/quasiSeqOut/multiPro19/pro19_2_2.realign.bam
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!blasr /data/quasiSeqOut/multiPro19/pro19_2_2.fastq /data/quasiSeqOut/multiPro19/pro19_2.consensus.fasta -minMatch 19 -nproc 30 -bestn 1 -m 5 -out /data/quasiSeqOut/multiPro19/pro19_2_2.m5 -unaligned /data/quasiSeqOut/multiPro19/pro19_2_2.m5.ref_unaligned.fa
+
+[INFO] 2020-09-24T14:02:18 [blasr] started.
+[INFO] 2020-09-24T14:02:21 [blasr] ended.
+
+ m5File is done!
+/data/quasiSeqOut/multiPro19/pro19_2_2.m5
+
+Finished.
+alignFastqBlasrM5 took 3.07715606689seconds
+/opt/Sparc/compiled/Sparc b /data/quasiSeqOut/multiPro19/pro19_2.consensus.fasta m /data/quasiSeqOut/multiPro19/pro19_2_2.m5 k 1 g 1 c 2 t 0.2 o /data/quasiSeqOut/multiPro19/pro19_2_2
+
+ consensus file is done!
+/data/quasiSeqOut/multiPro19/pro19_2_1.consensus.fasta
+
+Created Consensus!
+bwa index /data/quasiSeqOut/multiPro19/pro19_2_1.consensus.fastaFor help: Sparc -h
+
+samtools faidx /data/quasiSeqOut/multiPro19/pro19_2_1.consensus.fasta
+getSNPs took 160.276164055seconds
+samtools mpileup -BQ0 -d100000 -f /data/quasiSeqOut/multiPro19/pro19_7.consensus.fasta /data/quasiSeqOut/multiPro19/pro19_7.realign.bam > /data/quasiSeqOut/multiPro19/pro19_7.realign.pileup
+
+Backbone size: 7138
+indexReference took 0.774240970612seconds
+getConsensusSparc took 4.65910196304seconds
+blasr /data/quasiSeqOut/multiPro19/pro19_2_1.fastq /data/quasiSeqOut/multiPro19/pro19_2_1.consensus.fasta -nproc 30 -bestn 1 -sam -out /data/quasiSeqOut/multiPro19/pro19_2_1.realign.sam -unaligned /data/quasiSeqOut/multiPro19/pro19_2_1.realign.unaligned.fa
+
+Finished.
+
+ consensus file is done!
+/data/quasiSeqOut/multiPro19/pro19_2_2.consensus.fasta
+
+Created Consensus!
+bwa index /data/quasiSeqOut/multiPro19/pro19_2_2.consensus.fasta
+samtools faidx /data/quasiSeqOut/multiPro19/pro19_2_2.consensus.fasta
+[mpileup] 1 samples in 1 input files
+[INFO] 2020-09-24T14:02:24 [blasr] started.
+indexReference took 0.209550857544seconds
+getConsensusSparc took 3.5342438221seconds
+blasr /data/quasiSeqOut/multiPro19/pro19_2_2.fastq /data/quasiSeqOut/multiPro19/pro19_2_2.consensus.fasta -nproc 30 -bestn 1 -sam -out /data/quasiSeqOut/multiPro19/pro19_2_2.realign.sam -unaligned /data/quasiSeqOut/multiPro19/pro19_2_2.realign.unaligned.fa
+
+[INFO] 2020-09-24T14:02:25 [blasr] started.
+
+ pileup_file is done!
+/data/quasiSeqOut/multiPro19/pro19_7.realign.pileup
+
+getPileup took 8.33914995193seconds
+consenseAndAlign took 199.502941132seconds
+('rankSNVs parameters:', {'endIndex': 7099, 'snpFile': '/data/quasiSeqOut/multiPro19/pro19_7.realign.readcounts.snp', 'startIndex': 30, 'rankedFile': '/data/quasiSeqOut/multiPro19/pro19_7.realign.rankedsnp', 'optionalfilters': (), 'mino[INFO] 2020-09-24T14:02:33 [blasr] ended.
+rAlleleReadThresh'
+ sam_file is done!
+/data/quasiSeqOut/multiPro19/pro19_2_2.realign.sam
+
+samtools view -Sb /data/quasiSeqOut/multiPro19/pro19_2_2.realign.sam | samtools sort - -o /data/quasiSeqOut/multiPro19/pro19_2_2.realign.bam
+
+: 30, 'rankin[INFO] gMethod': 'percentage'2020-09-24T14:02:35,  [blasr] ended.'pval
+Thresh': '0.001'
+ sam_file is done!
+/data/quasiSeqOut/multiPro19/pro19_2_1.realign.sam
+, 
+'maxSignatures'samtools view -Sb /data/quasiSeqOut/multiPro19/pro19_2_1.realign.sam | samtools sort - -o /data/quasiSeqOut/multiPro19/pro19_2_1.realign.bam: 
+'
+12000', 'percentThresh': 5.0, 'consensusFile': '/data/quasiSeqOut/multiPro19/pro19_7.consensus.fasta'})
+~~~~~~~~~~~~~~~~~~ python rankSNVs.py /data/quasiSeqOut/multiPro19/pro19_7.realign.readcounts.snp /data/quasiSeqOut/multiPro19/pro19_7.realign.rankedsnp percentage /data/quasiSeqOut/multiPro19/pro19_7.consensus.fasta -s 30 -e 7099 -perc 5.0 -pval 0.001 -r 30 -numSig 12000 
+numSNPs:5>= snpThresh:40->False
+5 SNPs: Creating consensus for pro19_7(cluster)
+!!!!!!!!!!Writing final consensus for pro19_7
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!blasr /data/quasiSeqOut/multiPro19/pro19_7.fastq /data/quasiSeqOut/multiPro19/pro19_7.consensus.fasta -minMatch 19 -nproc 30 -bestn 1 -m 5 -out /data/quasiSeqOut/multiPro19/pro19_7.m5 -unaligned /data/quasiSeqOut/multiPro19/pro19_7.m5.ref_unaligned.fa
+
+[INFO] 2020-09-24T14:02:38 [blasr] started.
+evecs took 18.5833 seconds
+
+ bam_file is done!
+/data/quasiSeqOut/multiPro19/pro19_2_2.realign.bam
+
+samtools index /data/quasiSeqOut/multiPro19/pro19_2_2.realign.bam
+
+alignFastqAndIndexPacBioSam_v1_3 took 19.8076848984seconds
+samtools mpileup -BQ0 -d100000 -f /data/quasiSeqOut/multiPro19/pro19_2_2.consensus.fasta /data/quasiSeqOut/multiPro19/pro19_2_2.realign.bam > /data/quasiSeqOut/multiPro19/pro19_2_2.realign.pileup
+
+[mpileup] 1 samples in 1 input files
+getSNPs took 187.177809seconds
+samtools mpileup -BQ0 -d100000 -f /data/quasiSeqOut/multiPro19/pro19_1.consensus.fasta /data/quasiSeqOut/multiPro19/pro19_1.realign.bam > /data/quasiSeqOut/multiPro19/pro19_1.realign.pileup
+
+[INFO] 2020-09-24T14:02:46 [blasr] ended.
+
+ m5File is done!
+/data/quasiSeqOut/multiPro19/pro19_7.m5
+
+alignFastqBlasrM5 took 7.88928794861seconds
+/opt/Sparc/compiled/Sparc b /data/quasiSeqOut/multiPro19/pro19_7.consensus.fasta m /data/quasiSeqOut/multiPro19/pro19_7.m5 k 1 g 1 c 2 t 0.2 o /data/quasiSeqOut/multiPro19/pro19_7.finalRoundSparc
+For help: Sparc -h
+[mpileup] 1 samples in 1 input files
+Backbone size: 7143
+
+ pileup_file is done!
+/data/quasiSeqOut/multiPro19/pro19_2_2.realign.pileup
+
+java -jar VarScan.v2.4.2.jar readcounts /data/quasiSeqOut/multiPro19/pro19_2_2.realign.pileup  --output-file /data/quasiSeqOut/multiPro19/pro19_2_2.realign.readcounts --min-base-qual 5
+
+Min coverage:	1
+Min base qual:	5
+Finished.
+Reading input from /data/quasiSeqOut/multiPro19/pro19_2_2.realign.pileup
+
+ consensus file is done!
+/data/quasiSeqOut/multiPro19/pro19_7.finalRoundSparc.consensus.fasta
+
+Created Consensus!
+
+ bam_file is done!
+/data/quasiSeqOut/multiPro19/pro19_2_1.realign.bam
+bwa index /data/quasiSeqOut/multiPro19/pro19_7.finalRoundSparc.consensus.fasta
+samtools faidx /data/quasiSeqOut/multiPro19/pro19_7.finalRoundSparc.consensus.fasta
+
+samtools index /data/quasiSeqOut/multiPro19/pro19_2_1.realign.bam
+
+indexReference took 2.29490709305seconds
+getConsensusSparc took 7.50443100929seconds
+!!!!!!!!!!Writing final consensus stats for pro19_7
+Pipeline round for pro19_7 took 225.273777008seconds
+alignFastqAndIndexPacBioSam_v1_3 took 31.5024631023seconds
+samtools mpileup -BQ0 -d100000 -f /data/quasiSeqOut/multiPro19/pro19_2_1.consensus.fasta /data/quasiSeqOut/multiPro19/pro19_2_1.realign.bam > /data/quasiSeqOut/multiPro19/pro19_2_1.realign.pileup
+
+[mpileup] 1 samples in 1 input files
+
+ pileup_file is done!
+/data/quasiSeqOut/multiPro19/pro19_2_1.realign.pileup
+
+java -jar VarScan.v2.4.2.jar readcounts /data/quasiSeqOut/multiPro19/pro19_2_1.realign.pileup  --output-file /data/quasiSeqOut/multiPro19/pro19_2_1.realign.readcounts --min-base-qual 5
+
+Min coverage:	1
+Min base qual:	5
+Reading input from /data/quasiSeqOut/multiPro19/pro19_2_1.realign.pileup
+7135 positions in pileup file
+7135 included in readcount analysis
+7135 met minimum coverage
+
+ readcounts_file done!
+/data/quasiSeqOut/multiPro19/pro19_2_2.realign.readcounts
+
+getReadCounts took 21.7978630066seconds
+java -cp ./ ReadCount_snp /data/quasiSeqOut/multiPro19/pro19_2_2.realign.readcounts /data/quasiSeqOut/multiPro19/pro19_2_2.realign.readcounts.snp 0.01 0.05 10 0.001
+
+RLS automatically determined 2 clusters.
+processClusterOutput next
+2 clusters
+Reading /data/quasiSeqOut/multiPro19/pro19_5_clusters
+Reading clusters
+/data/quasiSeqOut/multiPro19/pro19_5_1
+382 reads in /data/quasiSeqOut/multiPro19/pro19_5_1
+getClusterFastq took 1.73585987091seconds
+!!!!!!!!!! Recursive call for /data/quasiSeqOut/multiPro19/pro19_5_1 !!!!!!!!!!
+Reading clusters
+*****Running pipeline for /data/quasiSeqOut/multiPro19/pro19_5_1*****
+*****startIndex=30*****
+/data/quasiSeqOut/multiPro19/pro19_5_2
+*****endIndex=7099*****
+*****snpThresh=40*****
+*****percentThresh=5.0*****
+('pipeline parameters:', 138 reads in /data/quasiSeqOut/multiPro19/pro19_5_2{'initialBamfile': '/data/quas
+7133 positions in pileup fileiSeqOut/multiPro19/pro19_5_1.bam', 'initialFastq': '/data/quasiSeqOut/multiPro19/pro19_5_1.fastq', 'ranke
+dFile': '/data/quasiSeqOut/multiPro19/pro19_5_1.realign.rankedsnp', 'startIndex': 7133 included in readcount analysis30, 'estimatedError
+Rate': '0.01', 'consensusFile': '/data/quasiSeqOut/multiPro19/pro19_5_1.consensus.fasta'7133 met minimum coverage
+ pileup_file is done!
+/data/quasiSeqOut/multiPro19/pro19_1.realign.pileup
+
+, 'rankin
+getPileup took 34.0473401546seconds
+g_consenseAndAlign took 417.786056042seconds
+method': 'percentage', 'clusterFile': '/data/quasiSeqOut/multiPro19/pro19_5_1_clusters', 'readCountSNPVarFreqThresh': ('rankSNVs parameters:', 0.001, 'start': 1600956198.474803, 'readCountsFile': '/data/quasiSeqOut/multiPro19/pro19_5_1.readcounts', '{'endIndex': 
+ readcounts_file done!
+/data/quasiSeqOut/multiPro19/pro19_2_1.realign.readcounts
+
+mi7099, 'snpFile': '/data/getReadCounts took 25.5285661221seconds
+noquasiSeqOut/multiPro19/pro19_1.realign.readcounts.snp', 'startIndex': 30, 'rankedFile': '/data/quasiSeqOut/multiPro19/pro19_1.realign.rankedsnp', 'optionalfilters': (), 'minorAlleleReadThresh': 30java -cp ./ ReadCount_snp /data/quasiSeqOut/multiPro19/pro19_2_1.realign.readcounts /data/quasiSeqOut/multiPro19/pro19_2_1.realign.readcounts.snp 0.01 0.05 10 0.001
+
+rAlleleReadThresh': 30, 'rankingMethod': 'percentage', 'pvalThresh': '0.001', 'sampleNameSplit': ('/data/quasiSeqOut/multiPro19', 'pro19_5_1'), 'percentThresh': , 'rankingMeth5.0, 'outDir': '/data/od': 'percentage', 'pvalThresh': '0.001', 'maxSignatures': '12000', 'percentThresh': 5.0, 'consensusFile': '/data/quasiSeqOut/multiPro19/pro19_1.consensus.fasta'})
+quasiSe~~~~~~~~~~~~~~~~~~ python rankSNVs.py /data/quasiSeqOut/multiPro19/pro19_1.realign.readcounts.snp /data/quasiSeqOut/multiPro19/pro19_1.realign.rankedsnp percentage /data/quasiSeqOut/multiPro19/pro19_1.consensus.fasta -s 30 -e 7099 -perc 5.0 -pval 0.001 -r 30 -numSig 12000 
+qOut/multiPro19/', 'readCountSNPPvalThresh': 0.05, 'sampleName': 'pro19_5_1', 'optionalfilters': (), 'referenceFile': '/data/quasiSeqOut/multiPro19/pro19_5.consensus.fasta', 'snpThresh': 40, 'pool': [<Process(Process-1, unknown)>, <Process(Process-2, unknown)>, <Process(Process-3, unknown)>, <Process(Process-4, unknown)>], 'exc': OSError(17, 'File exists'), 'endIndex': 7099, 'realignedPileupFile': '/data/quasiSeqOut/multiPro19/pro19_5_1.realign.pileup', numSNPs:485>= snpThresh:40->True
+485 SNPs: Continuing with clustering
+'realignedSampleName': 'pro19_5_1.realign', 'realignedSnpFile': '/data/java -classpath .:/usr/local/MATLAB/MATLAB_Runtime/v91/toolbox/javabuilder/jar/javabuilder.jar:SigClust.jar getClust /data/quasiSeqOut/multiPro19/pro19_1.realign.bam /data/quasiSeqOut/multiPro19/pro19_1.realign.rankedsnp /data/quasiSeqOut/multiPro19/pro19_1quasiSeqOut/multiPro19/pro19_5_1.realign.readcounts.snp', 'readCountSNPCoverageThresh': 10, 'realignedBamfile': '/data/quasiSeqOut/multiPro19/pro19_5_1.realign.bam', 'maxSignatures
+': '12000'})
+consenseAndRealignSparc:/data/quasiSeqOut/multiPro19/pro19_5_1.fastq, /data/quasiSeqOut/multiPro19/pro19_5.consensus.fasta, /data/quasiSeqOut/multiPro19/pro19_5_1.bam, /data/quasiSeqOut/multiPro19/pro19_5_1.readcounts, /data/quasiSeqOut/multiPro19/pro19_5_1.consensus.fasta, /data/quasiSeqOut/multiPro19/pro19_5_1.realign.bam
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!blasr /data/quasiSeqOut/multiPro19/pro19_5_1.fastq /data/quasiSeqOut/multiPro19/pro19_5.consensus.fasta -minMatch 19 -nproc 30 -bestn 1 -m 5 -out /data/quasiSeqOut/multiPro19/pro19_5_1.m5 -unaligned /data/quasiSeqOut/multiPro19/pro19_5_1.m5.ref_unaligned.fa
+
+[INFO] 2020-09-24T14:03:20 [blasr] started.
+getClusterFastq took 2.72688102722seconds
+!!!!!!!!!! Recursive call for /data/quasiSeqOut/multiPro19/pro19_5_2 !!!!!!!!!!
+Pipeline round for pro19_5 took 308.513698101seconds
+*****Running pipeline for /data/quasiSeqOut/multiPro19/pro19_5_2*****
+*****startIndex=30*****
+*****endIndex=7099*****
+*****snpThresh=40*****
+*****percentThresh=5.0*****
+('pipeline parameters:', {'initialBamfile': '/data/quasiSeqOut/multiPro19/pro19_5_2.bam', 'initialFastq': '/data/quasiSeqOut/multiPro19/pro19_5_2.fastq', 'rankedFile': '/data/quasiSeqOut/multiPro19/pro19_5_2.realign.rankedsnp', 'startIndex': 30, 'estimatedErrorRate': '0.01', 'consensusFile': '/data/quasiSeqOut/multiPro19/pro19_5_2.[INFO] 2020-09-24T14:03:25 [blasr] ended.consensus.fasta', 'ranking_method': 'percentage', 'clusterFile': '/data/quasiSeqOut/multiPro19/pro1
+9_5_2_clu
+ m5File is done!
+/data/quasiSeqOut/multiPro19/pro19_5_1.m5
+ster
+s', 'readCountSNPVarFreqThresh': 0.001, 'start': 1600956201.218305, 'readCountsFile': '/data/quasiSeqOut/multiPro19/pro19_5_2.readcounts', 'minorAlleleReadThresh': 30, 'rankingMethod': 'percentage', 'pvalThresh': '0.001', 'sampleNameSplit': ('/data/quasiSeqOut/multiPro19', 'pro19_5_2'), 'percentThresh': 5.0, 'outDir': '/data/quasiSeqOut/multiPro19/', 'readCountSNPPvalThreshalignFastqBlasrM5 took 7.32258605957seconds': 
+0.05, 'sampleName': 'pro/opt/Sparc/compiled/Sparc b /data/quasiSeqOut/multiPro19/pro19_5.consensus.fasta m /data/quasiSeqOut/multiPro19/pro19_5_1.m5 k 1 g 1 c 2 t 0.2 o /data/quasiSeqOut/multiPro19/pro19_5_119_5
+_2', 'optionalfilters': (), 'referenceFile': '/data/quasiSeqOut/multiPro19/pFor help: Sparc -h
+ro19_5.consensus.fasta', 'snpThresh': 40, 'pool': [Backbone size: 7158
+<Process(Process-1, unknown)>, <Process(Process-2, unknown)>, <Process(Process-3, unknown)>, <Process(Process-4, unknown)>, <Process(Process-5:1, unknown)>], 'exc': OSError(17, 'File exists'), 'endIndex': 7099, 'realignedPileupFile': '/data/quasiSeqOut/multiPro19/pro19_5_2.realign.pileup', 'realignedSampleName': 'pro19_5_2.realign', 'realignedSnpFile': '/data/quasiSeqOut/multiPro19/pro19_5_2.realign.readcounts.snp', 'readCountSNPCoverageThresh': 10, 'realignedBamfile': '/data/quasiSeqOut/multiPro19/pro19_5_2.realign.bam', 'maxSignatures': '12000'})
+consenseAndRealignSparc:/data/quasiSeqOut/multiPro19/pro19_5_2.fastq, /data/quasiSeqOut/multiPro19/pro19_5.consensus.fasta, /data/quasiSeqOut/multiPro19/pro19_5_2.bam, /data/quasiSeqOut/multiPro19/pro19_5_2.readcounts, /data/quasiSeqOut/multiPro19/pro19_5_2.consensus.fasta, /data/quasiSeqOut/multiPro19/pro19_5_2.realign.bam
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!blasr /data/quasiSeqOut/multiPro19/pro19_5_2.fastq /data/quasiSeqOut/multiPro19/pro19_5.consensus.fasta -minMatch 19 -nproc 30 -bestn 1 -m 5 -out /data/quasiSeqOut/multiPro19/pro19_5_2.m5 -unaligned /data/quasiSeqOut/multiPro19/pro19_5_2.m5.ref_unaligned.fa
+
+[INFO] 2020-09-24T14:03:29 [blasr] started.
+Finished.
+
+ consensus file is done!
+/data/quasiSeqOut/multiPro19/pro19_5_1.consensus.fasta
+
+Created Consensus!
+bwa index /data/quasiSeqOut/multiPro19/pro19_5_1.consensus.fasta
+samtools faidx /data/quasiSeqOut/multiPro19/pro19_5_1.consensus.fasta
+indexReference took 0.145426988602seconds
+getConsensusSparc took 1.11972689629seconds
+blasr /data/quasiSeqOut/multiPro19/pro19_5_1.fastq /data/quasiSeqOut/multiPro19/pro19_5_1.consensus.fasta -nproc 30 -bestn 1 -sam -out /data/quasiSeqOut/multiPro19/pro19_5_1.realign.sam -unaligned /data/quasiSeqOut/multiPro19/pro19_5_1.realign.unaligned.fa
+
+[INFO] 2020-09-24T14:03:29 [blasr] started.
+[INFO] 2020-09-24T14:03:31 [blasr] ended.
+
+ m5File is done!
+/data/quasiSeqOut/multiPro19/pro19_5_2.m5
+
+alignFastqBlasrM5 took 2.51345586777seconds
+/opt/Sparc/compiled/Sparc b /data/quasiSeqOut/multiPro19/pro19_5.consensus.fasta m /data/quasiSeqOut/multiPro19/pro19_5_2.m5 k 1 g 1 c 2 t 0.2 o /data/quasiSeqOut/multiPro19/pro19_5_2
+For help: Sparc -h
+Backbone size: 7158
+Finished.
+
+ consensus file is done!
+/data/quasiSeqOut/multiPro19/pro19_5_2.consensus.fasta
+
+Created Consensus!
+bwa index /data/quasiSeqOut/multiPro19/pro19_5_2.consensus.fasta
+samtools faidx /data/quasiSeqOut/multiPro19/pro19_5_2.consensus.fasta
+indexReference took 0.694724082947seconds
+getConsensusSparc took 2.6035349369seconds
+blasr /data/quasiSeqOut/multiPro19/pro19_5_2.fastq /data/quasiSeqOut/multiPro19/pro19_5_2.consensus.fasta -nproc 30 -bestn 1 -sam -out /data/quasiSeqOut/multiPro19/pro19_5_2.realign.sam -unaligned /data/quasiSeqOut/multiPro19/pro19_5_2.realign.unaligned.fa
+
+[INFO] 2020-09-24T14:03:34 [blasr] started.
+[INFO] 2020-09-24T14:03:35 [blasr] ended.
+
+ sam_file is done!
+/data/quasiSeqOut/multiPro19/pro19_5_1.realign.sam
+
+samtools view -Sb /data/quasiSeqOut/multiPro19/pro19_5_1.realign.sam | samtools sort - -o /data/quasiSeqOut/multiPro19/pro19_5_1.realign.bam
+
+[INFO] 2020-09-24T14:03:37 [blasr] ended.
+
+ sam_file is done!
+/data/quasiSeqOut/multiPro19/pro19_5_2.realign.sam
+
+samtools view -Sb /data/quasiSeqOut/multiPro19/pro19_5_2.realign.sam | samtools sort - -o /data/quasiSeqOut/multiPro19/pro19_5_2.realign.bam
+
+
+ bam_file is done!
+/data/quasiSeqOut/multiPro19/pro19_5_2.realign.bam
+
+samtools index /data/quasiSeqOut/multiPro19/pro19_5_2.realign.bam
+
+alignFastqAndIndexPacBioSam_v1_3 took 4.55947899818seconds
+samtools mpileup -BQ0 -d100000 -f /data/quasiSeqOut/multiPro19/pro19_5_2.consensus.fasta /data/quasiSeqOut/multiPro19/pro19_5_2.realign.bam > /data/quasiSeqOut/multiPro19/pro19_5_2.realign.pileup
+
+[mpileup] 1 samples in 1 input files
+
+ pileup_file is done!
+/data/quasiSeqOut/multiPro19/pro19_5_2.realign.pileup
+
+java -jar VarScan.v2.4.2.jar readcounts /data/quasiSeqOut/multiPro19/pro19_5_2.realign.pileup  --output-file /data/quasiSeqOut/multiPro19/pro19_5_2.realign.readcounts --min-base-qual 5
+
+Min coverage:	1
+Min base qual:	5
+Reading input from /data/quasiSeqOut/multiPro19/pro19_5_2.realign.pileup
+
+ bam_file is done!
+/data/quasiSeqOut/multiPro19/pro19_5_1.realign.bam
+
+samtools index /data/quasiSeqOut/multiPro19/pro19_5_1.realign.bam
+
+alignFastqAndIndexPacBioSam_v1_3 took 11.5370709896seconds
+samtools mpileup -BQ0 -d100000 -f /data/quasiSeqOut/multiPro19/pro19_5_1.consensus.fasta /data/quasiSeqOut/multiPro19/pro19_5_1.realign.bam > /data/quasiSeqOut/multiPro19/pro19_5_1.realign.pileup
+
+[mpileup] 1 samples in 1 input files
+
+ pileup_file is done!
+/data/quasiSeqOut/multiPro19/pro19_5_1.realign.pileup
+
+java -jar VarScan.v2.4.2.jar readcounts /data/quasiSeqOut/multiPro19/pro19_5_1.realign.pileup  --output-file /data/quasiSeqOut/multiPro19/pro19_5_1.realign.readcounts --min-base-qual 5
+
+Min coverage:	1
+Min base qual:	5
+Reading input from /data/quasiSeqOut/multiPro19/pro19_5_1.realign.pileup
+7162 positions in pileup file
+7162 included in readcount analysis
+7162 met minimum coverage
+
+ readcounts_file done!
+/data/quasiSeqOut/multiPro19/pro19_5_2.realign.readcounts
+
+getReadCounts took 5.32507491112seconds
+java -cp ./ ReadCount_snp /data/quasiSeqOut/multiPro19/pro19_5_2.realign.readcounts /data/quasiSeqOut/multiPro19/pro19_5_2.realign.readcounts.snp 0.01 0.05 10 0.001
+
+7165 positions in pileup file
+7165 included in readcount analysis
+7165 met minimum coverage
+
+ readcounts_file done!
+/data/quasiSeqOut/multiPro19/pro19_5_1.realign.readcounts
+
+getReadCounts took 9.82791113853seconds
+java -cp ./ ReadCount_snp /data/quasiSeqOut/multiPro19/pro19_5_1.realign.readcounts /data/quasiSeqOut/multiPro19/pro19_5_1.realign.readcounts.snp 0.01 0.05 10 0.001
+
+top SNVs qualified for constructing signature:485 	total signatures: 2896
+
+ No self_tuning. 
+Final Signatures for Clustering: 2896 X 485 
+getSNPs took 91.1417279243seconds
+samtools mpileup -BQ0 -d100000 -f /data/quasiSeqOut/multiPro19/pro19_2_2.consensus.fasta /data/quasiSeqOut/multiPro19/pro19_2_2.realign.bam > /data/quasiSeqOut/multiPro19/pro19_2_2.realign.pileup
+
+[mpileup] 1 samples in 1 input files
+
+ pileup_file is done!
+/data/quasiSeqOut/multiPro19/pro19_2_2.realign.pileup
+
+getPileup took 0.793928146362seconds
+consenseAndAlign took 140.229648113seconds
+('rankSNVs parameters:', {'endIndex': 7099, 'snpFile': '/data/quasiSeqOut/multiPro19/pro19_2_2.realign.readcounts.snp', 'startIndex': 30, 'rankedFile': '/data/quasiSeqOut/multiPro19/pro19_2_2.realign.rankedsnp', 'optionalfilters': (), 'minorAlleleReadThresh': 30, 'rankingMethod': 'percentage', 'pvalThresh': '0.001', 'maxSignatures': '12000', 'percentThresh': 5.0, 'consensusFile': '/data/quasiSeqOut/multiPro19/pro19_2_2.consensus.fasta'})
+~~~~~~~~~~~~~~~~~~ python rankSNVs.py /data/quasiSeqOut/multiPro19/pro19_2_2.realign.readcounts.snp /data/quasiSeqOut/multiPro19/pro19_2_2.realign.rankedsnp percentage /data/quasiSeqOut/multiPro19/pro19_2_2.consensus.fasta -s 30 -e 7099 -perc 5.0 -pval 0.001 -r 30 -numSig 12000 
+numSNPs:0>= snpThresh:40->False
+0 SNPs: Creating consensus for pro19_2_2(cluster)
+!!!!!!!!!!Writing final consensus for pro19_2_2
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!blasr /data/quasiSeqOut/multiPro19/pro19_2_2.fastq /data/quasiSeqOut/multiPro19/pro19_2_2.consensus.fasta -minMatch 19 -nproc 30 -bestn 1 -m 5 -out /data/quasiSeqOut/multiPro19/pro19_2_2.m5 -unaligned /data/quasiSeqOut/multiPro19/pro19_2_2.m5.ref_unaligned.fa
+
+[INFO] 2020-09-24T14:04:39 [blasr] started.
+[INFO] 2020-09-24T14:04:41 [blasr] ended.
+
+ m5File is done!
+/data/quasiSeqOut/multiPro19/pro19_2_2.m5
+
+alignFastqBlasrM5 took 2.71060705185seconds
+/opt/Sparc/compiled/Sparc b /data/quasiSeqOut/multiPro19/pro19_2_2.consensus.fasta m /data/quasiSeqOut/multiPro19/pro19_2_2.m5 k 1 g 1 c 2 t 0.2 o /data/quasiSeqOut/multiPro19/pro19_2_2.finalRoundSparc
+For help: Sparc -h
+Backbone size: 7135
+Finished.
+
+ consensus file is done!
+/data/quasiSeqOut/multiPro19/pro19_2_2.finalRoundSparc.consensus.fasta
+
+Created Consensus!
+bwa index /data/quasiSeqOut/multiPro19/pro19_2_2.finalRoundSparc.consensus.fasta
+samtools faidx /data/quasiSeqOut/multiPro19/pro19_2_2.finalRoundSparc.consensus.fasta
+indexReference took 0.0289762020111seconds
+getConsensusSparc took 0.503594875336seconds
+!!!!!!!!!!Writing final consensus stats for pro19_2_2
+Pipeline round for pro19_2_2 took 148.851669073seconds
+getSNPs took 62.8664729595seconds
+samtools mpileup -BQ0 -d100000 -f /data/quasiSeqOut/multiPro19/pro19_5_2.consensus.fasta /data/quasiSeqOut/multiPro19/pro19_5_2.realign.bam > /data/quasiSeqOut/multiPro19/pro19_5_2.realign.pileup
+
+[mpileup] 1 samples in 1 input files
+
+ pileup_file is done!
+/data/quasiSeqOut/multiPro19/pro19_5_2.realign.pileup
+
+getPileup took 0.330404996872seconds
+consenseAndAlign took 78.2103819847seconds
+('rankSNVs parameters:', {'endIndex': 7099, 'snpFile': '/data/quasiSeqOut/multiPro19/pro19_5_2.realign.readcounts.snp', 'startIndex': 30, 'rankedFile': '/data/quasiSeqOut/multiPro19/pro19_5_2.realign.rankedsnp', 'optionalfilters': (), 'minorAlleleReadThresh': 30, 'rankingMethod': 'percentage', 'pvalThresh': '0.001', 'maxSignatures': '12000', 'percentThresh': 5.0, 'consensusFile': '/data/quasiSeqOut/multiPro19/pro19_5_2.consensus.fasta'})
+~~~~~~~~~~~~~~~~~~ python rankSNVs.py /data/quasiSeqOut/multiPro19/pro19_5_2.realign.readcounts.snp /data/quasiSeqOut/multiPro19/pro19_5_2.realign.rankedsnp percentage /data/quasiSeqOut/multiPro19/pro19_5_2.consensus.fasta -s 30 -e 7099 -perc 5.0 -pval 0.001 -r 30 -numSig 12000 
+numSNPs:0>= snpThresh:40->False
+0 SNPs: Creating consensus for pro19_5_2(cluster)
+!!!!!!!!!!Writing final consensus for pro19_5_2
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!blasr /data/quasiSeqOut/multiPro19/pro19_5_2.fastq /data/quasiSeqOut/multiPro19/pro19_5_2.consensus.fasta -minMatch 19 -nproc 30 -bestn 1 -m 5 -out /data/quasiSeqOut/multiPro19/pro19_5_2.m5 -unaligned /data/quasiSeqOut/multiPro19/pro19_5_2.m5.ref_unaligned.fa
+
+[INFO] 2020-09-24T14:04:47 [blasr] started.
+[INFO] 2020-09-24T14:04:49 [blasr] ended.
+
+ m5File is done!
+/data/quasiSeqOut/multiPro19/pro19_5_2.m5
+
+alignFastqBlasrM5 took 1.69277906418seconds
+/opt/Sparc/compiled/Sparc b /data/quasiSeqOut/multiPro19/pro19_5_2.consensus.fasta m /data/quasiSeqOut/multiPro19/pro19_5_2.m5 k 1 g 1 c 2 t 0.2 o /data/quasiSeqOut/multiPro19/pro19_5_2.finalRoundSparc
+For help: Sparc -h
+Backbone size: 7162
+Finished.
+
+ consensus file is done!
+/data/quasiSeqOut/multiPro19/pro19_5_2.finalRoundSparc.consensus.fasta
+
+Created Consensus!
+bwa index /data/quasiSeqOut/multiPro19/pro19_5_2.finalRoundSparc.consensus.fasta
+samtools faidx /data/quasiSeqOut/multiPro19/pro19_5_2.finalRoundSparc.consensus.fasta
+indexReference took 0.0309221744537seconds
+getConsensusSparc took 0.296087026596seconds
+!!!!!!!!!!Writing final consensus stats for pro19_5_2
+Pipeline round for pro19_5_2 took 88.7454719543seconds
+getSNPs took 102.255890131seconds
+samtools mpileup -BQ0 -d100000 -f /data/quasiSeqOut/multiPro19/pro19_2_1.consensus.fasta /data/quasiSeqOut/multiPro19/pro19_2_1.realign.bam > /data/quasiSeqOut/multiPro19/pro19_2_1.realign.pileup
+
+[mpileup] 1 samples in 1 input files
+
+ pileup_file is done!
+/data/quasiSeqOut/multiPro19/pro19_2_1.realign.pileup
+
+getPileup took 1.3470749855seconds
+consenseAndAlign took 169.927004099seconds
+('rankSNVs parameters:', {'endIndex': 7099, 'snpFile': '/data/quasiSeqOut/multiPro19/pro19_2_1.realign.readcounts.snp', 'startIndex': 30, 'rankedFile': '/data/quasiSeqOut/multiPro19/pro19_2_1.realign.rankedsnp', 'optionalfilters': (), 'minorAlleleReadThresh': 30, 'rankingMethod': 'percentage', 'pvalThresh': '0.001', 'maxSignatures': '12000', 'percentThresh': 5.0, 'consensusFile': '/data/quasiSeqOut/multiPro19/pro19_2_1.consensus.fasta'})
+~~~~~~~~~~~~~~~~~~ python rankSNVs.py /data/quasiSeqOut/multiPro19/pro19_2_1.realign.readcounts.snp /data/quasiSeqOut/multiPro19/pro19_2_1.realign.rankedsnp percentage /data/quasiSeqOut/multiPro19/pro19_2_1.consensus.fasta -s 30 -e 7099 -perc 5.0 -pval 0.001 -r 30 -numSig 12000 
+numSNPs:1>= snpThresh:40->False
+1 SNPs: Creating consensus for pro19_2_1(cluster)
+!!!!!!!!!!Writing final consensus for pro19_2_1
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!blasr /data/quasiSeqOut/multiPro19/pro19_2_1.fastq /data/quasiSeqOut/multiPro19/pro19_2_1.consensus.fasta -minMatch 19 -nproc 30 -bestn 1 -m 5 -out /data/quasiSeqOut/multiPro19/pro19_2_1.m5 -unaligned /data/quasiSeqOut/multiPro19/pro19_2_1.m5.ref_unaligned.fa
+
+[INFO] 2020-09-24T14:05:03 [blasr] started.
+[INFO] 2020-09-24T14:05:08 [blasr] ended.
+
+ m5File is done!
+/data/quasiSeqOut/multiPro19/pro19_2_1.m5
+
+alignFastqBlasrM5 took 4.40628504753seconds
+/opt/Sparc/compiled/Sparc b /data/quasiSeqOut/multiPro19/pro19_2_1.consensus.fasta m /data/quasiSeqOut/multiPro19/pro19_2_1.m5 k 1 g 1 c 2 t 0.2 o /data/quasiSeqOut/multiPro19/pro19_2_1.finalRoundSparc
+For help: Sparc -h
+Backbone size: 7133
+Finished.
+
+ consensus file is done!
+/data/quasiSeqOut/multiPro19/pro19_2_1.finalRoundSparc.consensus.fasta
+
+Created Consensus!
+bwa index /data/quasiSeqOut/multiPro19/pro19_2_1.finalRoundSparc.consensus.fasta
+samtools faidx /data/quasiSeqOut/multiPro19/pro19_2_1.finalRoundSparc.consensus.fasta
+indexReference took 0.0329208374023seconds
+getConsensusSparc took 1.14597892761seconds
+!!!!!!!!!!Writing final consensus stats for pro19_2_1
+Pipeline round for pro19_2_1 took 177.709859848seconds
+getSNPs took 89.2470679283seconds
+samtools mpileup -BQ0 -d100000 -f /data/quasiSeqOut/multiPro19/pro19_5_1.consensus.fasta /data/quasiSeqOut/multiPro19/pro19_5_1.realign.bam > /data/quasiSeqOut/multiPro19/pro19_5_1.realign.pileup
+
+[mpileup] 1 samples in 1 input files
+
+ pileup_file is done!
+/data/quasiSeqOut/multiPro19/pro19_5_1.realign.pileup
+
+getPileup took 1.06323409081seconds
+consenseAndAlign took 120.363293886seconds
+('rankSNVs parameters:', {'endIndex': 7099, 'snpFile': '/data/quasiSeqOut/multiPro19/pro19_5_1.realign.readcounts.snp', 'startIndex': 30, 'rankedFile': '/data/quasiSeqOut/multiPro19/pro19_5_1.realign.rankedsnp', 'optionalfilters': (), 'minorAlleleReadThresh': 30, 'rankingMethod': 'percentage', 'pvalThresh': '0.001', 'maxSignatures': '12000', 'percentThresh': 5.0, 'consensusFile': '/data/quasiSeqOut/multiPro19/pro19_5_1.consensus.fasta'})
+~~~~~~~~~~~~~~~~~~ python rankSNVs.py /data/quasiSeqOut/multiPro19/pro19_5_1.realign.readcounts.snp /data/quasiSeqOut/multiPro19/pro19_5_1.realign.rankedsnp percentage /data/quasiSeqOut/multiPro19/pro19_5_1.consensus.fasta -s 30 -e 7099 -perc 5.0 -pval 0.001 -r 30 -numSig 12000 
+numSNPs:4>= snpThresh:40->False
+4 SNPs: Creating consensus for pro19_5_1(cluster)
+!!!!!!!!!!Writing final consensus for pro19_5_1
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!blasr /data/quasiSeqOut/multiPro19/pro19_5_1.fastq /data/quasiSeqOut/multiPro19/pro19_5_1.consensus.fasta -minMatch 19 -nproc 30 -bestn 1 -m 5 -out /data/quasiSeqOut/multiPro19/pro19_5_1.m5 -unaligned /data/quasiSeqOut/multiPro19/pro19_5_1.m5.ref_unaligned.fa
+
+[INFO] 2020-09-24T14:05:21 [blasr] started.
+[INFO] 2020-09-24T14:05:25 [blasr] ended.
+
+ m5File is done!
+/data/quasiSeqOut/multiPro19/pro19_5_1.m5
+
+alignFastqBlasrM5 took 3.35796403885seconds
+/opt/Sparc/compiled/Sparc b /data/quasiSeqOut/multiPro19/pro19_5_1.consensus.fasta m /data/quasiSeqOut/multiPro19/pro19_5_1.m5 k 1 g 1 c 2 t 0.2 o /data/quasiSeqOut/multiPro19/pro19_5_1.finalRoundSparc
+For help: Sparc -h
+Backbone size: 7165
+Finished.
+
+ consensus file is done!
+/data/quasiSeqOut/multiPro19/pro19_5_1.finalRoundSparc.consensus.fasta
+
+Created Consensus!
+bwa index /data/quasiSeqOut/multiPro19/pro19_5_1.finalRoundSparc.consensus.fasta
+samtools faidx /data/quasiSeqOut/multiPro19/pro19_5_1.finalRoundSparc.consensus.fasta
+indexReference took 0.0448470115662seconds
+getConsensusSparc took 0.754999160767seconds
+!!!!!!!!!!Writing final consensus stats for pro19_5_1
+Pipeline round for pro19_5_1 took 127.586663008seconds
+evecs took 172.082 seconds
+evecs took 166.4941 seconds
+RLS automatically determined 11 clusters.
+processClusterOutput next
+11 clusters
+Reading /data/quasiSeqOut/multiPro19/pro19_1_clusters
+Reading clusters
+/data/quasiSeqOut/multiPro19/pro19_1_1
+336 reads in /data/quasiSeqOut/multiPro19/pro19_1_1
+getClusterFastq took 6.10445904732seconds
+!!!!!!!!!! Recursive call for /data/quasiSeqOut/multiPro19/pro19_1_1 !!!!!!!!!!
+Reading clusters*****Running pipeline for /data/quasiSeqOut/multiPro19/pro19_1_1*****
+
+*****startIndex=30*****
+*****endIndex=7099*****
+/data/quasiSeqOut/multiPro19/pro19_1_2
+*****snpThresh=40*****
+*****percentThresh=5.0*****
+('pip217 reads in /data/quasiSeqOut/multiPro19/pro19_1_2
+eline parameters:', {'initialBamfile': '/data/quasiSeqOut/multiPro19/pro19_1_1.bam', 'initialFastq': '/data/quasiSeqOut/multiPro19/pro19_1_1.fastq', 'rankedFile': '/data/quasiSeqOut/multiPro19/pro19_1_1.realign.rankedsnp', 'startIndex': 30, 'estimatedErrorRate': '0.01', 'consensusFile': '/data/quasiSeqOut/multiPro19/pro19_1_1.consensus.fasta', 'ranking_method': 'percentage', 'clusterFile': '/data/quasiSeqOut/multiPro19/pro19_1_1_clusters', 'readCountSNPVarFreqThresh': 0.001, 'start': 1600957224.294864, 'readCountsFile': '/data/quasiSeqOut/multiPro19/pro19_1_1.readcounts', 'minorAlleleReadThresh': 30, 'rankingMethod': 'percentage', 'pvalThresh': '0.001', 'sampleNameSplit': ('/data/quasiSeqOut/multiPro19', 'pro19_1_1'), 'percentThresh': 5.0, 'outDir': '/data/quasiSeqOut/multiPro19/', 'readCountSNPPvalThresh': 0.05, 'sampleName': 'pro19_1_1', 'optionalfilters': (), 'referenceFile': '/data/quasiSeqOut/multiPro19/pro19_1.consensus.fasta', 'snpThresh': 40, 'pool': [], 'exc': OSError(17, 'File exists'), 'endIndex': 7099, 'realignedPileupFile': '/data/quasiSeqOut/multiPro19/pro19_1_1.realign.pileup', 'realignedSampleName': 'pro19_1_1.realign', 'realignedSnpFile': '/data/quasiSeqOut/multiPro19/pro19_1_1.realign.readcounts.snp', 'readCountSNPCoverageThresh': 10, 'realignedBamfile': '/data/quasiSeqOut/multiPro19/pro19_1_1.realign.bam', 'maxSignatures': '12000'})
+consenseAndRealignSparc:/data/quasiSeqOut/multiPro19/pro19_1_1.fastq, /data/quasiSeqOut/multiPro19/pro19_1.consensus.fasta, /data/quasiSeqOut/multiPro19/pro19_1_1.bam, /data/quasiSeqOut/multiPro19/pro19_1_1.readcounts, /data/quasiSeqOut/multiPro19/pro19_1_1.consensus.fasta, /data/quasiSeqOut/multiPro19/pro19_1_1.realign.bam
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!blasr /data/quasiSeqOut/multiPro19/pro19_1_1.fastq /data/quasiSeqOut/multiPro19/pro19_1.consensus.fasta -minMatch 19 -nproc 30 -bestn 1 -m 5 -out /data/quasiSeqOut/multiPro19/pro19_1_1.m5 -unaligned /data/quasiSeqOut/multiPro19/pro19_1_1.m5.ref_unaligned.fa
+
+[INFO] 2020-09-24T14:20:27 [blasr] started.
+[INFO] 2020-09-24T14:20:30 [blasr] ended.
+
+ m5File is done!
+/data/quasiSeqOut/multiPro19/pro19_1_1.m5
+
+alignFastqBlasrM5 took 3.25944709778seconds
+/opt/Sparc/compiled/Sparc b /data/quasiSeqOut/multiPro19/pro19_1.consensus.fasta m /data/quasiSeqOut/multiPro19/pro19_1_1.m5 k 1 g 1 c 2 t 0.2 o /data/quasiSeqOut/multiPro19/pro19_1_1
+For help: Sparc -h
+Backbone size: 7137
+Finished.
+
+ consensus file is done!
+/data/quasiSeqOut/multiPro19/pro19_1_1.consensus.fasta
+
+Created Consensus!
+bwa index /data/quasiSeqOut/multiPro19/pro19_1_1.consensus.fasta
+samtools faidx /data/quasiSeqOut/multiPro19/pro19_1_1.consensus.fasta
+indexReference took 0.0554449558258seconds
+getConsensusSparc took 0.732980012894seconds
+blasr /data/quasiSeqOut/multiPro19/pro19_1_1.fastq /data/quasiSeqOut/multiPro19/pro19_1_1.consensus.fasta -nproc 30 -bestn 1 -sam -out /data/quasiSeqOut/multiPro19/pro19_1_1.realign.sam -unaligned /data/quasiSeqOut/multiPro19/pro19_1_1.realign.unaligned.fa
+
+[INFO] 2020-09-24T14:20:31 [blasr] started.
+[INFO] 2020-09-24T14:20:34 [blasr] ended.
+
+ sam_file is done!
+/data/quasiSeqOut/multiPro19/pro19_1_1.realign.sam
+
+samtools view -Sb /data/quasiSeqOut/multiPro19/pro19_1_1.realign.sam | samtools sort - -o /data/quasiSeqOut/multiPro19/pro19_1_1.realign.bam
+
+getClusterFastq took 10.7926130295seconds
+!!!!!!!!!! Recursive call for /data/quasiSeqOut/multiPro19/pro19_1_2 !!!!!!!!!!
+Reading clusters
+*****Running pipeline for /data/quasiSeqOut/multiPro19/pro19_1_2*****
+/data/quasiSeqOut/multiPro19/pro19_1_3
+*****startIndex=30*****
+*****endIndex=7099*****
+*****snpThresh=40*****
+240 reads in /data/quasiSeqOut/multiPro19/pro19_1_3
+*****percentThresh=5.0*****
+('pipeline parameters:', {'initialBamfile': '/data/quasiSeqOut/multiPro19/pro19_1_2.bam', 'initialFastq': '/data/quasiSeqOut/multiPro19/pro19_1_2.fastq', 'rankedFile': '/data/quasiSeqOut/multiPro19/pro19_1_2.realign.rankedsnp', 'startIndex': 30, 'estimatedErrorRate': '0.01', 'consensusFile': '/data/quasiSeqOut/multiPro19/pro19_1_2.consensus.fasta', 'ranking_method': 'percentage', 'clusterFile': '/data/quasiSeqOut/multiPro19/pro19_1_2_clusters', 'readCountSNPVarFreqThresh': 0.001, 'start': 1600957235.384964, 'readCountsFile': '/data/quasiSeqOut/multiPro19/pro19_1_2.readcounts', 'minorAlleleReadThresh': 30, 'rankingMethod': 'percentage', 'pvalThresh': '0.001', 'sampleNameSplit': ('/data/quasiSeqOut/multiPro19', 'pro19_1_2'), 'percentThresh': 5.0, 'outDir': '/data/quasiSeqOut/multiPro19/', 'readCountSNPPvalThresh': 0.05, 'sampleName': 'pro19_1_2', 'optionalfilters': (), 'referenceFile': '/data/quasiSeqOut/multiPro19/pro19_1.consensus.fasta', 'snpThresh': 40, 'pool': [<Process(Process-1:1, unknown)>], 'exc': OSError(17, 'File exists'), 'endIndex': 7099, 'realignedPileupFile': '/data/quasiSeqOut/multiPro19/pro19_1_2.realign.pileup', 'realignedSampleName': 'pro19_1_2.realign', 'realignedSnpFile': '/data/quasiSeqOut/multiPro19/pro19_1_2.realign.readcounts.snp', 'readCountSNPCoverageThresh': 10, 'realignedBamfile': '/data/quasiSeqOut/multiPro19/pro19_1_2.realign.bam', 'maxSignatures': '12000'}
+ bam_file is done!
+/data/quasiSeqOut/multiPro19/pro19_1_1.realign.bam
+)
+
+consenseAndRealignSparc:/data/quasiSeqOut/multiPro19/pro19_1_2.fastq, /data/quasiSeqOut/multiPro19/pro19_1.consensus.fasta, /data/quasiSeqOut/multiPro19/pro19_1_2.bam, /data/quasiSeqOut/multiPro19/pro19_1_2.readcounts, /data/quasiSeqOut/multiPro19/pro19_1_2.consensus.fasta, /data/quasiSeqOut/multiPro19/pro19_1_2.realign.bam
+samtools index /data/quasiSeqOut/multiPro19/pro19_1_1.realign.bam
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!blasr /data/quasiSeqOut/multiPro19/pro19_1_2.fastq /data/quasiSeqOut/multiPro19/pro19_1.consensus.fasta -minMatch 19 -nproc 30 -bestn 1 -m 5 -out /data/quasiSeqOut/multiPro19/pro19_1_2.m5 -unaligned /data/quasiSeqOut/multiPro19/pro19_1_2.m5.ref_unaligned.fa
+
+[INFO] 2020-09-24T14:20:37 [blasr] started.
+alignFastqAndIndexPacBioSam_v1_3 took 6.03705191612seconds
+samtools mpileup -BQ0 -d100000 -f /data/quasiSeqOut/multiPro19/pro19_1_1.consensus.fasta /data/quasiSeqOut/multiPro19/pro19_1_1.realign.bam > /data/quasiSeqOut/multiPro19/pro19_1_1.realign.pileup
+
+[mpileup] 1 samples in 1 input files
+[INFO] 2020-09-24T14:20:39 [blasr] ended.
+
+ m5File is done!
+/data/quasiSeqOut/multiPro19/pro19_1_2.m5
+
+alignFastqBlasrM5 took 2.45814704895seconds
+/opt/Sparc/compiled/Sparc b /data/quasiSeqOut/multiPro19/pro19_1.consensus.fasta m /data/quasiSeqOut/multiPro19/pro19_1_2.m5 k 1 g 1 c 2 t 0.2 o /data/quasiSeqOut/multiPro19/pro19_1_2
+For help: Sparc -h
+Backbone size: 7137
+
+ pileup_file is done!
+/data/quasiSeqOut/multiPro19/pro19_1_1.realign.pileup
+
+java -jar VarScan.v2.4.2.jar readcounts /data/quasiSeqOut/multiPro19/pro19_1_1.realign.pileup  --output-file /data/quasiSeqOut/multiPro19/pro19_1_1.realign.readcounts --min-base-qual 5
+
+Min coverage:	1
+Min base qual:	5
+Reading input from /data/quasiSeqOut/multiPro19/pro19_1_1.realign.pileup
+Finished.
+
+ consensus file is done!
+/data/quasiSeqOut/multiPro19/pro19_1_2.consensus.fasta
+
+Created Consensus!
+bwa index /data/quasiSeqOut/multiPro19/pro19_1_2.consensus.fasta
+samtools faidx /data/quasiSeqOut/multiPro19/pro19_1_2.consensus.fasta
+indexReference took 0.0245230197906seconds
+getConsensusSparc took 0.546700954437seconds
+blasr /data/quasiSeqOut/multiPro19/pro19_1_2.fastq /data/quasiSeqOut/multiPro19/pro19_1_2.consensus.fasta -nproc 30 -bestn 1 -sam -out /data/quasiSeqOut/multiPro19/pro19_1_2.realign.sam -unaligned /data/quasiSeqOut/multiPro19/pro19_1_2.realign.unaligned.fa
+
+[INFO] 2020-09-24T14:20:40 [blasr] started.
+[INFO] 2020-09-24T14:20:42 [blasr] ended.
+
+ sam_file is done!
+/data/quasiSeqOut/multiPro19/pro19_1_2.realign.sam
+
+samtools view -Sb /data/quasiSeqOut/multiPro19/pro19_1_2.realign.sam | samtools sort - -o /data/quasiSeqOut/multiPro19/pro19_1_2.realign.bam
+
+getClusterFastq took 9.00152301788seconds
+!!!!!!!!!! Recursive call for /data/quasiSeqOut/multiPro19/pro19_1_3 !!!!!!!!!!
+Reading clusters
+*****Running pipeline for /data/quasiSeqOut/multiPro19/pro19_1_3*****
+*****startIndex=30*****
+*****endIndex=7099*****
+*****snpThresh=40*****
+/data/quasiSeqOut/multiPro19/pro19_1_4
+*****percentThresh=5.0*****
+('pipeline parameters:', 267 reads in /data/quasiSeqOut/multiPro19/pro19_1_4{'initialBamfile': '/data/quasiSeqOut/multiPro19/pro19_1_3.b
+am', 'initialFastq': '/data/quasiSeqOut/multiPro19/pro19_1_3.fastq', 'rankedFile': '/data/quasiSeqOut/multiPro19/pro19_1_3.realign.rankedsnp', 'startIndex': 30, 'estimatedErrorRate': '0.01', 'consensusFile': '/data/quasiSeqOut/multiPro19/pro19_1_3.consensus.fasta', 'ranking_method': 'percentage', 'clusterFile': '/data/quasiSeqOut/multiPro19/pro19_1_3_clusters', 'readCountSNPVarFreqThresh': 
+ bam_file is done!
+/data/quasiSeqOut/multiPro19/pro19_1_2.realign.bam
+0.001, 'start': 1600957244.400036, 'readCountsFile': '/data/quasiSeqOut/multiPro19/pro19_1_3.readcounts', 'minorAlleleReadThresh': 30, 'rankingMethod': 'percentage', 'pvalThresh': '0.001', 'sampleNameSplit': ('/data/quasiSeqO
+ut/multiPro19', 'pro19_1_3'), 'percentThsamtools index /data/quasiSeqOut/multiPro19/pro19_1_2.realign.bam
+
+resh': 5.0, 'outDir': '/data/quasiSeqOut/multiPro19/', 'readCountSNPPvalThresh': 0.05, 'sampleName': 'pro19_1_3', 'optionalfilteralignFastqAndIndexPacBioSam_v1_3 took 5.33787107468seconds
+s': (), samtools mpileup -BQ0 -d100000 -f /data/quasiSeqOut/multiPro19/pro19_1_2.consensus.fasta /data/quasiSeqOut/multiPro19/pro19_1_2.realign.bam > /data/quasiSeqOut/multiPro19/pro19_1_2.realign.pileup'referenceFile': '/data/quasiSeqOut/multiPro19/
+pro19_1.consensus.fasta', 'snpThresh': 40, 'pool': [
+<Process(Process-1:1, unknown)>, <Process(Process-1:2, unknown)>], 'exc': OSError(17, 'File exists'), 'endIndex': 7099, 'realignedPileupFile': '/data/quasiSeqOut/multiPro19/pro19_1_3.realign.pileup', 'realignedSampleName': 'pro19_1_3.realign', 'realignedSn[mpileup] 1 samples in 1 input files
+pFile': '/data/quasiSeqOut/multiPro19/pro19_1_3.realign.readcounts.snp', 'readCountSNPCoverageThresh': 10, 'realignedBamfile': '/data/quasiSeqOut/multiPro19/pro19_1_3.realign.bam', 'maxSignatures': '12000'})
+consenseAndRealignSparc:/data/quasiSeqOut/multiPro19/pro19_1_3.fastq, /data/quasiSeqOut/multiPro19/pro19_1.consensus.fasta, /data/quasiSeqOut/multiPro19/pro19_1_3.bam, /data/quasiSeqOut/multiPro19/pro19_1_3.readcounts, /data/quasiSeqOut/multiPro19/pro19_1_3.consensus.fasta, /data/quasiSeqOut/multiPro19/pro19_1_3.realign.bam
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!blasr /data/quasiSeqOut/multiPro19/pro19_1_3.fastq /data/quasiSeqOut/multiPro19/pro19_1.consensus.fasta -minMatch 19 -nproc 30 -bestn 1 -m 5 -out /data/quasiSeqOut/multiPro19/pro19_1_3.m5 -unaligned /data/quasiSeqOut/multiPro19/pro19_1_3.m5.ref_unaligned.fa
+
+[INFO] 2020-09-24T14:20:45 [blasr] started.
+
+ pileup_file is done!
+/data/quasiSeqOut/multiPro19/pro19_1_2.realign.pileup
+
+java -jar VarScan.v2.4.2.jar readcounts /data/quasiSeqOut/multiPro19/pro19_1_2.realign.pileup  --output-file /data/quasiSeqOut/multiPro19/pro19_1_2.realign.readcounts --min-base-qual 5
+
+[INFO] 2020-09-24T14:20:48 [blasr] ended.
+
+ m5File is done!
+/data/quasiSeqOut/multiPro19/pro19_1_3.m5
+
+alignFastqBlasrM5 took 2.78907704353seconds
+/opt/Sparc/compiled/Sparc b /data/quasiSeqOut/multiPro19/pro19_1.consensus.fasta m /data/quasiSeqOut/multiPro19/pro19_1_3.m5 k 1 g 1 c 2 t 0.2 o /data/quasiSeqOut/multiPro19/pro19_1_3
+Min coverage:	1For help: Sparc -h
+
+Min base qual:	5
+Reading input from /data/quasiSeqOut/multiPro19/pro19_1_2.realign.pileup
+Backbone size: 7137
+Finished.
+
+ consensus file is done!
+/data/quasiSeqOut/multiPro19/pro19_1_3.consensus.fasta
+
+Created Consensus!
+bwa index /data/quasiSeqOut/multiPro19/pro19_1_3.consensus.fasta
+samtools faidx /data/quasiSeqOut/multiPro19/pro19_1_3.consensus.fasta
+indexReference took 0.135481119156seconds
+7138 positions in pileup filegetConsensusSparc took 1.11952900887seconds
+
+blasr /data/quasiSeqOut/multiPro19/pro19_1_3.fastq /data/quasiSeqOut/multiPro19/pro19_1_3.consensus.fasta -nproc 30 -bestn 1 -sam -out /data/quasiSeqOut/multiPro19/pro19_1_3.realign.sam -unaligned /data/quasiSeqOut/multiPro19/pro19_1_3.realign.unaligned.fa
+
+7138 included in readcount analysis
+7138 met minimum coverage
+[INFO] 2020-09-24T14:20:49 [blasr] started.
+
+ readcounts_file done!
+/data/quasiSeqOut/multiPro19/pro19_1_1.realign.readcounts
+
+getReadCounts took 13.2718038559seconds
+java -cp ./ ReadCount_snp /data/quasiSeqOut/multiPro19/pro19_1_1.realign.readcounts /data/quasiSeqOut/multiPro19/pro19_1_1.realign.readcounts.snp 0.01 0.05 10 0.001
+
+[INFO] 2020-09-24T14:20:53 [blasr] ended.
+
+ sam_file is done!
+/data/quasiSeqOut/multiPro19/pro19_1_3.realign.sam
+
+samtools view -Sb /data/quasiSeqOut/multiPro19/pro19_1_3.realign.sam | samtools sort - -o /data/quasiSeqOut/multiPro19/pro19_1_3.realign.bam
+
+
+ bam_file is done!
+/data/quasiSeqOut/multiPro19/pro19_1_3.realign.bam
+
+samtools index /data/quasiSeqOut/multiPro19/pro19_1_3.realign.bam
+
+alignFastqAndIndexPacBioSam_v1_3 took 5.77252006531seconds
+samtools mpileup -BQ0 -d100000 -f /data/quasiSeqOut/multiPro19/pro19_1_3.consensus.fasta /data/quasiSeqOut/multiPro19/pro19_1_3.realign.bam > /data/quasiSeqOut/multiPro19/pro19_1_3.realign.pileup
+
+[mpileup] 1 samples in 1 input files
+7133 positions in pileup file
+7133 included in readcount analysis
+7133 met minimum coverage
+
+ readcounts_file done!
+/data/quasiSeqOut/multiPro19/pro19_1_2.realign.readcounts
+
+getReadCounts took 10.5229589939seconds
+java -cp ./ ReadCount_snp /data/quasiSeqOut/multiPro19/pro19_1_2.realign.readcounts /data/quasiSeqOut/multiPro19/pro19_1_2.realign.readcounts.snp 0.01 0.05 10 0.001
+
+
+ pileup_file is done!
+/data/quasiSeqOut/multiPro19/pro19_1_3.realign.pileup
+
+java -jar VarScan.v2.4.2.jar readcounts /data/quasiSeqOut/multiPro19/pro19_1_3.realign.pileup  --output-file /data/quasiSeqOut/multiPro19/pro19_1_3.realign.readcounts --min-base-qual 5
+
+getClusterFastq took 12.4522480965seconds
+!!!!!!!!!! Recursive call for /data/quasiSeqOut/multiPro19/pro19_1_4 !!!!!!!!!!
+Reading clusters
+*****Running pipeline for /data/quasiSeqOut/multiPro19/pro19_1_4*****
+*****startIndex=30*****/data/quasiSeqOut/multiPro19/pro19_1_5
+
+*****endIndex=7099*****
+*****snpThresh=40*****
+*****percentThresh=5.0*****
+316 reads in /data/quasiSeqOut/multiPro19/pro19_1_5(
+'pipeline parameters:', Min coverage:	1{
+'initialBamfile': '/data/quasiSeqOut/multiPro19/pro19_1_4.bam', 'initialFastqMin base qual:	5': 
+'/data/quasiSeqOut/multiPro19/pro19_1_4.fastq'Reading input from /data/quasiSeqOut/multiPro19/pro19_1_3.realign.pileup, 'rankedFile': '/data/quasiSeqOut/multiPro19/pro19_1_4.realign.rankedsnp', 'startIndex': 
+30, 'estimatedErrorRate': '0.01', 'consensusFile': '/data/quasiSeqOut/multiPro19/pro19_1_4.consensus.fasta', 'ranking_method': 'percentage', 'clusterFile': '/data/quasiSeqOut/multiPro19/pro19_1_4_clusters', 'readCountSNPVarFreqThresh': 0.001, 'start': 1600957257.091654, 'readCountsFile': '/data/quasiSeqOut/multiPro19/pro19_1_4.readcounts', 'minorAlleleReadThresh': 30, 'rankingMethod': 'percentage', 'pvalThresh': '0.001', 'sampleNameSplit': ('/data/quasiSeqOut/multiPro19', 'pro19_1_4'), 'percentThresh': 5.0, 'outDir': '/data/quasiSeqOut/multiPro19/', 'readCountSNPPvalThresh': 0.05, 'sampleName': 'pro19_1_4', 'optionalfilters': (), 'referenceFile': '/data/quasiSeqOut/multiPro19/pro19_1.consensus.fasta', 'snpThresh': 40, 'pool': [<Process(Process-1:1, unknown)>, <Process(Process-1:2, unknown)>, <Process(Process-1:3, unknown)>], 'exc': OSError(17, 'File exists'), 'endIndex': 7099, 'realignedPileupFile': '/data/quasiSeqOut/multiPro19/pro19_1_4.realign.pileup', 'realignedSampleName': 'pro19_1_4.realign', 'realignedSnpFile': '/data/quasiSeqOut/multiPro19/pro19_1_4.realign.readcounts.snp', 'readCountSNPCoverageThresh': 10, 'realignedBamfile': '/data/quasiSeqOut/multiPro19/pro19_1_4.realign.bam', 'maxSignatures': '12000'})
+consenseAndRealignSparc:/data/quasiSeqOut/multiPro19/pro19_1_4.fastq, /data/quasiSeqOut/multiPro19/pro19_1.consensus.fasta, /data/quasiSeqOut/multiPro19/pro19_1_4.bam, /data/quasiSeqOut/multiPro19/pro19_1_4.readcounts, /data/quasiSeqOut/multiPro19/pro19_1_4.consensus.fasta, /data/quasiSeqOut/multiPro19/pro19_1_4.realign.bam
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!blasr /data/quasiSeqOut/multiPro19/pro19_1_4.fastq /data/quasiSeqOut/multiPro19/pro19_1.consensus.fasta -minMatch 19 -nproc 30 -bestn 1 -m 5 -out /data/quasiSeqOut/multiPro19/pro19_1_4.m5 -unaligned /data/quasiSeqOut/multiPro19/pro19_1_4.m5.ref_unaligned.fa
+
+[INFO] 2020-09-24T14:21:01 [blasr] started.
+[INFO] 2020-09-24T14:21:04 [blasr] ended.
+
+ m5File is done!
+/data/quasiSeqOut/multiPro19/pro19_1_4.m5
+
+alignFastqBlasrM5 took 3.49248600006seconds
+/opt/Sparc/compiled/Sparc b /data/quasiSeqOut/multiPro19/pro19_1.consensus.fasta m /data/quasiSeqOut/multiPro19/pro19_1_4.m5 k 1 g 1 c 2 t 0.2 o /data/quasiSeqOut/multiPro19/pro19_1_4
+For help: Sparc -h
+Backbone size: 7137
+Finished.
+
+ consensus file is done!
+/data/quasiSeqOut/multiPro19/pro19_1_4.consensus.fasta
+
+Created Consensus!
+bwa index /data/quasiSeqOut/multiPro19/pro19_1_4.consensus.fasta
+samtools faidx /data/quasiSeqOut/multiPro19/pro19_1_4.consensus.fasta
+indexReference took 0.108993053436seconds
+getConsensusSparc took 1.0143032074seconds
+blasr /data/quasiSeqOut/multiPro19/pro19_1_4.fastq /data/quasiSeqOut/multiPro19/pro19_1_4.consensus.fasta -nproc 30 -bestn 1 -sam -out /data/quasiSeqOut/multiPro19/pro19_1_4.realign.sam -unaligned /data/quasiSeqOut/multiPro19/pro19_1_4.realign.unaligned.fa
+
+[INFO] 2020-09-24T14:21:06 [blasr] started.
+[INFO] 2020-09-24T14:21:10 [blasr] ended.
+
+ sam_file is done!
+/data/quasiSeqOut/multiPro19/pro19_1_4.realign.sam
+
+samtools view -Sb /data/quasiSeqOut/multiPro19/pro19_1_4.realign.sam | samtools sort - -o /data/quasiSeqOut/multiPro19/pro19_1_4.realign.bam
+
+7136 positions in pileup file
+7136 included in readcount analysis
+7136 met minimum coverage
+
+ readcounts_file done!
+/data/quasiSeqOut/multiPro19/pro19_1_3.realign.readcounts
+
+getReadCounts took 15.0241920948seconds
+java -cp ./ ReadCount_snp /data/quasiSeqOut/multiPro19/pro19_1_3.realign.readcounts /data/quasiSeqOut/multiPro19/pro19_1_3.realign.readcounts.snp 0.01 0.05 10 0.001
+
+getClusterFastq took 13.5412139893seconds
+!!!!!!!!!! Recursive call for /data/quasiSeqOut/multiPro19/pro19_1_5 !!!!!!!!!!
+Reading clusters
+*****Running pipeline for /data/quasiSeqOut/multiPro19/pro19_1_5*****
+*****startIndex=30*****
+*****endIndex=7099*****
+*****snpThresh=40*****
+/data/quasiSeqOut/multiPro19/pro19_1_6
+*****percentThresh=5.0*****
+('pipeline parameters:', 315 reads in /data/quasiSeqOut/multiPro19/pro19_1_6{'initialBamfile': '/data/quasiSeqOut/multiPro19/pro19_1_5.bam', 'initialFastq': '/data/quasiSeqOut/multiPro19/pro19_1_5.fastq', 'rankedFile': '/data/quasiSeqOut/multiPro19/pro19_1_5.realign.rankedsnp', 'startIndex': 
+30, 'estimatedErrorRate': '0.01', 'consensusFile': '/data/quasiSeqOut/multiPro19/pro19_1_5.consensus.fasta', 'ranking_method': 'percentage', 'clusterFile': '/data/quasiSeqOut/multiPro19/pro19_1_5_clusters', 'readCountSNPVarFreqThresh': 0.001, 'start': 1600957270.820185, 'readCountsFile': '/data/quasiSeqOut/multiPro19/pro19_1_5.readcounts', 'minorAlleleReadThresh': 30, 'rankingMethod': 'percentage', 'pvalThresh': '0.001', 'sampleNameSplit': ('/data/quasiSeqOut/multiPro19', 'pro19_1_5'), 'percentThresh': 5.0, 'outDir': '/data/quasiSeqOut/multiPro19/', 'readCountSNPPvalThresh': 0.05, 'sampleName': 'pro19_1_5', 'optionalfilters': (), 'referenceFile': '/data/quasiSeqOut/multiPro19/pro19_1.consensus.fasta', 'snpThresh': 40, 'pool': [<Process(Process-1:1, unknown)>, <Process(Process-1:2, unknown)>, <Process(Process-1:3, unknown)>, <Process(Process-1:4, unknown)>], 'exc': OSError(17, 'File exists'), 'endIndex': 7099, 'realignedPileupFile': '/data/quasiSeqOut/multiPro19/pro19_1_5.realign.pileup', 'realignedSampleName': 'pro19_1_5.realign', 'realignedSnpFile': '/data/quasiSeqOut/multiPro19/pro19_1_5.realign.readcounts.snp', 'readCountSNPCoverageThresh': 
+ bam_file is done!
+/data/quasiSeqOut/multiPro19/pro19_1_4.realign.bam
+
+10, 'realignedBamfile': '/data/quasiSeqOut/multiPro19/pro19_1_5.realign.bam', 'maxSignatures'samtools index /data/quasiSeqOut/multiPro19/pro19_1_4.realign.bam: '12000'})
+
+
+consenseAndRealignSparc:/data/quasiSeqOut/multiPro19/pro19_1_5.fastq, /data/quasiSeqOut/multiPro19/pro19_1.consensus.fasta, /data/quasiSeqOut/multiPro19/pro19_1_5.bam, /data/quasiSeqOut/multiPro19/pro19_1_5.readcounts, /data/quasiSeqOut/multiPro19/pro19_1_5.consensus.fasta, /data/quasiSeqOut/multiPro19/pro19_1_5.realign.bam
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!blasr /data/quasiSeqOut/multiPro19/pro19_1_5.fastq /data/quasiSeqOut/multiPro19/pro19_1.consensus.fasta -minMatch 19 -nproc 30 -bestn 1 -m 5 -out /data/quasiSeqOut/multiPro19/pro19_1_5.m5 -unaligned /data/quasiSeqOut/multiPro19/pro19_1_5.m5.ref_unaligned.fa
+
+[INFO] 2020-09-24T14:21:12 [blasr] started.
+alignFastqAndIndexPacBioSam_v1_3 took 6.94634795189seconds
+samtools mpileup -BQ0 -d100000 -f /data/quasiSeqOut/multiPro19/pro19_1_4.consensus.fasta /data/quasiSeqOut/multiPro19/pro19_1_4.realign.bam > /data/quasiSeqOut/multiPro19/pro19_1_4.realign.pileup
+
+[mpileup] 1 samples in 1 input files
+
+ pileup_file is done!
+/data/quasiSeqOut/multiPro19/pro19_1_4.realign.pileup
+
+java -jar VarScan.v2.4.2.jar readcounts /data/quasiSeqOut/multiPro19/pro19_1_4.realign.pileup  --output-file /data/quasiSeqOut/multiPro19/pro19_1_4.realign.readcounts --min-base-qual 5
+
+[INFO] 2020-09-24T14:21:16 [blasr] ended.
+
+ m5File is done!
+/data/quasiSeqOut/multiPro19/pro19_1_5.m5
+
+alignFastqBlasrM5 took 4.08641982079seconds
+/opt/Sparc/compiled/Sparc b /data/quasiSeqOut/multiPro19/pro19_1.consensus.fasta m /data/quasiSeqOut/multiPro19/pro19_1_5.m5 k 1 g 1 c 2 t 0.2 o /data/quasiSeqOut/multiPro19/pro19_1_5
+For help: Sparc -h
+Backbone size: 7137
+Min coverage:	1
+Min base qual:	5
+Reading input from /data/quasiSeqOut/multiPro19/pro19_1_4.realign.pileup
+Finished.
+
+ consensus file is done!
+/data/quasiSeqOut/multiPro19/pro19_1_5.consensus.fasta
+
+Created Consensus!
+bwa index /data/quasiSeqOut/multiPro19/pro19_1_5.consensus.fasta
+samtools faidx /data/quasiSeqOut/multiPro19/pro19_1_5.consensus.fasta
+indexReference took 0.0779860019684seconds
+getConsensusSparc took 1.37738204002seconds
+blasr /data/quasiSeqOut/multiPro19/pro19_1_5.fastq /data/quasiSeqOut/multiPro19/pro19_1_5.consensus.fasta -nproc 30 -bestn 1 -sam -out /data/quasiSeqOut/multiPro19/pro19_1_5.realign.sam -unaligned /data/quasiSeqOut/multiPro19/pro19_1_5.realign.unaligned.fa
+
+[INFO] 2020-09-24T14:21:18 [blasr] started.
+[INFO] 2020-09-24T14:21:23 [blasr] ended.
+
+ sam_file is done!
+/data/quasiSeqOut/multiPro19/pro19_1_5.realign.sam
+
+samtools view -Sb /data/quasiSeqOut/multiPro19/pro19_1_5.realign.sam | samtools sort - -o /data/quasiSeqOut/multiPro19/pro19_1_5.realign.bam
+
+getClusterFastq took 15.6071331501seconds
+!!!!!!!!!! Recursive call for /data/quasiSeqOut/multiPro19/pro19_1_6 !!!!!!!!!!
+Reading clusters*****Running pipeline for /data/quasiSeqOut/multiPro19/pro19_1_6*****
+
+7142 positions in pileup file*****startIndex=30*****
+
+/data/quasiSeqOut/multiPro19/pro19_1_7
+7142 included in readcount analysis*****endIndex=7099*****
+
+7142 met minimum coverage*****snpThresh=40*****249 reads in /data/quasiSeqOut/multiPro19/pro19_1_7
+
+
+
+ bam_file is done!
+/data/quasiSeqOut/multiPro19/pro19_1_5.realign.bam
+*****percentThresh=5.0*****
+
+samtools index /data/quasiSeqOut/multiPro19/pro19_1_5.realign.bam
+(
+ readcounts_file done!
+/data/quasiSeqOut/multiPro19/pro19_1_4.realign.readcounts
+
+
+'pipeline parameters:'getReadCounts took 15.3191781044seconds, 
+{'initialBamfile': '/data/quasiSeqOut/multiPro19/pro19_1_6.bam', 'initialFastq': '/data/quasiSeqOut/multiPro19/pro19_1_6.fastq'java -cp ./ ReadCount_snp /data/quasiSeqOut/multiPro19/pro19_1_4.realign.readcounts /data/quasiSeqOut/multiPro19/pro19_1_4.realign.readcounts.snp 0.01 0.05 10 0.001
+
+alignFastqAndIndexPacBioSam_v1_3 took 11.2176599503seconds, 'rankedFile': '/data/quasiSeqOut/multiPro19/pro19_1_6.realign.rankedsnp', 'startIndex': 
+30, 'estimatedErrorRate': '0.01', 'consensusFile': '/data/quasiSeqOut/multiPro19/pro19_1_6.consensus.fasta', 'ranking_method': 'percentage', 'clusterFile': '/data/quasiSeqOut/multiPro19/pro19_1_6_clusters', 'readCountSNPVarFreqThresh': samtools mpileup -BQ0 -d100000 -f /data/quasiSeqOut/multiPro19/pro19_1_5.consensus.fasta /data/quasiSeqOut/multiPro19/pro19_1_5.realign.bam > /data/quasiSeqOut/multiPro19/pro19_1_5.realign.pileup0.001, 'start': 1600957286.722431, 'readCountsFile': '/data/quasiSeqOut/multiPro19/pro19_1_6.readcounts', 'minorAlleleReadThresh': 30, 'rankingMethod': 'p
+ercentage', 'pvalThresh': '0.001', 'sampleNameSplit': ('/data/quasiSeqOut/multiPro19', 'pro19_1_6'), 'percentThresh': 5.0, 'outDir': '/data/quasiSeqOut/multiPro19/', 'readCountSNPPvalThresh': 0.05, 'sampleName': 'pro19_1_6', 'optionalfilters': (), 'referenceFile': '/data/quasiSeqOut/multiPro19/pro19_1.consensus
+.fasta', 'snpThresh': 40, 'pool': [<Process(Process-1:1, unknown)>, <Process(Process-1:2, unknown)>, <Process(Process-1:3, unknown)>, <Process(Process-1:4, unknown)>, <Process(Process-1:5, unknown)>], 'exc': OSError(17, 'File exists'), 'endIndex': 7099, 'realignedPileupFile': '/data/quasiSeqOut/multiPro19/pro19_1_6.realign.pil[mpileup] 1 samples in 1 input files
+eup', 'realignedSampleName': 'pro19_1_6.realign', 'realignedSnpFile': '/data/quasiSeqOut/multiPro19/pro19_1_6.realign.readcounts.snp', 'readCountSNPCoverageThresh': 10, 'realignedBamfile': '/data/quasiSeqOut/multiPro19/pro19_1_6.realign.bam', 'maxSignatures': '12000'})
+consenseAndRealignSparc:/data/quasiSeqOut/multiPro19/pro19_1_6.fastq, /data/quasiSeqOut/multiPro19/pro19_1.consensus.fasta, /data/quasiSeqOut/multiPro19/pro19_1_6.bam, /data/quasiSeqOut/multiPro19/pro19_1_6.readcounts, /data/quasiSeqOut/multiPro19/pro19_1_6.consensus.fasta, /data/quasiSeqOut/multiPro19/pro19_1_6.realign.bam
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!blasr /data/quasiSeqOut/multiPro19/pro19_1_6.fastq /data/quasiSeqOut/multiPro19/pro19_1.consensus.fasta -minMatch 19 -nproc 30 -bestn 1 -m 5 -out /data/quasiSeqOut/multiPro19/pro19_1_6.m5 -unaligned /data/quasiSeqOut/multiPro19/pro19_1_6.m5.ref_unaligned.fa
+
+[INFO] 2020-09-24T14:21:32 [blasr] started.
+
+ pileup_file is done!
+/data/quasiSeqOut/multiPro19/pro19_1_5.realign.pileup
+
+java -jar VarScan.v2.4.2.jar readcounts /data/quasiSeqOut/multiPro19/pro19_1_5.realign.pileup  --output-file /data/quasiSeqOut/multiPro19/pro19_1_5.realign.readcounts --min-base-qual 5
+
+[INFO] 2020-09-24T14:21:36 [blasr] ended.
+
+ m5File is done!
+/data/quasiSeqOut/multiPro19/pro19_1_6.m5
+
+alignFastqBlasrM5 took 4.3758289814seconds
+/opt/Sparc/compiled/Sparc b /data/quasiSeqOut/multiPro19/pro19_1.consensus.fasta m /data/quasiSeqOut/multiPro19/pro19_1_6.m5 k 1 g 1 c 2 t 0.2 o /data/quasiSeqOut/multiPro19/pro19_1_6
+For help: Sparc -h
+Backbone size: 7137
+Min coverage:	1
+Min base qual:	5
+Reading input from /data/quasiSeqOut/multiPro19/pro19_1_5.realign.pileup
+Finished.
+
+ consensus file is done!
+/data/quasiSeqOut/multiPro19/pro19_1_6.consensus.fasta
+
+Created Consensus!
+bwa index /data/quasiSeqOut/multiPro19/pro19_1_6.consensus.fasta
+samtools faidx /data/quasiSeqOut/multiPro19/pro19_1_6.consensus.fasta
+indexReference took 0.0913510322571seconds
+getConsensusSparc took 1.37106704712seconds
+blasr /data/quasiSeqOut/multiPro19/pro19_1_6.fastq /data/quasiSeqOut/multiPro19/pro19_1_6.consensus.fasta -nproc 30 -bestn 1 -sam -out /data/quasiSeqOut/multiPro19/pro19_1_6.realign.sam -unaligned /data/quasiSeqOut/multiPro19/pro19_1_6.realign.unaligned.fa
+
+[INFO] 2020-09-24T14:21:37 [blasr] started.
+[INFO] 2020-09-24T14:21:43 [blasr] ended.
+getClusterFastq took 16.0282859802seconds
+!!!!!!!!!! Recursive call for /data/quasiSeqOut/multiPro19/pro19_1_7 !!!!!!!!!!
+Reading clusters
+
+ sam_file is done!
+/data/quasiSeqOut/multiPro19/pro19_1_6.realign.sam
+*****Running pipeline for /data/quasiSeqOut/multiPro19/pro19_1_7*****
+
+samtools view -Sb /data/quasiSeqOut/multiPro19/pro19_1_6.realign.sam | samtools sort - -o /data/quasiSeqOut/multiPro19/pro19_1_6.realign.bam
+
+*****startIndex=30*****
+*****endIndex=7099*****
+*****snpThresh=40*****
+/data/quasiSeqOut/multiPro19/pro19_1_8
+*****percentThresh=5.0*****
+('pipeline parameters:', {'initialBamfile': '/data/262 reads in /data/quasiSeqOut/multiPro19/pro19_1_8quasiSeqOut/multiPro19/pro19_1_7.bam', 'initialFastq': '/data/quasiSeqOut/multiPro19/pro19_1_7.fastq', 'rankedFile': '/data/quasiSeqOut/multiPro19/pro19_1_7
+.realign.rankedsnp', 'startIndex': 30, 'estimatedErrorRate': '0.01', 'consensusFile': '/data/quasiSeqOut/multiPro19/pro19_1_7.consensus.fasta', 'ranking_method': 'percentage', 'clusterFile': '/data/quasiSeqOut/multiPro19/pro19_1_7_clusters', 'readCountSNPVarFreqThresh': 0.001, 'start': 1600957303.240681, 'readCountsFile': '/data/quasiSeqOut/multiPro19/pro19_1_7.readcounts', 'minorAlleleReadThresh': 30, 'rankingMethod': 'percentage', 'pvalThresh': '0.001', 'sampleNameSplit': ('/data/quasiSeqOut/multiPro19', 'pro19_1_7'), 'percentThresh': 5.0, 'outDir': '/data/quasiSeqOut/multiPro19/', 'readCountSNPPvalThresh': 
+ bam_file is done!
+/data/quasiSeqOut/multiPro19/pro19_1_6.realign.bam
+0.05, 's
+ampleName': 'pro19_1_7', 'optionalfilters': (), 'referenceFile': '/data/quasiSeqOut/multiPro19/pro19_1.consensus.fsamtools index /data/quasiSeqOut/multiPro19/pro19_1_6.realign.bamasta', 'snpThresh': 40, 'pool': 
+
+[<Process(Process-1:1, unknown)>, <Process(Process-1:2, unknown)>, <Process(Process-1:3, unknown)>, <Process(Process-1:4, unknown)>, <Process(Process-1:5, unknown)>, <Process(Process-1:6, unknown)>], 'exc': OSError(17, 'File exists'), 'endIndex': 7099, 'realignedPileupFile': '/data/quasiSeqOut/multiPro19/pro19_1_7.realign.pileup', 'realignedSampleName': 'pro19_1_7.realign', 'realignedSnpFile': '/data/quasiSeqOut7135 positions in pileup filealignFastqAndIndexPacBioSam_v1_3 took 11.5176820755seconds
+/multiPro19/pro19_1_7.realign.readcounts.snp', 
+samtools mpileup -BQ0 -d100000 -f /data/quasiSeqOut/multiPro19/pro19_1_6.consensus.fasta /data/quasiSeqOut/multiPro19/pro19_1_6.realign.bam > /data/quasiSeqOut/multiPro19/pro19_1_6.realign.pileup
+'readCountSNPCoverageThresh': 10, 'realignedBamfile': '/data/quasiSeqOut/multiPro19/pro19_1_7.realign.bam', 'maxSignatures': '12000'}7135 included in readcount analysis
+)
+
+consenseAndRealignSparc:/data/quasiSeqOut/multiPro19/pro19_1_7.fastq, /data/quasiSeqOut/multiPro19/pro19_1.consensus.fasta, /data/quasiSeqOut/multiPro19/pro19_1_7.bam, /data/quasiSeqOut/multiPro19/pro19_1_7.readcounts, /data/quasiSeqOut/multiPro19/pro19_1_7.consensus.fasta, /data/quasiSeqOut/multiPro19/pro19_1_7.realign.bam
+7135 met minimum coverage!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!blasr /data/quasiSeqOut/multiPro19/pro19_1_7.fastq /data/quasiSeqOut/multiPro19/pro19_1.consensus.fasta -minMatch 19 -nproc 30 -bestn 1 -m 5 -out /data/quasiSeqOut/multiPro19/pro19_1_7.m5 -unaligned /data/quasiSeqOut/multiPro19/pro19_1_7.m5.ref_unaligned.fa
+
+
+[INFO] 2020-09-24T14:21:49 [blasr] started.
+[mpileup] 1 samples in 1 input files
+
+ readcounts_file done!
+/data/quasiSeqOut/multiPro19/pro19_1_5.realign.readcounts
+
+getReadCounts took 19.858932972seconds
+java -cp ./ ReadCount_snp /data/quasiSeqOut/multiPro19/pro19_1_5.realign.readcounts /data/quasiSeqOut/multiPro19/pro19_1_5.realign.readcounts.snp 0.01 0.05 10 0.001
+
+
+ pileup_file is done!
+/data/quasiSeqOut/multiPro19/pro19_1_6.realign.pileup
+
+java -jar VarScan.v2.4.2.jar readcounts /data/quasiSeqOut/multiPro19/pro19_1_6.realign.pileup  --output-file /data/quasiSeqOut/multiPro19/pro19_1_6.realign.readcounts --min-base-qual 5
+
+[INFO] 2020-09-24T14:21:53 [blasr] ended.
+
+ m5File is done!
+/data/quasiSeqOut/multiPro19/pro19_1_7.m5
+
+alignFastqBlasrM5 took 4.18446493149seconds
+/opt/Sparc/compiled/Sparc b /data/quasiSeqOut/multiPro19/pro19_1.consensus.fasta m /data/quasiSeqOut/multiPro19/pro19_1_7.m5 k 1 g 1 c 2 t 0.2 o /data/quasiSeqOut/multiPro19/pro19_1_7
+For help: Sparc -h
+Backbone size: 7137
+Min coverage:	1
+Min base qual:	5
+Reading input from /data/quasiSeqOut/multiPro19/pro19_1_6.realign.pileup
+Finished.
+
+ consensus file is done!
+/data/quasiSeqOut/multiPro19/pro19_1_7.consensus.fasta
+
+Created Consensus!
+bwa index /data/quasiSeqOut/multiPro19/pro19_1_7.consensus.fasta
+samtools faidx /data/quasiSeqOut/multiPro19/pro19_1_7.consensus.fasta
+indexReference took 0.161752939224seconds
+getConsensusSparc took 1.26664400101seconds
+blasr /data/quasiSeqOut/multiPro19/pro19_1_7.fastq /data/quasiSeqOut/multiPro19/pro19_1_7.consensus.fasta -nproc 30 -bestn 1 -sam -out /data/quasiSeqOut/multiPro19/pro19_1_7.realign.sam -unaligned /data/quasiSeqOut/multiPro19/pro19_1_7.realign.unaligned.fa
+
+[INFO] 2020-09-24T14:21:55 [blasr] started.
+[INFO] 2020-09-24T14:22:00 [blasr] ended.
+
+ sam_file is done!
+/data/quasiSeqOut/multiPro19/pro19_1_7.realign.sam
+
+samtools view -Sb /data/quasiSeqOut/multiPro19/pro19_1_7.realign.sam | samtools sort - -o /data/quasiSeqOut/multiPro19/pro19_1_7.realign.bam
+
+getClusterFastq took 20.0854430199seconds
+!!!!!!!!!! Recursive call for /data/quasiSeqOut/multiPro19/pro19_1_8 !!!!!!!!!!
+Reading clusters
+*****Running pipeline for /data/quasiSeqOut/multiPro19/pro19_1_8*****
+/data/quasiSeqOut/multiPro19/pro19_1_9
+*****startIndex=30*****
+*****endIndex=7099*****
+*****snpThresh=40*****
+268 reads in /data/quasiSeqOut/multiPro19/pro19_1_9
+*****percentThresh=5.0*****
+('pipeline parameters:', {'initialBamfile': '/data/quasiSeqOut/multiPro19/pro19_1_8.bam', 'initialFastq': '/data/quasiSeqOut/multiPro19/pro19_1_8.fastq', 'rankedFile': '/data/quasiSeqOut/multiPro19/pro19_1_8.realign.rankedsnp', 'startIndex': 30, 'estimatedErrorRate': '0.01', 'consensusFile': '/data/quasiSeqOut/multiPro19/pro19_1_8.consensus.fasta', 'ranking_method': 'percentage', 'clusterFile': '/data/quasiSeqOut/multiPro19/pro19_1_8_clusters', 'readCountSNPVarFreqThresh': 0.001, 'start': 1600957323.412305, 'readCountsFile': '/data/quasiSeqOut/multiPro19/pro19_1_8.readcounts', 'min
+ bam_file is done!
+/data/quasiSeqOut/multiPro19/pro19_1_7.realign.bam
+
+samtools index /data/quasiSeqOut/multiPro19/pro19_1_7.realign.bam
+
+orAlleleReadThresh': 30, 'rankingMethod': 'percentage', 'pvalThresh': '0.001', 'sampleNameSplit': ('/data/quasiSeqOut/multiPro19', 'pro19_1_8'), 'percentThresh': alignFastqAndIndexPacBioSam_v1_3 took 9.92311310768seconds
+5.0, 'outDir': '/data/quasiSeqOut/multiPro19/', 'readCountSNPPvalThresh': samtools mpileup -BQ0 -d100000 -f /data/quasiSeqOut/multiPro19/pro19_1_7.consensus.fasta /data/quasiSeqOut/multiPro19/pro19_1_7.realign.bam > /data/quasiSeqOut/multiPro19/pro19_1_7.realign.pileup0.05, 'sampleName': 'pro19_1_8', 'optionalfilters': (), 'reference
+File': '/data/quasiSeqOut/
+multiPro19/pro19_1.consensus.fasta', 'snpThresh': 40, 'pool': [[mpileup] 1 samples in 1 input files
+<Process(Process-1:1, unknown)>, <Process(Process-1:2, unknown)>, <Process(Process-1:3, unknown)>, <Process(Process-1:4, unknown)>, <Process(Process-1:5, unknown)>, <Process(Process-1:6, unknown)>, <Process(Process-1:7, unknown)>], 'exc': OSError(17, 'File exists'), 'endIndex': 7099, 'realignedPileupFile': '/data/quasiSeqOut/multiPro19/pro19_1_8.realign.pileup', 'realignedSampleName': 'pro19_1_8.realign', 'realignedSnpFile': '/data/quasiSeqOut/multiPro19/pro19_1_8.realign.readcounts.snp', 'readCountSNPCoverageThresh': 10, 'realignedBamfile': '/data/quasiSeqOut/multiPro19/pro19_1_8.realign.bam', 'maxSignatures': '12000'})
+consenseAndRealignSparc:/data/quasiSeqOut/multiPro19/pro19_1_8.fastq, /data/quasiSeqOut/multiPro19/pro19_1.consensus.fasta, /data/quasiSeqOut/multiPro19/pro19_1_8.bam, /data/quasiSeqOut/multiPro19/pro19_1_8.readcounts, /data/quasiSeqOut/multiPro19/pro19_1_8.consensus.fasta, /data/quasiSeqOut/multiPro19/pro19_1_8.realign.bam
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!blasr /data/quasiSeqOut/multiPro19/pro19_1_8.fastq /data/quasiSeqOut/multiPro19/pro19_1.consensus.fasta -minMatch 19 -nproc 30 -bestn 1 -m 5 -out /data/quasiSeqOut/multiPro19/pro19_1_8.m5 -unaligned /data/quasiSeqOut/multiPro19/pro19_1_8.m5.ref_unaligned.fa
+
+[INFO] 2020-09-24T14:22:06 [blasr] started.
+
+ pileup_file is done!
+/data/quasiSeqOut/multiPro19/pro19_1_7.realign.pileup
+
+java -jar VarScan.v2.4.2.jar readcounts /data/quasiSeqOut/multiPro19/pro19_1_7.realign.pileup  --output-file /data/quasiSeqOut/multiPro19/pro19_1_7.realign.readcounts --min-base-qual 5
+
+7137 positions in pileup file
+7137 included in readcount analysis
+7137 met minimum coverage
+
+ readcounts_file done!
+/data/quasiSeqOut/multiPro19/pro19_1_6.realign.readcounts
+
+getReadCounts took 19.2079460621seconds
+java -cp ./ ReadCount_snp /data/quasiSeqOut/multiPro19/pro19_1_6.realign.readcounts /data/quasiSeqOut/multiPro19/pro19_1_6.realign.readcounts.snp 0.01 0.05 10 0.001
+
+Min coverage:	1
+Min base qual:	5
+[INFO] 2020-09-24T14:22:10 [blasr] ended.
+
+ m5File is done!
+/data/quasiSeqOut/multiPro19/pro19_1_8.m5
+
+alignFastqBlasrM5 took 4.60962200165seconds
+/opt/Sparc/compiled/Sparc b /data/quasiSeqOut/multiPro19/pro19_1.consensus.fasta m /data/quasiSeqOut/multiPro19/pro19_1_8.m5 k 1 g 1 c 2 t 0.2 o /data/quasiSeqOut/multiPro19/pro19_1_8
+Reading input from /data/quasiSeqOut/multiPro19/pro19_1_7.realign.pileup
+For help: Sparc -h
+Backbone size: 7137
+Finished.
+
+ consensus file is done!
+/data/quasiSeqOut/multiPro19/pro19_1_8.consensus.fasta
+
+Created Consensus!
+bwa index /data/quasiSeqOut/multiPro19/pro19_1_8.consensus.fasta
+samtools faidx /data/quasiSeqOut/multiPro19/pro19_1_8.consensus.fasta
+indexReference took 0.100824832916seconds
+getConsensusSparc took 1.99221992493seconds
+blasr /data/quasiSeqOut/multiPro19/pro19_1_8.fastq /data/quasiSeqOut/multiPro19/pro19_1_8.consensus.fasta -nproc 30 -bestn 1 -sam -out /data/quasiSeqOut/multiPro19/pro19_1_8.realign.sam -unaligned /data/quasiSeqOut/multiPro19/pro19_1_8.realign.unaligned.fa
+
+[INFO] 2020-09-24T14:22:12 [blasr] started.
+[INFO] 2020-09-24T14:22:18 [blasr] ended.
+
+ sam_file is done!
+/data/quasiSeqOut/multiPro19/pro19_1_8.realign.sam
+
+samtools view -Sb /data/quasiSeqOut/multiPro19/pro19_1_8.realign.sam | samtools sort - -o /data/quasiSeqOut/multiPro19/pro19_1_8.realign.bam
+
+
+ bam_file is done!
+/data/quasiSeqOut/multiPro19/pro19_1_8.realign.bam
+
+samtools index /data/quasiSeqOut/multiPro19/pro19_1_8.realign.bam
+
+alignFastqAndIndexPacBioSam_v1_3 took 10.7359881401seconds
+samtools mpileup -BQ0 -d100000 -f /data/quasiSeqOut/multiPro19/pro19_1_8.consensus.fasta /data/quasiSeqOut/multiPro19/pro19_1_8.realign.bam > /data/quasiSeqOut/multiPro19/pro19_1_8.realign.pileup
+
+7134 positions in pileup file
+7134 included in readcount analysis
+7134 met minimum coverage[mpileup] 1 samples in 1 input files
+
+getClusterFastq took 20.7662391663seconds
+!!!!!!!!!! Recursive call for /data/quasiSeqOut/multiPro19/pro19_1_9 !!!!!!!!!!
+
+ readcounts_file done!
+/data/quasiSeqOut/multiPro19/pro19_1_7.realign.readcounts
+
+getReadCounts took 19.2519118786seconds
+java -cp ./ ReadCount_snp /data/quasiSeqOut/multiPro19/pro19_1_7.realign.readcounts /data/quasiSeqOut/multiPro19/pro19_1_7.realign.readcounts.snp 0.01 0.05 10 0.001
+
+Reading clusters
+*****Running pipeline for /data/quasiSeqOut/multiPro19/pro19_1_9*****
+*****startIndex=30*****
+*****endIndex=7099*****
+*****snpThresh=40*****
+*****percentThresh=5.0*****
+/data/quasiSeqOut/multiPro19/pro19_1_10('pipeline parameters:', {'initialBamfile': '/data/quasiSeqOut/multiPro19/pro19_1_9.bam', 'initialFastq': '/data/quasiSeqOut/multiPro19/pro19_1_9.fastq'
+, 'rankedFile': '/data/quasiSeqOut/multiPro19/pro19_1_9.reali224 reads in /data/quasiSeqOut/multiPro19/pro19_1_10gn.rankedsnp', 'startIn
+dex': 30, 'estimatedErrorRate': '0.01', 'consensusFile': '/data/qu
+ pileup_file is done!
+/data/quasiSeqOut/multiPro19/pro19_1_8.realign.pileup
+
+asiSeqOut/multiPro19/pro19_1_9.consensus.fasta', 'ranking_java -jar VarScan.v2.4.2.jar readcounts /data/quasiSeqOut/multiPro19/pro19_1_8.realign.pileup  --output-file /data/quasiSeqOut/multiPro19/pro19_1_8.realign.readcounts --min-base-qual 5met
+
+hod': 'percentage', 'clusterFile': '/data/quasiSeqOut/multiPro19/pro19_1_9_clusters', 'readCountSNPVarFreqThresh': 0.001, 'start': 1600957344.215944, 'readCountsFile': '/data/quasiSeqOut/multiPro19/pro19_1_9.readcounts', 'minorAlleleReadThresh': 30, 'rankingMethod': 'percentage', 'pvalThresh': '0.001', 'sampleNameSplit': ('/data/quasiSeqOut/multiPro19'Min coverage:	1, 'pr
+o19_1_9'), 'percentThresh': Min base qual:	55.0, 'outDir': '/data/quasiSeqOut/multiPro19/', 'readCountSNPPvalThresh': 
+0.05, 'sampleName': 'pro19_1_9', 'optionalfilters': (), 'referenceFile': '/data/quasiSeqOut/mulReading input from /data/quasiSeqOut/multiPro19/pro19_1_8.realign.pileuptiPro19/pro19_1.consensus.fasta', 'snpThresh': 
+40, 'pool': [<Process(Process-1:1, unknown)>, <Process(Process-1:2, unknown)>, <Process(Process-1:3, unknown)>, <Process(Process-1:4, unknown)>, <Process(Process-1:5, unknown)>, <Process(Process-1:6, unknown)>, <Process(Process-1:7, unknown)>, <Process(Process-1:8, unknown)>], 'exc': OSError(17, 'File exists'), 'endIndex': 7099, 'realignedPileupFile': '/data/quasiSeqOut/multiPro19/pro19_1_9.realign.pileup', 'realignedSampleName': 'pro19_1_9.realign', 'realignedSnpFile': '/data/quasiSeqOut/multiPro19/pro19_1_9.realign.readcounts.snp', 'readCountSNPCoverageThresh': 10, 'realignedBamfile': '/data/quasiSeqOut/multiPro19/pro19_1_9.realign.bam', 'maxSignatures': '12000'})
+consenseAndRealignSparc:/data/quasiSeqOut/multiPro19/pro19_1_9.fastq, /data/quasiSeqOut/multiPro19/pro19_1.consensus.fasta, /data/quasiSeqOut/multiPro19/pro19_1_9.bam, /data/quasiSeqOut/multiPro19/pro19_1_9.readcounts, /data/quasiSeqOut/multiPro19/pro19_1_9.consensus.fasta, /data/quasiSeqOut/multiPro19/pro19_1_9.realign.bam
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!blasr /data/quasiSeqOut/multiPro19/pro19_1_9.fastq /data/quasiSeqOut/multiPro19/pro19_1.consensus.fasta -minMatch 19 -nproc 30 -bestn 1 -m 5 -out /data/quasiSeqOut/multiPro19/pro19_1_9.m5 -unaligned /data/quasiSeqOut/multiPro19/pro19_1_9.m5.ref_unaligned.fa
+
+[INFO] 2020-09-24T14:22:27 [blasr] started.
+[INFO] 2020-09-24T14:22:36 [blasr] ended.
+
+ m5File is done!
+/data/quasiSeqOut/multiPro19/pro19_1_9.m5
+
+alignFastqBlasrM5 took 8.42197585106seconds
+/opt/Sparc/compiled/Sparc b /data/quasiSeqOut/multiPro19/pro19_1.consensus.fasta m /data/quasiSeqOut/multiPro19/pro19_1_9.m5 k 1 g 1 c 2 t 0.2 o /data/quasiSeqOut/multiPro19/pro19_1_9
+For help: Sparc -h
+Backbone size: 7137
+Finished.
+
+ consensus file is done!
+/data/quasiSeqOut/multiPro19/pro19_1_9.consensus.fasta
+
+Created Consensus!
+bwa index /data/quasiSeqOut/multiPro19/pro19_1_9.consensus.fasta
+samtools faidx /data/quasiSeqOut/multiPro19/pro19_1_9.consensus.fasta
+indexReference took 0.106287002563seconds
+getConsensusSparc took 1.59909319878seconds
+blasr /data/quasiSeqOut/multiPro19/pro19_1_9.fastq /data/quasiSeqOut/multiPro19/pro19_1_9.consensus.fasta -nproc 30 -bestn 1 -sam -out /data/quasiSeqOut/multiPro19/pro19_1_9.realign.sam -unaligned /data/quasiSeqOut/multiPro19/pro19_1_9.realign.unaligned.fa
+
+[INFO] 2020-09-24T14:22:38 [blasr] started.
+7135 positions in pileup file
+7135 included in readcount analysis
+7135 met minimum coverage
+
+ readcounts_file done!
+/data/quasiSeqOut/multiPro19/pro19_1_8.realign.readcounts
+
+getReadCounts took 17.6562449932seconds
+java -cp ./ ReadCount_snp /data/quasiSeqOut/multiPro19/pro19_1_8.realign.readcounts /data/quasiSeqOut/multiPro19/pro19_1_8.realign.readcounts.snp 0.01 0.05 10 0.001
+
+[INFO] 2020-09-24T14:22:44 [blasr] ended.
+
+ sam_file is done!
+/data/quasiSeqOut/multiPro19/pro19_1_9.realign.sam
+
+samtools view -Sb /data/quasiSeqOut/multiPro19/pro19_1_9.realign.sam | samtools sort - -o /data/quasiSeqOut/multiPro19/pro19_1_9.realign.bam
+
+getClusterFastq took 22.7127571106seconds
+!!!!!!!!!! Recursive call for /data/quasiSeqOut/multiPro19/pro19_1_10 !!!!!!!!!!
+Reading clusters
+*****Running pipeline for /data/quasiSeqOut/multiPro19/pro19_1_10*****
+*****startIndex=30*****
+*****endIndex=7099*****
+*****snpThresh=40*****
+/data/quasiSeqOut/multiPro19/pro19_1_11
+*****percentThresh=5.0*****
+('pipeline parameters:', 202 reads in /data/quasiSeqOut/multiPro19/pro19_1_11{'init
+ialBamfile': '/data/quasiSeqOut/multiPro19/pro19_1_10.bam', 'initialFastq': '/data/quasiSeqOut/multiPro19/pro19_1_10.fastq', 'rankedFile': '/data/quasiSeqOut/multiPro19/pro19_1_10.realign.rankedsnp', 'startIndex': 30, 'estimatedErrorRate': '0.01', 'consensusFile': '/data/quasiSeqOut/multiPro19/pro19_1_10.consensus.fasta', 'ranking_method': 'percentage', 'clusterFile': '/data/quasiSeqOut/multiPro19/pro19_1_10_clusters', 'readCountSNPVarFreqThresh': 0.001, 'start': 1600957367.536088, 'readCountsFile': '/data/quasiSeqOut/multiPro19/pro19_1_10.readcounts', 'minorAlleleReadThresh': 30, 'rankingMethod': 'percentage', 'pvalThresh': '0.001', 'sampleNameSplit': ('/data/quasiSeqOut/multiPro19', 'pro19_1_10'), 'percentThresh': 5.0, 'outDir': '/data/quasiSeqOut/multiPro19/', 'readCountSNPPvalThresh': 0.05, 'sampleName': 'pro19_1_10', 'optionalfilters': (), 'referenceFile': '/data/quasiSeqOut/multiPro19/pro19_1.consensus.fasta', 'snpThresh': 40, 'pool': [<Process(Process-1:1, unknown)>, <Process(Process-1:2, unknown)>, <Process(Process-1:3, unknown)>, <Process(Process-1:4, unknown)>, <Process(Process-1:5, unknown)>, <Process(Process-1:6, unknown)>, <Process(Process-1:7, unknown)>, <Process(Process-1:8, unknown)>, <Process(Process-1:9, unknown)>], 'exc': OSError(17, 'File exists'), 'endIndex': 7099, 'realignedPileupFile': '/data/quasiSeqOut/multiPro19/pro19_1_10.realign.pileup', 'realignedSampleName': 'pro19_1_10.realign', 'realignedSnpFile': '/data/quasiSeqOut/multiPro
+ bam_file is done!
+/data/quasiSeqOut/multiPro19/pro19_1_9.realign.bam
+19/pro19_1_10.realign.readcounts.snp', 'readCountSNPCoverage
+Thresh': 10, 'realignedBamfile': '/data/quasiSeqOut/multiPro19/pro19_1_10.realign.bam', 'maxSignatures': '12000'}samtools index /data/quasiSeqOut/multiPro19/pro19_1_9.realign.bam
+
+)
+consenseAndRealignSparc:/data/quasiSeqOut/multiPro19/pro19_1_10.fastq, /data/quasiSeqOut/multiPro19/pro19_1.consensus.fasta, /data/quasiSeqOut/multiPro19/pro19_1_10.bam, /data/quasiSeqOut/multiPro19/pro19_1_10.readcounts, /data/quasiSeqOut/multiPro19/pro19_1_10.consensus.fasta, /data/quasiSeqOut/multiPro19/pro19_1_10.realign.bam
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!blasr /data/quasiSeqOut/multiPro19/pro19_1_10.fastq /data/quasiSeqOut/multiPro19/pro19_1.consensus.fasta -minMatch 19 -nproc 30 -bestn 1 -m 5 -out /data/quasiSeqOut/multiPro19/pro19_1_10.m5 -unaligned /data/quasiSeqOut/multiPro19/pro19_1_10.m5.ref_unaligned.fa
+
+[INFO] 2020-09-24T14:22:50 [blasr] started.
+alignFastqAndIndexPacBioSam_v1_3 took 13.0826067924seconds
+samtools mpileup -BQ0 -d100000 -f /data/quasiSeqOut/multiPro19/pro19_1_9.consensus.fasta /data/quasiSeqOut/multiPro19/pro19_1_9.realign.bam > /data/quasiSeqOut/multiPro19/pro19_1_9.realign.pileup
+
+[mpileup] 1 samples in 1 input files
+
+ pileup_file is done!
+/data/quasiSeqOut/multiPro19/pro19_1_9.realign.pileup
+
+java -jar VarScan.v2.4.2.jar readcounts /data/quasiSeqOut/multiPro19/pro19_1_9.realign.pileup  --output-file /data/quasiSeqOut/multiPro19/pro19_1_9.realign.readcounts --min-base-qual 5
+
+[INFO] 2020-09-24T14:22:55 [blasr] ended.
+
+ m5File is done!
+/data/quasiSeqOut/multiPro19/pro19_1_10.m5
+
+alignFastqBlasrM5 took 5.30692815781seconds
+/opt/Sparc/compiled/Sparc b /data/quasiSeqOut/multiPro19/pro19_1.consensus.fasta m /data/quasiSeqOut/multiPro19/pro19_1_10.m5 k 1 g 1 c 2 t 0.2 o /data/quasiSeqOut/multiPro19/pro19_1_10
+For help: Sparc -h
+Backbone size: 7137
+Min coverage:	1
+Min base qual:	5
+Reading input from /data/quasiSeqOut/multiPro19/pro19_1_9.realign.pileup
+Finished.
+
+ consensus file is done!
+/data/quasiSeqOut/multiPro19/pro19_1_10.consensus.fasta
+
+Created Consensus!
+bwa index /data/quasiSeqOut/multiPro19/pro19_1_10.consensus.fasta
+samtools faidx /data/quasiSeqOut/multiPro19/pro19_1_10.consensus.fasta
+indexReference took 0.103349924088seconds
+getConsensusSparc took 2.19903492928seconds
+blasr /data/quasiSeqOut/multiPro19/pro19_1_10.fastq /data/quasiSeqOut/multiPro19/pro19_1_10.consensus.fasta -nproc 30 -bestn 1 -sam -out /data/quasiSeqOut/multiPro19/pro19_1_10.realign.sam -unaligned /data/quasiSeqOut/multiPro19/pro19_1_10.realign.unaligned.fa
+
+[INFO] 2020-09-24T14:22:58 [blasr] started.
+[INFO] 2020-09-24T14:23:05 [blasr] ended.
+
+ sam_file is done!
+/data/quasiSeqOut/multiPro19/pro19_1_10.realign.sam
+
+samtools view -Sb /data/quasiSeqOut/multiPro19/pro19_1_10.realign.sam | samtools sort - -o /data/quasiSeqOut/multiPro19/pro19_1_10.realign.bam
+
+7147 positions in pileup file
+7147 included in readcount analysis
+7147 met minimum coverage
+
+ bam_file is done!
+/data/quasiSeqOut/multiPro19/pro19_1_10.realign.bam
+
+samtools index /data/quasiSeqOut/multiPro19/pro19_1_10.realign.bam
+
+alignFastqAndIndexPacBioSam_v1_3 took 12.6024949551seconds
+samtools mpileup -BQ0 -d100000 -f /data/quasiSeqOut/multiPro19/pro19_1_10.consensus.fasta /data/quasiSeqOut/multiPro19/pro19_1_10.realign.bam > /data/quasiSeqOut/multiPro19/pro19_1_10.realign.pileup
+
+[mpileup] 1 samples in 1 input files
+
+ readcounts_file done!
+/data/quasiSeqOut/multiPro19/pro19_1_9.realign.readcounts
+
+getReadCounts took 20.0884580612seconds
+java -cp ./ ReadCount_snp /data/quasiSeqOut/multiPro19/pro19_1_9.realign.readcounts /data/quasiSeqOut/multiPro19/pro19_1_9.realign.readcounts.snp 0.01 0.05 10 0.001
+
+getClusterFastq took 23.8702659607seconds
+!!!!!!!!!! Recursive call for /data/quasiSeqOut/multiPro19/pro19_1_11 !!!!!!!!!!
+Pipeline round for pro19_1 took 1611.28404999seconds
+*****Running pipeline for /data/quasiSeqOut/multiPro19/pro19_1_11*****
+*****startIndex=30*****
+*****endIndex=7099*****
+*****snpThresh=40*****
+*****percentThresh=5.0*****
+('pipeline parameters:', {'initialBamfile': '/data/quasiSeqOut/multiPro19/pro19_1_11.bam', 'initialFastq': '/data/quasiSeqOut/multiPro19/pro19_1_11.fastq', 'rankedFile': '/data/quasiSeqOut/multiPro19/pro19_1_11.realign.rankedsnp', 'startIndex': 30, 'estimatedErrorRate': '0.01', 'consensusFile': '/data/quasiSeqOut/multiPro19/pro19_1_11.consensus.fasta', 'ranking_method': 'percentage', 'clusterFile': '/data/quasiSeqOut/multiPro19/pro19_1_11_clusters', 'readCountSNPVarFreqThresh': 
+ pileup_file is done!
+/data/quasiSeqOut/multiPro19/pro19_1_10.realign.pileup
+0.001, 'start': 
+1600957391.42726, 'readCountsFile': '/data/quasijava -jar VarScan.v2.4.2.jar readcounts /data/quasiSeqOut/multiPro19/pro19_1_10.realign.pileup  --output-file /data/quasiSeqOut/multiPro19/pro19_1_10.realign.readcounts --min-base-qual 5SeqOut/
+
+multiPro19/pro19_1_11.readcounts', 'minorAlleleReadThresh': 30, 'rankingMethod': 'percentage', 'pvalThresh': '0.001', 'sampleNameSplit': ('/data/quasiSeqOut/multiPro19', 'pro19_1_Min coverage:	111'), 'p
+ercentThresh': 5.0, 'outDir': Min base qual:	5'/data/quasiSeqOut/multiPro19/', 'readCountSNPPvalThresh': 
+0.05, 'sampleName': 'pro19_1_11', 'optionalfilters': (), 'referenceFile': '/data/quasiSeqOut/multiPro19/pro19_1.consensus.fasta', 'snpThresh': 40, 'pool': Reading input from /data/quasiSeqOut/multiPro19/pro19_1_10.realign.pileup[
+<Process(Process-1:1, unknown)>, <Process(Process-1:2, unknown)>, <Process(Process-1:3, unknown)>, <Process(Process-1:4, unknown)>, <Process(Process-1:5, unknown)>, <Process(Process-1:6, unknown)>, <Process(Process-1:7, unknown)>, <Process(Process-1:8, unknown)>, <Process(Process-1:9, unknown)>, <Process(Process-1:10, unknown)>], 'exc': OSError(17, 'File exists'), 'endIndex': 7099, 'realignedPileupFile': '/data/quasiSeqOut/multiPro19/pro19_1_11.realign.pileup', 'realignedSampleName': 'pro19_1_11.realign', 'realignedSnpFile': '/data/quasiSeqOut/multiPro19/pro19_1_11.realign.readcounts.snp', 'readCountSNPCoverageThresh': 10, 'realignedBamfile': '/data/quasiSeqOut/multiPro19/pro19_1_11.realign.bam', 'maxSignatures': '12000'})
+consenseAndRealignSparc:/data/quasiSeqOut/multiPro19/pro19_1_11.fastq, /data/quasiSeqOut/multiPro19/pro19_1.consensus.fasta, /data/quasiSeqOut/multiPro19/pro19_1_11.bam, /data/quasiSeqOut/multiPro19/pro19_1_11.readcounts, /data/quasiSeqOut/multiPro19/pro19_1_11.consensus.fasta, /data/quasiSeqOut/multiPro19/pro19_1_11.realign.bam
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!blasr /data/quasiSeqOut/multiPro19/pro19_1_11.fastq /data/quasiSeqOut/multiPro19/pro19_1.consensus.fasta -minMatch 19 -nproc 30 -bestn 1 -m 5 -out /data/quasiSeqOut/multiPro19/pro19_1_11.m5 -unaligned /data/quasiSeqOut/multiPro19/pro19_1_11.m5.ref_unaligned.fa
+
+[INFO] 2020-09-24T14:23:15 [blasr] started.
+[INFO] 2020-09-24T14:23:22 [blasr] ended.
+
+ m5File is done!
+/data/quasiSeqOut/multiPro19/pro19_1_11.m5
+
+alignFastqBlasrM5 took 7.49724912643seconds
+/opt/Sparc/compiled/Sparc b /data/quasiSeqOut/multiPro19/pro19_1.consensus.fasta m /data/quasiSeqOut/multiPro19/pro19_1_11.m5 k 1 g 1 c 2 t 0.2 o /data/quasiSeqOut/multiPro19/pro19_1_11
+For help: Sparc -h
+Backbone size: 7137
+Finished.
+
+ consensus file is done!
+/data/quasiSeqOut/multiPro19/pro19_1_11.consensus.fasta
+
+Created Consensus!
+bwa index /data/quasiSeqOut/multiPro19/pro19_1_11.consensus.fasta
+samtools faidx /data/quasiSeqOut/multiPro19/pro19_1_11.consensus.fasta
+indexReference took 0.0930659770966seconds
+getConsensusSparc took 1.49001216888seconds
+blasr /data/quasiSeqOut/multiPro19/pro19_1_11.fastq /data/quasiSeqOut/multiPro19/pro19_1_11.consensus.fasta -nproc 30 -bestn 1 -sam -out /data/quasiSeqOut/multiPro19/pro19_1_11.realign.sam -unaligned /data/quasiSeqOut/multiPro19/pro19_1_11.realign.unaligned.fa
+
+[INFO] 2020-09-24T14:23:24 [blasr] started.
+7135 positions in pileup file
+7135 included in readcount analysis
+7135 met minimum coverage
+
+ readcounts_file done!
+/data/quasiSeqOut/multiPro19/pro19_1_10.realign.readcounts
+
+[INFO] 2020-09-24T14:23:31getReadCounts took 21.1148989201seconds
+ [blasr] ended.
+java -cp ./ ReadCount_snp /data/quasiSeqOut/multiPro19/pro19_1_10.realign.readcounts /data/quasiSeqOut/multiPro19/pro19_1_10.realign.readcounts.snp 0.01 0.05 10 0.001
+
+
+ sam_file is done!
+/data/quasiSeqOut/multiPro19/pro19_1_11.realign.sam
+
+samtools view -Sb /data/quasiSeqOut/multiPro19/pro19_1_11.realign.sam | samtools sort - -o /data/quasiSeqOut/multiPro19/pro19_1_11.realign.bam
+
+
+ bam_file is done!
+/data/quasiSeqOut/multiPro19/pro19_1_11.realign.bam
+
+samtools index /data/quasiSeqOut/multiPro19/pro19_1_11.realign.bam
+
+alignFastqAndIndexPacBioSam_v1_3 took 13.0145909786seconds
+samtools mpileup -BQ0 -d100000 -f /data/quasiSeqOut/multiPro19/pro19_1_11.consensus.fasta /data/quasiSeqOut/multiPro19/pro19_1_11.realign.bam > /data/quasiSeqOut/multiPro19/pro19_1_11.realign.pileup
+
+[mpileup] 1 samples in 1 input files
+
+ pileup_file is done!
+/data/quasiSeqOut/multiPro19/pro19_1_11.realign.pileup
+
+java -jar VarScan.v2.4.2.jar readcounts /data/quasiSeqOut/multiPro19/pro19_1_11.realign.pileup  --output-file /data/quasiSeqOut/multiPro19/pro19_1_11.realign.readcounts --min-base-qual 5
+
+Min coverage:	1
+Min base qual:	5
+Reading input from /data/quasiSeqOut/multiPro19/pro19_1_11.realign.pileup
+getSNPs took 172.718385935seconds
+samtools mpileup -BQ0 -d100000 -f /data/quasiSeqOut/multiPro19/pro19_1_2.consensus.fasta /data/quasiSeqOut/multiPro19/pro19_1_2.realign.bam > /data/quasiSeqOut/multiPro19/pro19_1_2.realign.pileup
+
+[mpileup] 1 samples in 1 input files
+7136 positions in pileup file
+7136 included in readcount analysis
+7136 met minimum coverage
+
+ readcounts_file done!
+/data/quasiSeqOut/multiPro19/pro19_1_11.realign.readcounts
+
+getReadCounts took 12.6009941101seconds
+java -cp ./ ReadCount_snp /data/quasiSeqOut/multiPro19/pro19_1_11.realign.readcounts /data/quasiSeqOut/multiPro19/pro19_1_11.realign.readcounts.snp 0.01 0.05 10 0.001
+
+
+ pileup_file is done!
+/data/quasiSeqOut/multiPro19/pro19_1_2.realign.pileup
+
+getPileup took 1.978495121seconds
+consenseAndAlign took 193.65162015seconds
+('rankSNVs parameters:', {'endIndex': 7099, 'snpFile': '/data/quasiSeqOut/multiPro19/pro19_1_2.realign.readcounts.snp', 'startIndex': 30, 'rankedFile': '/data/quasiSeqOut/multiPro19/pro19_1_2.realign.rankedsnp', 'optionalfilters': (), 'minorAlleleReadThresh': 30, 'rankingMethod': 'percentage', 'pvalThresh': '0.001', 'maxSignatures': '12000', 'percentThresh': 5.0, 'consensusFile': '/data/quasiSeqOut/multiPro19/pro19_1_2.consensus.fasta'})
+~~~~~~~~~~~~~~~~~~ python rankSNVs.py /data/quasiSeqOut/multiPro19/pro19_1_2.realign.readcounts.snp /data/quasiSeqOut/multiPro19/pro19_1_2.realign.rankedsnp percentage /data/quasiSeqOut/multiPro19/pro19_1_2.consensus.fasta -s 30 -e 7099 -perc 5.0 -pval 0.001 -r 30 -numSig 12000 
+numSNPs:0>= snpThresh:40->False
+0 SNPs: Creating consensus for pro19_1_2(cluster)
+!!!!!!!!!!Writing final consensus for pro19_1_2
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!blasr /data/quasiSeqOut/multiPro19/pro19_1_2.fastq /data/quasiSeqOut/multiPro19/pro19_1_2.consensus.fasta -minMatch 19 -nproc 30 -bestn 1 -m 5 -out /data/quasiSeqOut/multiPro19/pro19_1_2.m5 -unaligned /data/quasiSeqOut/multiPro19/pro19_1_2.m5.ref_unaligned.fa
+
+[INFO] 2020-09-24T14:23:52 [blasr] started.
+[INFO] 2020-09-24T14:23:57 [blasr] ended.
+
+ m5File is done!
+/data/quasiSeqOut/multiPro19/pro19_1_2.m5
+
+alignFastqBlasrM5 took 5.58400392532seconds
+/opt/Sparc/compiled/Sparc b /data/quasiSeqOut/multiPro19/pro19_1_2.consensus.fasta m /data/quasiSeqOut/multiPro19/pro19_1_2.m5 k 1 g 1 c 2 t 0.2 o /data/quasiSeqOut/multiPro19/pro19_1_2.finalRoundSparc
+For help: Sparc -h
+Backbone size: 7133
+Finished.
+
+ consensus file is done!
+/data/quasiSeqOut/multiPro19/pro19_1_2.finalRoundSparc.consensus.fasta
+
+Created Consensus!
+bwa index /data/quasiSeqOut/multiPro19/pro19_1_2.finalRoundSparc.consensus.fasta
+samtools faidx /data/quasiSeqOut/multiPro19/pro19_1_2.finalRoundSparc.consensus.fasta
+indexReference took 0.0993258953094seconds
+getConsensusSparc took 1.418156147seconds
+!!!!!!!!!!Writing final consensus stats for pro19_1_2
+Pipeline round for pro19_1_2 took 203.733561039seconds
+getSNPs took 197.795413017seconds
+samtools mpileup -BQ0 -d100000 -f /data/quasiSeqOut/multiPro19/pro19_1_1.consensus.fasta /data/quasiSeqOut/multiPro19/pro19_1_1.realign.bam > /data/quasiSeqOut/multiPro19/pro19_1_1.realign.pileup
+
+[mpileup] 1 samples in 1 input files
+
+ pileup_file is done!
+/data/quasiSeqOut/multiPro19/pro19_1_1.realign.pileup
+
+getPileup took 2.42959499359seconds
+consenseAndAlign took 223.53795886seconds
+('rankSNVs parameters:', {'endIndex': 7099, 'snpFile': '/data/quasiSeqOut/multiPro19/pro19_1_1.realign.readcounts.snp', 'startIndex': 30, 'rankedFile': '/data/quasiSeqOut/multiPro19/pro19_1_1.realign.rankedsnp', 'optionalfilters': (), 'minorAlleleReadThresh': 30, 'rankingMethod': 'percentage', 'pvalThresh': '0.001', 'maxSignatures': '12000', 'percentThresh': 5.0, 'consensusFile': '/data/quasiSeqOut/multiPro19/pro19_1_1.consensus.fasta'})
+~~~~~~~~~~~~~~~~~~ python rankSNVs.py /data/quasiSeqOut/multiPro19/pro19_1_1.realign.readcounts.snp /data/quasiSeqOut/multiPro19/pro19_1_1.realign.rankedsnp percentage /data/quasiSeqOut/multiPro19/pro19_1_1.consensus.fasta -s 30 -e 7099 -perc 5.0 -pval 0.001 -r 30 -numSig 12000 
+numSNPs:1>= snpThresh:40->False
+1 SNPs: Creating consensus for pro19_1_1(cluster)
+!!!!!!!!!!Writing final consensus for pro19_1_1
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!blasr /data/quasiSeqOut/multiPro19/pro19_1_1.fastq /data/quasiSeqOut/multiPro19/pro19_1_1.consensus.fasta -minMatch 19 -nproc 30 -bestn 1 -m 5 -out /data/quasiSeqOut/multiPro19/pro19_1_1.m5 -unaligned /data/quasiSeqOut/multiPro19/pro19_1_1.m5.ref_unaligned.fa
+
+[INFO] 2020-09-24T14:24:12 [blasr] started.
+[INFO] 2020-09-24T14:24:19 [blasr] ended.
+
+ m5File is done!
+/data/quasiSeqOut/multiPro19/pro19_1_1.m5
+
+alignFastqBlasrM5 took 7.22200298309seconds
+/opt/Sparc/compiled/Sparc b /data/quasiSeqOut/multiPro19/pro19_1_1.consensus.fasta m /data/quasiSeqOut/multiPro19/pro19_1_1.m5 k 1 g 1 c 2 t 0.2 o /data/quasiSeqOut/multiPro19/pro19_1_1.finalRoundSparc
+For help: Sparc -h
+Backbone size: 7138
+Finished.
+
+ consensus file is done!
+/data/quasiSeqOut/multiPro19/pro19_1_1.finalRoundSparc.consensus.fasta
+
+Created Consensus!
+bwa index /data/quasiSeqOut/multiPro19/pro19_1_1.finalRoundSparc.consensus.fasta
+samtools faidx /data/quasiSeqOut/multiPro19/pro19_1_1.finalRoundSparc.consensus.fasta
+indexReference took 0.0907199382782seconds
+getConsensusSparc took 2.2323141098seconds
+!!!!!!!!!!Writing final consensus stats for pro19_1_1
+Pipeline round for pro19_1_1 took 237.334908009seconds
+getSNPs took 191.868253946seconds
+samtools mpileup -BQ0 -d100000 -f /data/quasiSeqOut/multiPro19/pro19_1_3.consensus.fasta /data/quasiSeqOut/multiPro19/pro19_1_3.realign.bam > /data/quasiSeqOut/multiPro19/pro19_1_3.realign.pileup
+
+[mpileup] 1 samples in 1 input files
+
+ pileup_file is done!
+/data/quasiSeqOut/multiPro19/pro19_1_3.realign.pileup
+
+getPileup took 2.02907085419seconds
+consenseAndAlign took 218.64005518seconds
+('rankSNVs parameters:', {'endIndex': 7099, 'snpFile': '/data/quasiSeqOut/multiPro19/pro19_1_3.realign.readcounts.snp', 'startIndex': 30, 'rankedFile': '/data/quasiSeqOut/multiPro19/pro19_1_3.realign.rankedsnp', 'optionalfilters': (), 'minorAlleleReadThresh': 30, 'rankingMethod': 'percentage', 'pvalThresh': '0.001', 'maxSignatures': '12000', 'percentThresh': 5.0, 'consensusFile': '/data/quasiSeqOut/multiPro19/pro19_1_3.consensus.fasta'})
+~~~~~~~~~~~~~~~~~~ python rankSNVs.py /data/quasiSeqOut/multiPro19/pro19_1_3.realign.readcounts.snp /data/quasiSeqOut/multiPro19/pro19_1_3.realign.rankedsnp percentage /data/quasiSeqOut/multiPro19/pro19_1_3.consensus.fasta -s 30 -e 7099 -perc 5.0 -pval 0.001 -r 30 -numSig 12000 
+numSNPs:1>= snpThresh:40->False
+1 SNPs: Creating consensus for pro19_1_3(cluster)
+!!!!!!!!!!Writing final consensus for pro19_1_3
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!blasr /data/quasiSeqOut/multiPro19/pro19_1_3.fastq /data/quasiSeqOut/multiPro19/pro19_1_3.consensus.fasta -minMatch 19 -nproc 30 -bestn 1 -m 5 -out /data/quasiSeqOut/multiPro19/pro19_1_3.m5 -unaligned /data/quasiSeqOut/multiPro19/pro19_1_3.m5.ref_unaligned.fa
+
+[INFO] 2020-09-24T14:24:31 [blasr] started.
+[INFO] 2020-09-24T14:24:36 [blasr] ended.
+
+ m5File is done!
+/data/quasiSeqOut/multiPro19/pro19_1_3.m5
+
+alignFastqBlasrM5 took 4.61196804047seconds
+/opt/Sparc/compiled/Sparc b /data/quasiSeqOut/multiPro19/pro19_1_3.consensus.fasta m /data/quasiSeqOut/multiPro19/pro19_1_3.m5 k 1 g 1 c 2 t 0.2 o /data/quasiSeqOut/multiPro19/pro19_1_3.finalRoundSparc
+For help: Sparc -h
+Backbone size: 7136
+Finished.
+
+ consensus file is done!
+/data/quasiSeqOut/multiPro19/pro19_1_3.finalRoundSparc.consensus.fasta
+
+Created Consensus!
+bwa index /data/quasiSeqOut/multiPro19/pro19_1_3.finalRoundSparc.consensus.fasta
+samtools faidx /data/quasiSeqOut/multiPro19/pro19_1_3.finalRoundSparc.consensus.fasta
+indexReference took 0.0918998718262seconds
+getConsensusSparc took 1.46693301201seconds
+!!!!!!!!!!Writing final consensus stats for pro19_1_3
+Pipeline round for pro19_1_3 took 233.236485004seconds
+getSNPs took 192.251235962seconds
+samtools mpileup -BQ0 -d100000 -f /data/quasiSeqOut/multiPro19/pro19_1_4.consensus.fasta /data/quasiSeqOut/multiPro19/pro19_1_4.realign.bam > /data/quasiSeqOut/multiPro19/pro19_1_4.realign.pileup
+
+[mpileup] 1 samples in 1 input files
+
+ pileup_file is done!
+/data/quasiSeqOut/multiPro19/pro19_1_4.realign.pileup
+
+getPileup took 1.76605391502seconds
+consenseAndAlign took 221.748641014seconds
+('rankSNVs parameters:', {'endIndex': 7099, 'snpFile': '/data/quasiSeqOut/multiPro19/pro19_1_4.realign.readcounts.snp', 'startIndex': 30, 'rankedFile': '/data/quasiSeqOut/multiPro19/pro19_1_4.realign.rankedsnp', 'optionalfilters': (), 'minorAlleleReadThresh': 30, 'rankingMethod': 'percentage', 'pvalThresh': '0.001', 'maxSignatures': '12000', 'percentThresh': 5.0, 'consensusFile': '/data/quasiSeqOut/multiPro19/pro19_1_4.consensus.fasta'})
+~~~~~~~~~~~~~~~~~~ python rankSNVs.py /data/quasiSeqOut/multiPro19/pro19_1_4.realign.readcounts.snp /data/quasiSeqOut/multiPro19/pro19_1_4.realign.rankedsnp percentage /data/quasiSeqOut/multiPro19/pro19_1_4.consensus.fasta -s 30 -e 7099 -perc 5.0 -pval 0.001 -r 30 -numSig 12000 
+numSNPs:1>= snpThresh:40->False
+1 SNPs: Creating consensus for pro19_1_4(cluster)
+!!!!!!!!!!Writing final consensus for pro19_1_4
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!blasr /data/quasiSeqOut/multiPro19/pro19_1_4.fastq /data/quasiSeqOut/multiPro19/pro19_1_4.consensus.fasta -minMatch 19 -nproc 30 -bestn 1 -m 5 -out /data/quasiSeqOut/multiPro19/pro19_1_4.m5 -unaligned /data/quasiSeqOut/multiPro19/pro19_1_4.m5.ref_unaligned.fa
+
+[INFO] 2020-09-24T14:24:44 [blasr] started.
+[INFO] 2020-09-24T14:24:48 [blasr] ended.
+
+ m5File is done!
+/data/quasiSeqOut/multiPro19/pro19_1_4.m5
+
+alignFastqBlasrM5 took 4.38004302979seconds
+/opt/Sparc/compiled/Sparc b /data/quasiSeqOut/multiPro19/pro19_1_4.consensus.fasta m /data/quasiSeqOut/multiPro19/pro19_1_4.m5 k 1 g 1 c 2 t 0.2 o /data/quasiSeqOut/multiPro19/pro19_1_4.finalRoundSparc
+For help: Sparc -h
+Backbone size: 7142
+Finished.
+
+ consensus file is done!
+/data/quasiSeqOut/multiPro19/pro19_1_4.finalRoundSparc.consensus.fasta
+
+Created Consensus!
+bwa index /data/quasiSeqOut/multiPro19/pro19_1_4.finalRoundSparc.consensus.fasta
+samtools faidx /data/quasiSeqOut/multiPro19/pro19_1_4.finalRoundSparc.consensus.fasta
+indexReference took 0.0821509361267seconds
+getConsensusSparc took 1.39217996597seconds
+!!!!!!!!!!Writing final consensus stats for pro19_1_4
+Pipeline round for pro19_1_4 took 232.947885036seconds
+getSNPs took 201.024544954seconds
+samtools mpileup -BQ0 -d100000 -f /data/quasiSeqOut/multiPro19/pro19_1_5.consensus.fasta /data/quasiSeqOut/multiPro19/pro19_1_5.realign.bam > /data/quasiSeqOut/multiPro19/pro19_1_5.realign.pileup
+
+[mpileup] 1 samples in 1 input files
+
+ pileup_file is done!
+/data/quasiSeqOut/multiPro19/pro19_1_5.realign.pileup
+
+getPileup took 1.62804794312seconds
+consenseAndAlign took 239.86297822seconds
+('rankSNVs parameters:', {'endIndex': 7099, 'snpFile': '/data/quasiSeqOut/multiPro19/pro19_1_5.realign.readcounts.snp', 'startIndex': 30, 'rankedFile': '/data/quasiSeqOut/multiPro19/pro19_1_5.realign.rankedsnp', 'optionalfilters': (), 'minorAlleleReadThresh': 30, 'rankingMethod': 'percentage', 'pvalThresh': '0.001', 'maxSignatures': '12000', 'percentThresh': 5.0, 'consensusFile': '/data/quasiSeqOut/multiPro19/pro19_1_5.consensus.fasta'})
+~~~~~~~~~~~~~~~~~~ python rankSNVs.py /data/quasiSeqOut/multiPro19/pro19_1_5.realign.readcounts.snp /data/quasiSeqOut/multiPro19/pro19_1_5.realign.rankedsnp percentage /data/quasiSeqOut/multiPro19/pro19_1_5.consensus.fasta -s 30 -e 7099 -perc 5.0 -pval 0.001 -r 30 -numSig 12000 
+numSNPs:1>= snpThresh:40->False
+1 SNPs: Creating consensus for pro19_1_5(cluster)
+!!!!!!!!!!Writing final consensus for pro19_1_5
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!blasr /data/quasiSeqOut/multiPro19/pro19_1_5.fastq /data/quasiSeqOut/multiPro19/pro19_1_5.consensus.fasta -minMatch 19 -nproc 30 -bestn 1 -m 5 -out /data/quasiSeqOut/multiPro19/pro19_1_5.m5 -unaligned /data/quasiSeqOut/multiPro19/pro19_1_5.m5.ref_unaligned.fa
+
+[INFO] 2020-09-24T14:25:13 [blasr] started.
+[INFO] 2020-09-24T14:25:18 [blasr] ended.
+
+ m5File is done!
+/data/quasiSeqOut/multiPro19/pro19_1_5.m5
+
+alignFastqBlasrM5 took 5.07690906525seconds
+/opt/Sparc/compiled/Sparc b /data/quasiSeqOut/multiPro19/pro19_1_5.consensus.fasta m /data/quasiSeqOut/multiPro19/pro19_1_5.m5 k 1 g 1 c 2 t 0.2 o /data/quasiSeqOut/multiPro19/pro19_1_5.finalRoundSparc
+For help: Sparc -h
+Backbone size: 7135
+Finished.
+
+ consensus file is done!
+/data/quasiSeqOut/multiPro19/pro19_1_5.finalRoundSparc.consensus.fasta
+
+Created Consensus!
+bwa index /data/quasiSeqOut/multiPro19/pro19_1_5.finalRoundSparc.consensus.fasta
+samtools faidx /data/quasiSeqOut/multiPro19/pro19_1_5.finalRoundSparc.consensus.fasta
+indexReference took 0.0887048244476seconds
+getConsensusSparc took 1.10944795609seconds
+!!!!!!!!!!Writing final consensus stats for pro19_1_5
+Pipeline round for pro19_1_5 took 248.745047092seconds
+getSNPs took 176.051878929seconds
+samtools mpileup -BQ0 -d100000 -f /data/quasiSeqOut/multiPro19/pro19_1_7.consensus.fasta /data/quasiSeqOut/multiPro19/pro19_1_7.realign.bam > /data/quasiSeqOut/multiPro19/pro19_1_7.realign.pileup
+
+[mpileup] 1 samples in 1 input files
+
+ pileup_file is done!
+/data/quasiSeqOut/multiPro19/pro19_1_7.realign.pileup
+
+getPileup took 1.43441605568seconds
+consenseAndAlign took 212.172755003seconds
+('rankSNVs parameters:', {'endIndex': 7099, 'snpFile': '/data/quasiSeqOut/multiPro19/pro19_1_7.realign.readcounts.snp', 'startIndex': 30, 'rankedFile': '/data/quasiSeqOut/multiPro19/pro19_1_7.realign.rankedsnp', 'optionalfilters': (), 'minorAlleleReadThresh': 30, 'rankingMethod': 'percentage', 'pvalThresh': '0.001', 'maxSignatures': '12000', 'percentThresh': 5.0, 'consensusFile': '/data/quasiSeqOut/multiPro19/pro19_1_7.consensus.fasta'})
+~~~~~~~~~~~~~~~~~~ python rankSNVs.py /data/quasiSeqOut/multiPro19/pro19_1_7.realign.readcounts.snp /data/quasiSeqOut/multiPro19/pro19_1_7.realign.rankedsnp percentage /data/quasiSeqOut/multiPro19/pro19_1_7.consensus.fasta -s 30 -e 7099 -perc 5.0 -pval 0.001 -r 30 -numSig 12000 
+numSNPs:1>= snpThresh:40->False
+1 SNPs: Creating consensus for pro19_1_7(cluster)
+!!!!!!!!!!Writing final consensus for pro19_1_7
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!blasr /data/quasiSeqOut/multiPro19/pro19_1_7.fastq /data/quasiSeqOut/multiPro19/pro19_1_7.consensus.fasta -minMatch 19 -nproc 30 -bestn 1 -m 5 -out /data/quasiSeqOut/multiPro19/pro19_1_7.m5 -unaligned /data/quasiSeqOut/multiPro19/pro19_1_7.m5.ref_unaligned.fa
+
+[INFO] 2020-09-24T14:25:22 [blasr] started.
+getSNPs took 194.607684851seconds
+samtools mpileup -BQ0 -d100000 -f /data/quasiSeqOut/multiPro19/pro19_1_6.consensus.fasta /data/quasiSeqOut/multiPro19/pro19_1_6.realign.bam > /data/quasiSeqOut/multiPro19/pro19_1_6.realign.pileup
+
+[mpileup] 1 samples in 1 input files
+[INFO] 2020-09-24T14:25:26 [blasr] ended.
+
+ m5File is done!
+/data/quasiSeqOut/multiPro19/pro19_1_7.m5
+
+alignFastqBlasrM5 took 3.40395402908seconds
+/opt/Sparc/compiled/Sparc b /data/quasiSeqOut/multiPro19/pro19_1_7.consensus.fasta m /data/quasiSeqOut/multiPro19/pro19_1_7.m5 k 1 g 1 c 2 t 0.2 o /data/quasiSeqOut/multiPro19/pro19_1_7.finalRoundSparc
+For help: Sparc -h
+Backbone size: 7134
+
+ pileup_file is done!
+/data/quasiSeqOut/multiPro19/pro19_1_6.realign.pileup
+
+getPileup took 3.0210609436seconds
+consenseAndAlign took 234.305693865seconds
+('rankSNVs parameters:', {'endIndex': 7099, 'snpFile': '/data/quasiSeqOut/multiPro19/pro19_1_6.realign.readcounts.snp', 'startIndex': 30, 'rankedFile': '/data/quasiSeqOut/multiPro19/pro19_1_6.realign.rankedsnp', 'optionalfilters': (), 'minorAlleleReadThresh': 30, 'rankingMethod': 'percentage', 'pvalThresh': '0.001', 'maxSignatures': '12000', 'percentThresh': 5.0, 'consensusFile': '/data/quasiSeqOut/multiPro19/pro19_1_6.consensus.fasta'})
+~~~~~~~~~~~~~~~~~~ python rankSNVs.py /data/quasiSeqOut/multiPro19/pro19_1_6.realign.readcounts.snp /data/quasiSeqOut/multiPro19/pro19_1_6.realign.rankedsnp percentage /data/quasiSeqOut/multiPro19/pro19_1_6.consensus.fasta -s 30 -e 7099 -perc 5.0 -pval 0.001 -r 30 -numSig 12000 
+Finished.
+
+ consensus file is done!
+/data/quasiSeqOut/multiPro19/pro19_1_7.finalRoundSparc.consensus.fasta
+
+Created Consensus!
+bwa index /data/quasiSeqOut/multiPro19/pro19_1_7.finalRoundSparc.consensus.fasta
+samtools faidx /data/quasiSeqOut/multiPro19/pro19_1_7.finalRoundSparc.consensus.fasta
+indexReference took 0.0370609760284seconds
+getConsensusSparc took 0.933449983597seconds
+!!!!!!!!!!Writing final consensus stats for pro19_1_7
+Pipeline round for pro19_1_7 took 223.77028203seconds
+numSNPs:2>= snpThresh:40->False
+2 SNPs: Creating consensus for pro19_1_6(cluster)
+!!!!!!!!!!Writing final consensus for pro19_1_6
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!blasr /data/quasiSeqOut/multiPro19/pro19_1_6.fastq /data/quasiSeqOut/multiPro19/pro19_1_6.consensus.fasta -minMatch 19 -nproc 30 -bestn 1 -m 5 -out /data/quasiSeqOut/multiPro19/pro19_1_6.m5 -unaligned /data/quasiSeqOut/multiPro19/pro19_1_6.m5.ref_unaligned.fa
+
+[INFO] 2020-09-24T14:25:27 [blasr] started.
+[INFO] 2020-09-24T14:25:30 [blasr] ended.
+
+ m5File is done!
+/data/quasiSeqOut/multiPro19/pro19_1_6.m5
+
+alignFastqBlasrM5 took 3.65263605118seconds
+/opt/Sparc/compiled/Sparc b /data/quasiSeqOut/multiPro19/pro19_1_6.consensus.fasta m /data/quasiSeqOut/multiPro19/pro19_1_6.m5 k 1 g 1 c 2 t 0.2 o /data/quasiSeqOut/multiPro19/pro19_1_6.finalRoundSparc
+For help: Sparc -h
+Backbone size: 7137
+Finished.
+
+ consensus file is done!
+/data/quasiSeqOut/multiPro19/pro19_1_6.finalRoundSparc.consensus.fasta
+
+Created Consensus!
+bwa index /data/quasiSeqOut/multiPro19/pro19_1_6.finalRoundSparc.consensus.fasta
+samtools faidx /data/quasiSeqOut/multiPro19/pro19_1_6.finalRoundSparc.consensus.fasta
+indexReference took 0.568129062653seconds
+getConsensusSparc took 2.88461017609seconds
+getSNPs took 172.597620964seconds
+samtools mpileup -BQ0 -d100000 -f /data/quasiSeqOut/multiPro19/pro19_1_8.consensus.fasta /data/quasiSeqOut/multiPro19/pro19_1_8.realign.bam > /data/quasiSeqOut/multiPro19/pro19_1_8.realign.pileup
+
+!!!!!!!!!!Writing final consensus stats for pro19_1_6
+Pipeline round for pro19_1_6 took 247.572143078seconds
+[mpileup] 1 samples in 1 input files
+
+ pileup_file is done!
+/data/quasiSeqOut/multiPro19/pro19_1_8.realign.pileup
+
+getPileup took 1.18301510811seconds
+consenseAndAlign took 208.971951008seconds
+('rankSNVs parameters:', {'endIndex': 7099, 'snpFile': '/data/quasiSeqOut/multiPro19/pro19_1_8.realign.readcounts.snp', 'startIndex': 30, 'rankedFile': '/data/quasiSeqOut/multiPro19/pro19_1_8.realign.rankedsnp', 'optionalfilters': (), 'minorAlleleReadThresh': 30, 'rankingMethod': 'percentage', 'pvalThresh': '0.001', 'maxSignatures': '12000', 'percentThresh': 5.0, 'consensusFile': '/data/quasiSeqOut/multiPro19/pro19_1_8.consensus.fasta'})
+~~~~~~~~~~~~~~~~~~ python rankSNVs.py /data/quasiSeqOut/multiPro19/pro19_1_8.realign.readcounts.snp /data/quasiSeqOut/multiPro19/pro19_1_8.realign.rankedsnp percentage /data/quasiSeqOut/multiPro19/pro19_1_8.consensus.fasta -s 30 -e 7099 -perc 5.0 -pval 0.001 -r 30 -numSig 12000 
+numSNPs:1>= snpThresh:40->False
+1 SNPs: Creating consensus for pro19_1_8(cluster)
+!!!!!!!!!!Writing final consensus for pro19_1_8
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!blasr /data/quasiSeqOut/multiPro19/pro19_1_8.fastq /data/quasiSeqOut/multiPro19/pro19_1_8.consensus.fasta -minMatch 19 -nproc 30 -bestn 1 -m 5 -out /data/quasiSeqOut/multiPro19/pro19_1_8.m5 -unaligned /data/quasiSeqOut/multiPro19/pro19_1_8.m5.ref_unaligned.fa
+
+[INFO] 2020-09-24T14:25:35 [blasr] started.
+[INFO] 2020-09-24T14:25:38 [blasr] ended.
+
+ m5File is done!
+/data/quasiSeqOut/multiPro19/pro19_1_8.m5
+
+alignFastqBlasrM5 took 3.08952188492seconds
+/opt/Sparc/compiled/Sparc b /data/quasiSeqOut/multiPro19/pro19_1_8.consensus.fasta m /data/quasiSeqOut/multiPro19/pro19_1_8.m5 k 1 g 1 c 2 t 0.2 o /data/quasiSeqOut/multiPro19/pro19_1_8.finalRoundSparc
+For help: Sparc -h
+Backbone size: 7135
+Finished.
+
+ consensus file is done!
+/data/quasiSeqOut/multiPro19/pro19_1_8.finalRoundSparc.consensus.fasta
+
+Created Consensus!
+bwa index /data/quasiSeqOut/multiPro19/pro19_1_8.finalRoundSparc.consensus.fasta
+samtools faidx /data/quasiSeqOut/multiPro19/pro19_1_8.finalRoundSparc.consensus.fasta
+indexReference took 0.655776977539seconds
+getConsensusSparc took 1.63454198837seconds
+!!!!!!!!!!Writing final consensus stats for pro19_1_8
+Pipeline round for pro19_1_8 took 217.525162935seconds
+getSNPs took 154.015950918seconds
+samtools mpileup -BQ0 -d100000 -f /data/quasiSeqOut/multiPro19/pro19_1_9.consensus.fasta /data/quasiSeqOut/multiPro19/pro19_1_9.realign.bam > /data/quasiSeqOut/multiPro19/pro19_1_9.realign.pileup
+
+[mpileup] 1 samples in 1 input files
+
+ pileup_file is done!
+/data/quasiSeqOut/multiPro19/pro19_1_9.realign.pileup
+
+getPileup took 0.788982152939seconds
+consenseAndAlign took 198.015132189seconds
+('rankSNVs parameters:', {'endIndex': 7099, 'snpFile': '/data/quasiSeqOut/multiPro19/pro19_1_9.realign.readcounts.snp', 'startIndex': 30, 'rankedFile': '/data/quasiSeqOut/multiPro19/pro19_1_9.realign.rankedsnp', 'optionalfilters': (), 'minorAlleleReadThresh': 30, 'rankingMethod': 'percentage', 'pvalThresh': '0.001', 'maxSignatures': '12000', 'percentThresh': 5.0, 'consensusFile': '/data/quasiSeqOut/multiPro19/pro19_1_9.consensus.fasta'})
+~~~~~~~~~~~~~~~~~~ python rankSNVs.py /data/quasiSeqOut/multiPro19/pro19_1_9.realign.readcounts.snp /data/quasiSeqOut/multiPro19/pro19_1_9.realign.rankedsnp percentage /data/quasiSeqOut/multiPro19/pro19_1_9.consensus.fasta -s 30 -e 7099 -perc 5.0 -pval 0.001 -r 30 -numSig 12000 
+numSNPs:1>= snpThresh:40->False
+1 SNPs: Creating consensus for pro19_1_9(cluster)
+!!!!!!!!!!Writing final consensus for pro19_1_9
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!blasr /data/quasiSeqOut/multiPro19/pro19_1_9.fastq /data/quasiSeqOut/multiPro19/pro19_1_9.consensus.fasta -minMatch 19 -nproc 30 -bestn 1 -m 5 -out /data/quasiSeqOut/multiPro19/pro19_1_9.m5 -unaligned /data/quasiSeqOut/multiPro19/pro19_1_9.m5.ref_unaligned.fa
+
+[INFO] 2020-09-24T14:25:46 [blasr] started.
+getSNPs took 136.884360075seconds
+samtools mpileup -BQ0 -d100000 -f /data/quasiSeqOut/multiPro19/pro19_1_10.consensus.fasta /data/quasiSeqOut/multiPro19/pro19_1_10.realign.bam > /data/quasiSeqOut/multiPro19/pro19_1_10.realign.pileup
+
+[mpileup] 1 samples in 1 input files
+[INFO] 2020-09-24T14:25:49 [blasr] ended.
+
+ m5File is done!
+/data/quasiSeqOut/multiPro19/pro19_1_9.m5
+
+alignFastqBlasrM5 took 2.68025922775seconds
+/opt/Sparc/compiled/Sparc b /data/quasiSeqOut/multiPro19/pro19_1_9.consensus.fasta m /data/quasiSeqOut/multiPro19/pro19_1_9.m5 k 1 g 1 c 2 t 0.2 o /data/quasiSeqOut/multiPro19/pro19_1_9.finalRoundSparc
+For help: Sparc -h
+Backbone size: 7147
+Finished.
+
+ pileup_file is done!
+/data/quasiSeqOut/multiPro19/pro19_1_10.realign.pileup
+
+getPileup took 0.765427112579seconds
+consenseAndAlign took 179.17571187seconds
+('rankSNVs parameters:', {'endIndex': 7099, 'snpFile': '/data/quasiSeqOut/multiPro19/pro19_1_10.realign.readcounts.snp', 'startIndex': 30, 'rankedFile': '/data/quasiSeqOut/multiPro19/pro19_1_10.r
+ consensus file is done!
+/data/quasiSeqOut/multiPro19/pro19_1_9.finalRoundSparc.consensus.fasta
+ealign.rankedsnp', 'optionalfilters': (), 'minorAlleleReadThresh': 30, 'rankingMethod': 'percentage', 'pvalThresh': '0.001', 'maxSignatures': '12000', 'percentThresh': 5.0, 'consensusFile': '/data/quasiSeqOut/multiPro19/pro19_1_10.consensus.fasta'})
+
+~~~~~~~~~~~~~~~~~~ python rankSNVs.py /data/quasiSeqOut/multiPro19/pro19_1_10.realign.readcounts.snp /data/quasiSeqOut/multiPro19/pro19_1_10.realign.rankedsnp percentage /data/quasiSeqOut/multiPro19/pro19_1_10.consensus.fasta -s 30 -e 7099 -perc 5.0 -pval 0.001 -r 30 -numSig 12000 
+Created Consensus!
+bwa index /data/quasiSeqOut/multiPro19/pro19_1_9.finalRoundSparc.consensus.fasta
+samtools faidx /data/quasiSeqOut/multiPro19/pro19_1_9.finalRoundSparc.consensus.fasta
+indexReference took 0.0418889522552seconds
+getConsensusSparc took 0.920936107635seconds
+!!!!!!!!!!Writing final consensus stats for pro19_1_9
+Pipeline round for pro19_1_9 took 205.979568958seconds
+numSNPs:1>= snpThresh:40->False
+1 SNPs: Creating consensus for pro19_1_10(cluster)
+!!!!!!!!!!Writing final consensus for pro19_1_10
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!blasr /data/quasiSeqOut/multiPro19/pro19_1_10.fastq /data/quasiSeqOut/multiPro19/pro19_1_10.consensus.fasta -minMatch 19 -nproc 30 -bestn 1 -m 5 -out /data/quasiSeqOut/multiPro19/pro19_1_10.m5 -unaligned /data/quasiSeqOut/multiPro19/pro19_1_10.m5.ref_unaligned.fa
+
+[INFO] 2020-09-24T14:25:50 [blasr] started.
+[INFO] 2020-09-24T14:25:52 [blasr] ended.
+
+ m5File is done!
+/data/quasiSeqOut/multiPro19/pro19_1_10.m5
+
+alignFastqBlasrM5 took 2.08395385742seconds
+/opt/Sparc/compiled/Sparc b /data/quasiSeqOut/multiPro19/pro19_1_10.consensus.fasta m /data/quasiSeqOut/multiPro19/pro19_1_10.m5 k 1 g 1 c 2 t 0.2 o /data/quasiSeqOut/multiPro19/pro19_1_10.finalRoundSparc
+For help: Sparc -h
+Backbone size: 7135
+Finished.
+
+ consensus file is done!
+/data/quasiSeqOut/multiPro19/pro19_1_10.finalRoundSparc.consensus.fasta
+
+Created Consensus!
+bwa index /data/quasiSeqOut/multiPro19/pro19_1_10.finalRoundSparc.consensus.fasta
+samtools faidx /data/quasiSeqOut/multiPro19/pro19_1_10.finalRoundSparc.consensus.fasta
+indexReference took 0.0326759815216seconds
+getConsensusSparc took 0.544546842575seconds
+!!!!!!!!!!Writing final consensus stats for pro19_1_10
+Pipeline round for pro19_1_10 took 185.428287983seconds
+getSNPs took 123.233371019seconds
+samtools mpileup -BQ0 -d100000 -f /data/quasiSeqOut/multiPro19/pro19_1_11.consensus.fasta /data/quasiSeqOut/multiPro19/pro19_1_11.realign.bam > /data/quasiSeqOut/multiPro19/pro19_1_11.realign.pileup
+
+[mpileup] 1 samples in 1 input files
+
+ pileup_file is done!
+/data/quasiSeqOut/multiPro19/pro19_1_11.realign.pileup
+
+getPileup took 0.448282003403seconds
+consenseAndAlign took 158.29457283seconds
+('rankSNVs parameters:', {'endIndex': 7099, 'snpFile': '/data/quasiSeqOut/multiPro19/pro19_1_11.realign.readcounts.snp', 'startIndex': 30, 'rankedFile': '/data/quasiSeqOut/multiPro19/pro19_1_11.realign.rankedsnp', 'optionalfilters': (), 'minorAlleleReadThresh': 30, 'rankingMethod': 'percentage', 'pvalThresh': '0.001', 'maxSignatures': '12000', 'percentThresh': 5.0, 'consensusFile': '/data/quasiSeqOut/multiPro19/pro19_1_11.consensus.fasta'})
+~~~~~~~~~~~~~~~~~~ python rankSNVs.py /data/quasiSeqOut/multiPro19/pro19_1_11.realign.readcounts.snp /data/quasiSeqOut/multiPro19/pro19_1_11.realign.rankedsnp percentage /data/quasiSeqOut/multiPro19/pro19_1_11.consensus.fasta -s 30 -e 7099 -perc 5.0 -pval 0.001 -r 30 -numSig 12000 
+numSNPs:1>= snpThresh:40->False
+1 SNPs: Creating consensus for pro19_1_11(cluster)
+!!!!!!!!!!Writing final consensus for pro19_1_11
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!blasr /data/quasiSeqOut/multiPro19/pro19_1_11.fastq /data/quasiSeqOut/multiPro19/pro19_1_11.consensus.fasta -minMatch 19 -nproc 30 -bestn 1 -m 5 -out /data/quasiSeqOut/multiPro19/pro19_1_11.m5 -unaligned /data/quasiSeqOut/multiPro19/pro19_1_11.m5.ref_unaligned.fa
+
+[INFO] 2020-09-24T14:25:54 [blasr] started.
+[INFO] 2020-09-24T14:25:56 [blasr] ended.
+
+ m5File is done!
+/data/quasiSeqOut/multiPro19/pro19_1_11.m5
+
+alignFastqBlasrM5 took 1.72797298431seconds
+/opt/Sparc/compiled/Sparc b /data/quasiSeqOut/multiPro19/pro19_1_11.consensus.fasta m /data/quasiSeqOut/multiPro19/pro19_1_11.m5 k 1 g 1 c 2 t 0.2 o /data/quasiSeqOut/multiPro19/pro19_1_11.finalRoundSparc
+For help: Sparc -h
+Backbone size: 7136
+Finished.
+
+ consensus file is done!
+/data/quasiSeqOut/multiPro19/pro19_1_11.finalRoundSparc.consensus.fasta
+
+Created Consensus!
+bwa index /data/quasiSeqOut/multiPro19/pro19_1_11.finalRoundSparc.consensus.fasta
+samtools faidx /data/quasiSeqOut/multiPro19/pro19_1_11.finalRoundSparc.consensus.fasta
+indexReference took 0.0332908630371seconds
+getConsensusSparc took 0.390806913376seconds
+!!!!!!!!!!Writing final consensus stats for pro19_1_11
+Pipeline round for pro19_1_11 took 165.037719011seconds
+$$$$$$$$$$$$$$$$$$###################!!!!!!!!!!Writing final consensus stats
+Initialization took 3948.9063139seconds
+**********Full processing took 3949.00683808seconds**********

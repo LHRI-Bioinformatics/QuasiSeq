@@ -1,0 +1,3 @@
+futures
+pysam
+biopython==1.76

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chart.js demo</title>
+</head>
+
+<body>
+    <canvas id="myChart" style = "height :500px; width: 500px"></canvas>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"> </script>
+      <script type = "text/javascript" src = "chart.js"> </script>
+      <script>
+        var ctx = document.getElementById('myChart').getContext('2d');
+
+
+        data = {
+            datasets: [{
+            data: [1,2],
+            backgroundColor: [
+              "#ff6384",
+              "#ffa500",
+              "#7fffd4",
+            ]
+            }],
+
+        // These labels appear in the legend and in the tooltips when hovering different arcs
+        labels: [
+            'Red',
+            'Orange',
+
+        ],
+
+
+        };
+
+
+        var myDoughnutChart = new Chart(ctx, {
+          type: 'doughnut',
+          data: data,
+          options: {
+               responsive: false
+           }
+        });
+      </script>
+
+</body>
+
+</html>

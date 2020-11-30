@@ -1,0 +1,1 @@
+blasr "+finalConsensusFile+" "+finalConsensusFile+" -m 1 | sort -u -k2 | awk '{ split( $1, a, "/" );if (a[1]!=$2 && $6>99.9) print a[1],$2,$6}' > " + outDir + "final_consensus_comparison.txt"

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+	<html lang = "en">
+		<head>
+			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css">
+
+		</head>
+
+		<body>
+		{{taskState}}
+		{% if statusbul %}
+			<form action = "" method = "POST">
+				{% csrf_token %}
+			<!--<button> <a href = "cluster_app/downloadFile/{{taskId}}/{{uploaded_name}}"> Download Results </a> </button> -->
+				<button name = "submit" type = "submit">  Download Results </button>
+
+		<table class = "striped">
+			<thead>
+				<tr>
+						<th>Name</th>
+						<th>Frequency</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for species in specieslist %}
+					<tr>
+						<td> {{ species.1 }}</td>
+						<td> {{ species.0 }}</td>
+
+				{% endfor %}
+			</tbody>
+
+
+
+
+			<canvas id="myChart" style = "height :500px; width: 500px"></canvas>
+
+
+
+	    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"> </script>
+	      <script>
+	        var ctx = document.getElementById('myChart').getContext('2d');
+					var labelArray = [];
+					var colorArray = [];
+					{% for label in labellist %}
+						labelArray.push("{{ label }}");
+						var hue = 'rgb(' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ')';
+						colorArray.push(hue);
+				  {% endfor %}
+
+
+	        data = {
+	            datasets: [{
+	            data: {{ valuelist}},
+	            backgroundColor: colorArray
+	            }],
+
+	        // These labels appear in the legend and in the tooltips when hovering different arcs
+	        labels: labelArray
+
+	        };
+
+
+	        var myDoughnutChart = new Chart(ctx, {
+	          type: 'doughnut',
+	          data: data,
+	          options: {
+	               responsive: false
+	           }
+	        });
+	      </script>
+			{% endif %}
+		</body>
+	</html>
