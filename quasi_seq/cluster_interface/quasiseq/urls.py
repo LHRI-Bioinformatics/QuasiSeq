@@ -6,7 +6,7 @@ from quasiseq import views
 
 urlpatterns = patterns( "" ,
         url(r'^$', views.index, name='index'),
-        url(r'^fluData/', views.fluData, name = "fluData"),
+        url(r'^Pro4mix/', views.Pro4mix, name = "Pro4mix"),
 #        url(r'^hivData/', views.hivData, name = "hivData"),
 #        url(r'^Pro4mix/', views.Pro4mix, name = "Pro4mix"),
         url(r'^result/(?P<taskId>[-\w]+)/(?P<sampleName>[-\w]+)$', views.result, name='result'),

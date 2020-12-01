@@ -42,12 +42,6 @@ def index(request):
 	#currentTask=None
 	if(request.method == "POST"):
 
-		if(request.POST.get("flu_submit")):
-			return redirect("fluData")
-
-		if(request.POST.get("hiv19_submit")):
-			return redirect("hivData")
-
 		if(request.POST.get("Pro4mix")):
 			return redirect("Pro4mix")
 
@@ -146,19 +140,13 @@ def index(request):
 		return response
 
 
-def fluData(request):
-	response = render(request, "quasiseq/intro_form_flu.html")
+def Pro4mix(request):
+	response = render(request, "quasiseq/pro4_sub80.html")
 	session_id="quasiSeq_"+str(int(calendar.timegm(time.gmtime())))
 	outDir="/data/quasiSeqOut/" #+session_id+"/"
 	tmpDir="/data/quasiSeqOut/tmp/"
 
 	if (request.method == "POST"):
-
-		if(request.POST.get("flu_submit")):
-			return redirect("fluData")
-
-		if(request.POST.get("hiv19_submit")):
-			return redirect("hivData")
 
 		if(request.POST.get("Pro4mix")):
 			return redirect("Pro4mix")
