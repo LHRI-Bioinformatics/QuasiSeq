@@ -1,48 +1,6 @@
-<!DOCTYPE html>
-<html>
+{% extends "base.html" %}
 
-  <head>
-    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-       <!--Import materialize.css-->
-       <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css"  media="screen,projection"/>
-
-       <!--Let browser know website is optimized for mobile-->
-       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
-       <!--Import jQuery before materialize.js-->
-       <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-       <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
-    <script>
-      $(document).ready(function(){
-        $('select').material_select();
-        $("#btn-submit").click(function(){
-          $("#newload").load("sample.txt");
-          alert(1)
-        });
-        $('.modal').modal();
-        $('#modal2').modal();
-        $('#modal3').modal();
-
-      });
-    </script>
-  </head>
-
-  <body>
-
-
-      <form method = "POST"  action = "" enctype="multipart/form-data">
-        {% csrf_token %}
-
-
-      <div align = "center">
-          <h1> Welcome to Quasi-Seq </h1>
-      </div>
-      <div id = "form_div" style = "max-width : 50%; align :center; margin: auto; text-align :center; border-style: solid; border-width : 3px; padding-top: 0px"  >
-
-        <div id = "essentials" style = "background-color: #FAF0E6" style = "margin-top: 0px; padding-top:0px">
-          <h3> <u>Essential Arguments</u> </h3>
-          <br>
+{% block fastqInput %}
           <div id = "sampleID" style = "margin-left: 10%; margin-bottom: 10%">
                 <h4> STEP 1 : Sample ID </h4>
                   <div class="file-field input-field">
@@ -55,8 +13,9 @@
                     </div>
                   </div>
           </div>
+{% endblock %}
 
-
+{% block referenceInput %}
           <div id = "reference" style = "margin-left: 10%; margin-bottom: 10%">
                 <h4> STEP 2 : Reference </h4>
                   <div class="file-field input-field">
@@ -69,119 +28,6 @@
                     </div>
                   </div>
           </div>
+{% endblock %}
 
-
-          <div id = "ranking" style = "margin-left: 10%; margin-bottom: w%">
-
-            <h4> STEP 3 : Ranking Method </h4>
-
-              <div class="input-field col s12">
-                <select name = "rankingMethod">
-                  <option value="" disabled selected>Choose your option</option>
-                  <option value="pval">p-value</option>
-                  <option value="percentage">percentage</option>
-                </select>
-              </div>
-
-          </div>
-          <div id = "transition" align = "center">
-            <a class="btn-floating btn-large waves-effect waves-light teal" id = "btn-submit"><i class="material-icons">details</i></a>
-          </div>
-
-
-      </div>
-
-      <div id= "optionals">
-        <h1> <u> Optionals </u> </h1>
-        <br>
-        <div id = "startend" style = "margin-left: 10%; margin-bottom: 10%">
-              <h4> STEP 4 : Start & End </h4>
-
-                  {% csrf_token %}
-                  <div class="row">
-                    <div class="input-field col s7">
-                      <input type="text" id="textarea1" class="materialize-textarea" name = "start"></input>
-                      <label for="textarea1"> Start </label>
-
-                    </div>
-                    <div class = "input-field col s7" >
-                      <input type="text" id="textarea2" class="materialize-textarea" name = "end"></input>
-                      <label for="textarea2"> End </label>
-                    </div>
-                  </div>
-        </div>
-        <div id = "thresholds" style = "margin-left: 10%; margin-bottom: 10%">
-              <h4>  Threshold </h4>
-
-                  {% csrf_token %}
-                  <div class="row">
-                    <div class="input-field col s7">
-                      <input type="text" id="pvalThresh" class="materialize-textarea" name="pvalThresh"  value=0.01></input>
-                      <label for="textarea3"> Allele p-value (Fisher's Exact Test) threshold  </label>
-
-                    </div>
-                    <div class = "input-field col s7" >
-                      <input type="text" id="percentThresh" class="materialize-textarea" name="percentThresh" value=1></input>
-                      <label for="textarea4"> Minimum allele frequency percentage (1-100) </label>
-                    </div>
-                    <div class = "input-field col s7" >
-                      <input type="text" id="minorAlleleReadThresh" class="materialize-textarea" name="minorAlleleReadThresh" value=10 ></input>
-                      <label for="textarea5"> Minimum number of reads supporting allele </label>
-                    </div>
-                    <div class = "input-field col s7" >
-                      <input type="text" id="snpThresh" class="materialize-textarea" name="snpThresh" value=4 ></input>
-                      <label for="textarea5"> Minumum number of SNPs defining a signature </label>
-                    </div>
-                    <div class = "input-field col s7" >
-                      <input type="text" id="estimatedErrorRate" class="materialize-textarea" name="estimatedErrorRate" value=0.01 ></input>
-                      <label for="textarea5"> Estimated error rate </label>
-                    </div>
-                    <div class = "input-field col s7" >
-                      <input type="text" id="maxSignatures" class="materialize-textarea" name="maxSignatures" value=13000 ></input>
-                      <label for="textarea5"> Maximum number of signatures </label>
-                    </div>
-                  </div>
-        </div>
-
-        <button name = "file submit" type = "submit" class="waves-effect waves-light btn-large col s5 light-blue lighten-1" style = "margin-bottom:10%">SUBMIT FILE!</input>
-
-
-      </div>
-  </div>
-
-  <div style= " position : absolute; left : 80%; width : 15%; bottom : 30%; height : 60%; border-width : 3px; border-style: solid; text-align :center" >
-    <h3> <u>Examples </u></h3>
-    <br>
-
-    <div id = "pro4_sub80_set" >
-    <h5 > <u>Pro4 Sub80 Data Set </u></h5>
-    <p>
-
-
-    <div  style = "display:inline-block;"> <!-- THE FLU MODAL-->
-      <a class="waves-effect waves-light btn" href="#modal1">?</a>
-    </div>
-    <div id="modal1" class="modal">
-    <div class="modal-content">
-      <h4> Pro4 Sub80 Data Set </h4>
-      <p> A mixture of four HIV clones </p>
-    </div>
-    <div class="modal-footer">
-      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat"> X </a>
-    </div>
-  </div>
-
-    <div style = " display:inline-block;">
-      <a class="waves-effect waves-light btn" style = "background-color :blue"><input type="submit" id="textarea3" class="materialize-textarea" name = "Pro4mix" value = "Try it"  >  </input></a>
-    </div>
-  </div>
-  <br>
-
-
-
-
-  </div>
-
-  </body>
-  </form>
-</html>
+{% block percentThreshInput %}3{% endblock %}
