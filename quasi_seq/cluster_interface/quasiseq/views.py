@@ -98,8 +98,11 @@ def index(request):
 		startIndex = request.POST["start"]
 		endIndex = request.POST["end"]
 
-		if startIndex == None:
+		if startIndex == None or startIndex == '':
 			startIndex = 0
+
+		if endIndex == None or endIndex == '':
+			endIndex = None
 
 		percentThresh = request.POST["percentThresh"]
 		pvalThresh = request.POST["pvalThresh"]
@@ -114,21 +117,18 @@ def index(request):
 		readCountSNPCoverageThresh=10
 
 
-
-		print "THIS IS THE FIRST VALUE OF SNPTHRESH" + str(snpThresh)
-
 		if percentThresh == None:
-			percentThresh = 1.0
+			percentThresh = 3.0
 		if pvalThresh == None:
 			pvalThresh = 0.001
 		if minorAlleleReadThresh == None:
-			minorAlleleReadThresh = 10
+			minorAlleleReadThresh = 30
 		if snpThresh == None:
-			snpThresh = 10
+			snpThresh = 40
 		if estimatedErrorRate == None:
 			estimatedErrorRate = 0.01
 		if maxSignatures == None:
-			maxSignatures = 13000
+			maxSignatures = 12000
 
 		saved_args = locals()
 	    	print("index view parameters:", saved_args)
@@ -169,8 +169,8 @@ def Pro4mix(request):
 				raise
 
 		print ("Session key:"+session_id)
-		uploaded_file = settings.EXAMPLE_PATH+"/examples/flu10mix_FL_ccs.fastq"
-		sampleName = "flu10mix_FL_ccs.fastq"
+		uploaded_file = settings.EXAMPLE_PATH+"/examples/pro4_sub80.fastq"
+		sampleName = "pro4_sub80.fastq"
 		sampleName = sampleName.strip(".fastq")
 		samplefilename = sampleName + ".fastq"
 		opened_file = open(uploaded_file, "r")
@@ -179,8 +179,8 @@ def Pro4mix(request):
 			for line in opened_file:
 				samplefile.write(line)
 
-		reference_file = settings.EXAMPLE_PATH+"/examples/flu1PB.fa"
-		uploaded_reference = "flu1PB.fa"
+		reference_file = settings.EXAMPLE_PATH+"/examples/HXB2.fasta"
+		uploaded_reference = "HXB2.fasta"
 		#uploaded_reference = uploaded_reference.strip("fasta")
 		referencefilename= uploaded_reference
 		opened_ref_file = open(reference_file, "r")
@@ -196,8 +196,11 @@ def Pro4mix(request):
 		startIndex = request.POST.get("start")
 		endIndex = request.POST.get("end")
 
-		if startIndex == None:
+		if startIndex == None or startIndex == '':
 			startIndex = 0
+
+		if endIndex == None or endIndex == '':
+			endIndex = None
 
 		percentThresh = request.POST["percentThresh"]
 		pvalThresh = request.POST["pvalThresh"]
@@ -212,17 +215,17 @@ def Pro4mix(request):
 		readCountSNPCoverageThresh=10
 
 		if percentThresh == None:
-			percentThresh = 1.0
+			percentThresh = 3.0
 		if pvalThresh == None:
 			pvalThresh = 0.001
 		if minorAlleleReadThresh == None:
-			minorAlleleReadThresh = 10
+			minorAlleleReadThresh = 30
 		if snpThresh == None:
-			snpThresh = 10
+			snpThresh = 40
 		if estimatedErrorRate == None:
 			estimatedErrorRate = 0.01
 		if maxSignatures == None:
-			maxSignatures = 13000
+			maxSignatures = 12000
 
 		saved_args = locals()
 	    	print("index view parameters:", saved_args)

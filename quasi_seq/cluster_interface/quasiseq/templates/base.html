@@ -78,12 +78,12 @@
                   {% csrf_token %}
                   <div class="row">
                     <div class="input-field col s7">
-                      <input type="text" id="textarea1" class="materialize-textarea" name = "start"></input>
+                      <input type="text" id="textarea1" class="materialize-textarea" name = "start" value={% block startInput %}{% endblock startInput%}></input>
                       <label for="textarea1"> Start </label>
 
                     </div>
                     <div class = "input-field col s7" >
-                      <input type="text" id="textarea2" class="materialize-textarea" name = "end"></input>
+                      <input type="text" id="textarea2" class="materialize-textarea" name = "end" value={% block endInput %}{% endblock endInput%}></input>
                       <label for="textarea2"> End </label>
                     </div>
                   </div>
