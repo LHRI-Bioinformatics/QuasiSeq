@@ -299,7 +299,7 @@ def downloadFrequency(request, taskId, sampleName):
 
 		filename = open(path, "r")
 		response = HttpResponse(filename, content_type = "text/csv")
-		outFileName=str(taskId)+"_"+sampleName+"_final_consensus_stats.fasta"
+		outFileName=str(taskId)+"_"+sampleName+"_final_consensus_stats.txt"
 		response["Content-Disposition"] = "attachment; filename = "+outFileName
 
 		return response
