@@ -12,11 +12,10 @@
 				{% csrf_token %}
 			<!-- <button> <a href = "cluster_app/downloadFile/{{taskId}}/{{uploaded_name}}"> Download Results </a> </button> -->
 
-				<button name = "submit" type = "submit">Download Consensus Fasta File</button>
+				<button type="button" onclick="location.href='/quasiseq/downloadConsensus/{{taskId}}/{{sampleName}}';">Download Consensus Fasta File</button>
+				<button type="button" onclick="location.href='/quasiseq/downloadFrequency/{{taskId}}/{{sampleName}}';">Save Frequency Table</button>
 				<button type="button" onclick="saveChart();">Save Chart</button>
 				<button onclick="window.open('/', '_blank')" type="button">Start a New Analysis</button>
-
-
 
 		<table class = "striped">
 			<thead>
@@ -84,13 +83,7 @@
         saveAs(blob, "{{taskId}}_{{sampleName}}");
     });
 					};
-					function saveTable()
-					{
-						var canvas = document.getElementById('myChart');
-						canvas.toBlob(function(blob) {
-        saveAs(blob, "{{taskId}}_{{sampleName}}");
-    });
-					};
+
 			</script>
 			{% endif %}
 		</body>

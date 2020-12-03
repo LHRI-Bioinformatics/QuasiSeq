@@ -10,7 +10,8 @@ urlpatterns = patterns( "" ,
 #        url(r'^hivData/', views.hivData, name = "hivData"),
 #        url(r'^Pro4mix/', views.Pro4mix, name = "Pro4mix"),
         url(r'^result/(?P<taskId>[-\w]+)/(?P<sampleName>[-\w]+)$', views.result, name='result'),
-        url(r'^downloadFile/(?P<taskId>[-\w]+)/(?P<sampleName>[-\w]+)$', views.downloadFile, name='downloadFile'),
+        url(r'^downloadConsensus/(?P<taskId>[-\w]+)/(?P<sampleName>[-\w]+)$', views.downloadConsensus, name='downloadConsensus'),
+        url(r'^downloadFrequency/(?P<taskId>[-\w]+)/(?P<sampleName>[-\w]+)$', views.downloadFrequency, name='downloadFrequency'),
 
         #url(r'process/', views.process, name= "process"),
 

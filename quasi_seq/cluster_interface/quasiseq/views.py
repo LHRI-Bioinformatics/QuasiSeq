@@ -274,8 +274,8 @@ def result(request,taskId, sampleName):
 		#labellist = ["10clones1", "10clones2", "10clones3"]
 
 
-		if(request.method == "POST"):
-			return redirect("downloadFile", taskId, sampleName)
+		# if(request.method == "POST"):
+		# 	return redirect("downloadFile", taskId, sampleName)
 
 		response = render(request, "quasiseq/results.html", {"taskState" : taskState, "taskId" : taskId, "statusbul" : statusbul, "sampleName" : sampleName, "specieslist": specieslist, "labellist" : labellist,  "valuelist" : valuelist })
 		return response
@@ -284,12 +284,23 @@ def result(request,taskId, sampleName):
 	return HttpResponse("<html><script>setTimeout(function(){window.location.reload(1);}, 10000);</script>\nTask status is: "+taskState+" <br><br>Stay in this page for your results. The page will refresh automatically every 10 seconds.<br><br>Or you can check for results later with this url: " + domain + url + " </html>" )
 
 
-def downloadFile(request, taskId, sampleName):
+def downloadConsensus(request, taskId, sampleName):
 		path =  "/data/quasiSeqOut/" + str(taskId) + "/" + "final_consensus.fasta"
 
 		filename = open(path, "r")
 		response = HttpResponse(filename, content_type = "text/csv")
-		response["Content-Disposition"] = "attachment; filename = final_consensus.fasta"
+		outFileName=str(taskId)+"_"+sampleName+"_final_consensus.fasta"
+		response["Content-Disposition"] = "attachment; filename = "+outFileName
+
+		return response
+
+def downloadFrequency(request, taskId, sampleName):
+		path =  "/data/quasiSeqOut/" + str(taskId) + "/" + "final_consensus_stats.txt"
+
+		filename = open(path, "r")
+		response = HttpResponse(filename, content_type = "text/csv")
+		outFileName=str(taskId)+"_"+sampleName+"_final_consensus_stats.fasta"
+		response["Content-Disposition"] = "attachment; filename = "+outFileName
 
 		return response
 
