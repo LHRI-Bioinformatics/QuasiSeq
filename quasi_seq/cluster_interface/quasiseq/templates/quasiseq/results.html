@@ -6,12 +6,17 @@
 		</head>
 
 		<body>
-		{{taskState}}
+		<!-- {{taskState}} -->
 		{% if statusbul %}
 			<form action = "" method = "POST">
 				{% csrf_token %}
-			<!--<button> <a href = "cluster_app/downloadFile/{{taskId}}/{{uploaded_name}}"> Download Results </a> </button> -->
-				<button name = "submit" type = "submit">  Download Results </button>
+			<!-- <button> <a href = "cluster_app/downloadFile/{{taskId}}/{{uploaded_name}}"> Download Results </a> </button> -->
+
+				<button name = "submit" type = "submit">Download Consensus Fasta File</button>
+				<button type="button" onclick="saveChart();">Save Chart</button>
+				<button onclick="window.open('/', '_blank')" type="button">Start a New Analysis</button>
+
+
 
 		<table class = "striped">
 			<thead>
@@ -37,6 +42,7 @@
 
 
 	    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"> </script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.3/FileSaver.min.js"></script>
 	      <script>
 	        var ctx = document.getElementById('myChart').getContext('2d');
 					var labelArray = [];
@@ -67,7 +73,25 @@
 	               responsive: false
 	           }
 	        });
+
+
 	      </script>
+				<script>
+					function saveChart()
+					{
+						var canvas = document.getElementById('myChart');
+						canvas.toBlob(function(blob) {
+        saveAs(blob, "{{taskId}}_{{sampleName}}");
+    });
+					};
+					function saveTable()
+					{
+						var canvas = document.getElementById('myChart');
+						canvas.toBlob(function(blob) {
+        saveAs(blob, "{{taskId}}_{{sampleName}}");
+    });
+					};
+			</script>
 			{% endif %}
 		</body>
 	</html>

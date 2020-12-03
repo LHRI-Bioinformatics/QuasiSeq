@@ -281,7 +281,7 @@ def result(request,taskId, sampleName):
 		return response
 
 	url = request.get_full_path()
-	return HttpResponse("Task status is: "+taskState+" Copy and paste this url " + domain + url + "\n" " to check for results" )
+	return HttpResponse("<html><script>setTimeout(function(){window.location.reload(1);}, 10000);</script>\nTask status is: "+taskState+" <br><br>Stay in this page for your results. The page will refresh automatically every 10 seconds.<br><br>Or you can check for results later with this url: " + domain + url + " </html>" )
 
 
 def downloadFile(request, taskId, sampleName):
