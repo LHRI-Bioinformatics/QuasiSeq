@@ -18,6 +18,7 @@ import calendar
 import time
 import os
 
+
 from concurrent.futures import ProcessPoolExecutor, ThreadPoolExecutor, as_completed
 #from driver import fullrecursionpipeline
 #from sparc import pipeline
@@ -295,14 +296,22 @@ def downloadConsensus(request, taskId, sampleName):
 		return response
 
 def downloadFrequency(request, taskId, sampleName):
-		path =  "/data/quasiSeqOut/" + str(taskId) + "/" + "final_consensus_stats.txt"
 
-		filename = open(path, "r")
-		response = HttpResponse(filename, content_type = "text/csv")
-		outFileName=str(taskId)+"_"+sampleName+"_final_consensus_stats.txt"
-		response["Content-Disposition"] = "attachment; filename = "+outFileName
+	inPath =  "/data/quasiSeqOut/" + str(taskId) + "/" + "final_consensus_frequency.txt"
 
-		return response
+	if not os.path.exists(inPath):
+		with open("/data/quasiSeqOut/" + str(taskId) + "/" + "final_consensus_stats.txt", "r") as readfile, open(inPath, "w") as writefile:
+			writefile.write("Species\tFrequency\n")
+			for line in readfile:
+				linelist = line.split(",")
+				writefile.write(linelist[1].strip()+"\t"+linelist[0]+"\n")
+
+	filename = open(inPath, "r")
+	response = HttpResponse(filename, content_type = "text/csv")
+	outFileName=str(taskId)+"_"+sampleName+"_final_consensus_frequency.txt"
+	response["Content-Disposition"] = "attachment; filename = "+outFileName
+
+	return response
 
 
 
