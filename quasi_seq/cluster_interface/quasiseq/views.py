@@ -259,10 +259,14 @@ def result(request,taskId, sampleName):
 		specieslist = []
 		labellist = []
 		valuelist = []
+		freqlist = []
 		counter = 0
 		with open("/data/quasiSeqOut/" + str(taskId) + "/" + "final_consensus_stats.txt", "r") as readfile :
-			for line in readfile:
+			lines = readfile.read().splitlines()
+			total=float(lines[-1].split(",")[0])
+			for line in lines:
 				linelist = line.split(",")
+				linelist.append(str(round(int(linelist[0])/total,2)))
 				specieslist.append(linelist)
 				counter +=1
 
@@ -296,15 +300,15 @@ def downloadConsensus(request, taskId, sampleName):
 		return response
 
 def downloadFrequency(request, taskId, sampleName):
-
 	inPath =  "/data/quasiSeqOut/" + str(taskId) + "/" + "final_consensus_frequency.txt"
-
 	if not os.path.exists(inPath):
 		with open("/data/quasiSeqOut/" + str(taskId) + "/" + "final_consensus_stats.txt", "r") as readfile, open(inPath, "w") as writefile:
-			writefile.write("Species\tFrequency\n")
-			for line in readfile:
+			lines = readfile.read().splitlines()
+			total=float(lines[-1].split(",")[0])
+			writefile.write("Species\tRead Count\tFrequency\n")
+			for line in lines:
 				linelist = line.split(",")
-				writefile.write(linelist[1].strip()+"\t"+linelist[0]+"\n")
+				writefile.write(linelist[1].strip()+"\t"+linelist[0]+"\t"+str(round(int(linelist[0])/total,2))+"\n")
 
 	filename = open(inPath, "r")
 	response = HttpResponse(filename, content_type = "text/csv")
