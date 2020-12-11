@@ -284,6 +284,27 @@ def result(request,taskId, sampleName):
 
 		response = render(request, "quasiseq/results.html", {"taskState" : taskState, "taskId" : taskId, "statusbul" : statusbul, "sampleName" : sampleName, "specieslist": specieslist, "labellist" : labellist,  "valuelist" : valuelist })
 		return response
+		
+	elif (taskState == "FAILURE") :
+		clusterErrorFile="/data/quasiSeqOut/" + str(taskId) + "/" + "clusterFailures.err"
+		if not os.path.exists(clusterErrorFile):
+			return HttpResponse("<html>Task status is: "+taskState+"<br><br>There was a problem with your analysis. <br><br>See celery.log in your output folder for more details on the error.</html>")
+		else:
+			with open(clusterErrorFile, "r") as readfile :
+				lines = readfile.read().splitlines()
+			return HttpResponse('<html>Task status is: '+taskState+'<br><br>'+lines[0]+' failed to cluster properly.  This may be due to a higher number of signatures than your allocated resources will allow.  <br><br>Lower the number of signatures in Options or allocate more resources to the Docker container and <a href="/">retry your analysis</a><br><br>See celery.log in your output folder for more details on the error.</html>')
+
+	elif (taskState == "REVOKED") :
+		clusterErrorFile="/data/quasiSeqOut/" + str(taskId) + "/" + "clusterFailures.err"
+		if not os.path.exists(clusterErrorFile):
+			return HttpResponse("<html>Task status is: "+taskState+"<br><br>There was a problem with your analysis. <br><br>See celery.log in your output folder for more details on the error.</html>")
+		else:
+			with open(clusterErrorFile, "r") as readfile :
+				lines = readfile.read().splitlines()
+			return HttpResponse('<html>Task status is: '+taskState+'<br><br>'+lines[0]+' failed to cluster properly.  This may be due to a higher number of signatures than your allocated resources will allow.  <br><br>Lower the number of signatures in Options or allocate more resources to the Docker container and <a href="/">retry your analysis</a><br><br>See celery.log in your output folder for more details on the error.</html>')
+
+
+
 
 	url = request.get_full_path()
 	return HttpResponse("<html><script>setTimeout(function(){window.location.reload(1);}, 10000);</script>\nTask status is: "+taskState+" <br><br>Stay in this page for your results. The page will refresh automatically every 10 seconds.<br><br>Or you can check for results later with this url: " + domain + url + " </html>" )

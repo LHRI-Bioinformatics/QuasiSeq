@@ -45,6 +45,6 @@ def pipeline_driver(outDir,sampleName, referencefilename, rankingMethod, startIn
 	saved_args = locals()
     	print("pipeline_driver parameters:", saved_args)
 
-	startPipeline(outDir,initialFastq, referenceFile, sampleName, rankingMethod, pool, startIndex, endIndex, snpThresh, percentThresh, minorAlleleReadThresh, pvalThresh, maxSignatures, estimatedErrorRate, readCountSNPPvalThresh, readCountSNPVarFreqThresh, readCountSNPCoverageThresh)
+	startPipeline(outDir,initialFastq, referenceFile, sampleName, rankingMethod, pool, startIndex, endIndex, snpThresh, percentThresh, minorAlleleReadThresh, pvalThresh, maxSignatures, estimatedErrorRate, readCountSNPPvalThresh, readCountSNPVarFreqThresh, readCountSNPCoverageThresh,pipeline_driver.request.id)
 
 	#pipeline(outDir,outDir+uploaded_name+".fastq", outDir+referencefilename, uploaded_name, ranking_method, None, startIndex, endIndex, snpThresh )

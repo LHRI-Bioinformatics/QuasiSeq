@@ -6,8 +6,9 @@
 
 from billiard.context import Process
 import billiard
-
+import signal
 import logging
+import traceback
 import sys, getopt, time
 from sys import argv
 import subprocess
@@ -27,6 +28,8 @@ from shutil import copyfile
 
 import numpy
 import re
+
+from celery.task.control import revoke
 
 def get_cpus():
 	try:
@@ -510,7 +513,14 @@ def cluster(outDir,realignedBamfile, rankedFile, sampleName, snpThresh, *optiona
 		print str(numSNPs)+" SNPs: Continuing with clustering"
 		command = "java -classpath .:/usr/local/MATLAB/MATLAB_Runtime/v91/toolbox/javabuilder/jar/javabuilder.jar:SigClust.jar getClust " + realignedBamfile + " " + rankedFile + " " + outDir+sampleName
 		print command
-		subprocess.call(command, shell = True,executable="/bin/bash")
+		try:
+			print("Running subprocess.check_call")
+			subprocess.check_call(command,shell=True,executable="/bin/bash")
+		except subprocess.CalledProcessError as e:
+			with open(outDir+"clusterFailures.err","a") as clusterError:
+				clusterError.write(sampleName+"\n")
+			logging.error(traceback.format_exc())
+			revoke(task_id, terminate=True)
 		return True
 	else:
 		print str(numSNPs)+" SNPs: Creating consensus for "+sampleName+ "(cluster)"
@@ -525,9 +535,11 @@ def processClusterOutput(outDir,clusterFile, fastq, consensusFile, rankingMethod
 	#numClusters=int((subprocess.check_output(['wc', '-l', clusterFile])).split(None, 1)[0])
 	#09112017 startIndex=1
 	#09112017 endIndex=getConsensusLength(consensusFile)
+
 	with open(clusterFile) as f:
-    		numClusters=sum(1 for _ in f)
+		numClusters=sum(1 for _ in f)
 	print str(numClusters) + " clusters"
+
 	if numClusters > 1:
 		procs = []
 		with open(clusterFile,"r") as clusters: #where cluster output is the output of the cluster function
@@ -556,6 +568,8 @@ def processClusterOutput(outDir,clusterFile, fastq, consensusFile, rankingMethod
 	else:
 		print "Creating consensus for "+consensusFile+ "(processClusterOutput)"
 		writeFinalClusterConsensus(outDir,consensusFile)
+
+
 
 def processCluster(fastq,outDir,currClusterFastq,consensusFile,currCluster,rankingMethod, pool, startIndex, endIndex, snpThresh, percentThresh, minorAlleleReadThresh, pvalThresh, maxSignatures, estimatedErrorRate, readCountSNPPvalThresh, readCountSNPVarFreqThresh, readCountSNPCoverageThresh):
 	getClusterFastq(fastq,currCluster,currClusterFastq)
@@ -627,13 +641,18 @@ def pipeline(outDir, initialFastq, referenceFile, sampleName, rankingMethod, poo
 	end = time.time()
 	print "Pipeline round for "+sampleName+" took " + str((end - start))+ "seconds"
 
-def startPipeline(outDir,initialFastq, referenceFile, sampleName, rankingMethod, pool, startIndex, endIndex, snpThresh, percentThresh, minorAlleleReadThresh, pvalThresh, maxSignatures, estimatedErrorRate, readCountSNPPvalThresh, readCountSNPVarFreqThresh, readCountSNPCoverageThresh,  *optionalfilters):
+def startPipeline(outDir,initialFastq, referenceFile, sampleName, rankingMethod, pool, startIndex, endIndex, snpThresh, percentThresh, minorAlleleReadThresh, pvalThresh, maxSignatures, estimatedErrorRate, readCountSNPPvalThresh, readCountSNPVarFreqThresh, readCountSNPCoverageThresh, currTaskId, *optionalfilters):
 
 	print("This is multiQuasiSeq.py v1.3")
 	global numProcessors
 	numProcessors=str(get_cpus())
 	buffer=0
 	print ("*****startPipeline for "+sampleName+"*****")
+
+	# Set task_id globally so that the task can be killed if something goes wrong.  Currently only used in the cluster method
+	global task_id
+	task_id=currTaskId
+
 	referenceLength=getConsensusLength(referenceFile)
 	if startIndex==None or int(startIndex)<1:
 		startIndex=1
