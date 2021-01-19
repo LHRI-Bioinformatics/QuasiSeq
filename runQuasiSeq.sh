@@ -9,7 +9,7 @@ ncores=${ncoresPrompted}
 njobs=$(( ncores > 1 ? (ncores - 1) : 1 ))
 
 #Prompt for the amount of memory to use in GB
-memFree=$(grep MemFree /proc/meminfo | awk '{print $2}')
+memFree=$(grep MemAvailable /proc/meminfo | awk '{print $2}')
 memFree=$((memFree / 1024 / 1024))
 read -p "Enter the amount of memory to use in GB [${memFree} GB]: " memFreePrompted
 memFreePrompted=${memFreePrompted:-${memFree}}
