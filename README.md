@@ -1,1 +1,1 @@
-# SgCluster
+# QuasiSeq
