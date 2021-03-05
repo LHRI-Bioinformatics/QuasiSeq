@@ -1,5 +1,12 @@
 #!/bin/bash
 
+#Prompt for a port to use
+myport=8080;
+read -p "Enter an open port [${myport}]: " myportPrompted
+myportPrompted=${myportPrompted:-${myport}}
+myport=${myportPrompted}
+
+
 #Prompt for the number of processes to use
 ncores=$(getconf _NPROCESSORS_ONLN);
 read -p "Enter the number of processes [${ncores}]: " ncoresPrompted
@@ -23,4 +30,4 @@ outputDir=${outputDirPrompted}
 
 cp ./quasi_seq/cluster_interface/quasiseq/tasksMulti.py ./quasi_seq/cluster_interface/quasiseq/tasks.py
 
-docker run --cpuset-cpus="0-${njobs}" --cpus "${ncores}" --memory "${memFree}"g --env "my_threads=${ncores}" --rm -i -t -v ${outputDir}:/data -v $(pwd)/quasi_seq:/opt/quasi-seq -p 8080:9000 lhri/lhri_bioinformatics/quasi-seq:1.3
+docker run --cpuset-cpus="0-${njobs}" --cpus "${ncores}" --memory "${memFree}"g --env "my_threads=${ncores}" --rm -i -t -v ${outputDir}:/data -v $(pwd)/quasi_seq:/opt/quasi-seq -p ${myport}:9000 lhri/lhri_bioinformatics/quasi-seq:1.3

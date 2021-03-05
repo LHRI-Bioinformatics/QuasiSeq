@@ -72,9 +72,9 @@ def index(request):
 		#sess = request.session.session_key
 		#request.session["ID"] = num
 		uploaded_file = request.FILES['my_file']
-		sampleName = request.FILES["my_file"].name
-		sampleName = sampleName.strip(".fastq")
+		sampleName = (os.path.splitext(request.FILES["my_file"].name)[0]).replace(" ", "_").replace(".", "_")
 		samplefilename = sampleName + ".fastq"
+
 
 		with open(tmpDir+samplefilename , "wb+") as samplefile: # add the plus so that it will create the file if it does not exist
 			# get the session ID and append that to sampleID.txt file name so that it is a different file for every user and the same file does not get overwritten
@@ -245,6 +245,7 @@ def result(request,taskId, sampleName):
 	statusbul = False
 	specieslist = []
 	domain = request.get_host()
+
 	if (taskState == "SUCCESS") :
 		statusbul = True
 		"""
@@ -264,37 +265,45 @@ def result(request,taskId, sampleName):
 		with open("/data/quasiSeqOut/" + str(taskId) + "/" + "final_consensus_stats.txt", "r") as readfile :
 			lines = readfile.read().splitlines()
 			total=float(lines[-1].split(",")[0])
-			for line in lines:
-				linelist = line.split(",")
-				linelist.append(str(round(int(linelist[0])/total,2)))
-				specieslist.append(linelist)
-				counter +=1
+			if total<1:
+				taskState = "FAILURE"
+			else:
+				for line in lines:
+					linelist = line.split(",")
+					# print("linelist.append(str(round(int(linelist[0])/total,2))): "+str(linelist[0])+"/"+str(total))
+					linelist.append(str(round(int(linelist[0])/total,2)))
+					specieslist.append(linelist)
+					counter +=1
 
-		for lister in specieslist:
-				labellist.append(str(str((lister[1]).strip("\n")).strip("'")))
-				valuelist.append(int(lister[0]))
-		labellist = labellist[:-1] # here we are removing the last element that is just the total
- 		valuelist = valuelist[:-1]
+		if (taskState == "SUCCESS") :
+			for lister in specieslist:
+					labellist.append(str(str((lister[1]).strip("\n")).strip("'")))
+					valuelist.append(int(lister[0]))
+			labellist = labellist[:-1] # here we are removing the last element that is just the total
+	 		valuelist = valuelist[:-1]
 
-		#labellist = ["10clones1", "10clones2", "10clones3"]
+			response = render(request, "quasiseq/results.html", {"taskState" : taskState, "taskId" : taskId, "statusbul" : statusbul, "sampleName" : sampleName, "specieslist": specieslist, "labellist" : labellist,  "valuelist" : valuelist })
+			return response
 
-
-		# if(request.method == "POST"):
-		# 	return redirect("downloadFile", taskId, sampleName)
-
-		response = render(request, "quasiseq/results.html", {"taskState" : taskState, "taskId" : taskId, "statusbul" : statusbul, "sampleName" : sampleName, "specieslist": specieslist, "labellist" : labellist,  "valuelist" : valuelist })
-		return response
-		
-	elif (taskState == "FAILURE") :
+	if (taskState == "FAILURE") :
 		clusterErrorFile="/data/quasiSeqOut/" + str(taskId) + "/" + "clusterFailures.err"
-		if not os.path.exists(clusterErrorFile):
+		fullLengthFile="/data/quasiSeqOut/" + str(taskId) + "/" + sampleName + "_fullLength"
+
+		numFullLength=0
+		if os.path.exists(fullLengthFile):
+			with open(fullLengthFile, "r") as readfile :
+				lines = readfile.read().splitlines()
+				numFullLength=len(lines)
+		if numFullLength<1:
+			return HttpResponse("<html>Task status is: "+taskState+"<br><br>There were no full length reads based on your reference and start/stop parameters.  Please adjust accordingly and rerun the analysis.</html>")
+		elif not os.path.exists(clusterErrorFile):
 			return HttpResponse("<html>Task status is: "+taskState+"<br><br>There was a problem with your analysis. <br><br>See celery.log in your output folder for more details on the error.</html>")
 		else:
 			with open(clusterErrorFile, "r") as readfile :
 				lines = readfile.read().splitlines()
 			return HttpResponse('<html>Task status is: '+taskState+'<br><br>'+lines[0]+' failed to cluster properly.  This may be due to a higher number of signatures than your allocated resources will allow.  <br><br>Lower the number of signatures in Options or allocate more resources to the Docker container and <a href="/">retry your analysis</a><br><br>See celery.log in your output folder for more details on the error.</html>')
 
-	elif (taskState == "REVOKED") :
+	if (taskState == "REVOKED") :
 		clusterErrorFile="/data/quasiSeqOut/" + str(taskId) + "/" + "clusterFailures.err"
 		if not os.path.exists(clusterErrorFile):
 			return HttpResponse("<html>Task status is: "+taskState+"<br><br>There was a problem with your analysis. <br><br>See celery.log in your output folder for more details on the error.</html>")
