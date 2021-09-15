@@ -24,7 +24,7 @@ The script will then prompt for the amount of memory in GB to use for the QuasiS
 
 Finally, the script will prompt for the path where you would like logging and output to be saved (default is the current directory and within a subdirectory name "output")
 
-You should now be able to access the QuasiSeq application interface in a browser at <system ip address>:<port entered>.  e.g. 127.0.0.1:8080
+You should now be able to access the QuasiSeq application interface in a browser at `[Docker] host ip address:port entered` (e.g. 127.0.0.1:8080).
   
 <!-- Next, log in to the gitlab registry: `docker login registry.gitlab.com`
 
