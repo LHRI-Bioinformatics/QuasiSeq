@@ -1,4 +1,7 @@
 #!/bin/bash
+#Reference the docker image to be used
+# docker_image="lhri/lhri_bioinformatics/quasi-seq:1.3"
+docker_image="ghcr.io/lhri-bioinformatics/quasiseq/quasiseq:1.3"
 
 #Prompt for a port to use
 myport=8080;
@@ -30,4 +33,4 @@ outputDir=${outputDirPrompted}
 
 cp ./quasi_seq/cluster_interface/quasiseq/tasksMulti.py ./quasi_seq/cluster_interface/quasiseq/tasks.py
 
-docker run --cpuset-cpus="0-${njobs}" --cpus "${ncores}" --memory "${memFree}"g --env "my_threads=${ncores}" --rm -i -t -v ${outputDir}:/data -v $(pwd)/quasi_seq:/opt/quasi-seq -p ${myport}:9000 lhri/lhri_bioinformatics/quasi-seq:1.3
+docker run --cpuset-cpus="0-${njobs}" --cpus "${ncores}" --memory "${memFree}"g --env "my_threads=${ncores}" --rm -i -t -v ${outputDir}:/data -v $(pwd)/quasi_seq:/opt/quasi-seq -p ${myport}:9000 ${docker_image}
