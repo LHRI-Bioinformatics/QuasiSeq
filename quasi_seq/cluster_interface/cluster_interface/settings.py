@@ -33,13 +33,11 @@ TEMPLATE_DIRS = (
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'djygc7z)w&*7i4v-5hsc(qmgtwu9%gha^5aexawbp#(n&yu57t'
+# Use a separate file for the secret key
+with open(os.path.join(BASE_DIR, 'secretkey.txt')) as f:
+    SECRET_KEY = f.read().strip()
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -93,7 +91,7 @@ WSGI_APPLICATION = 'cluster_interface.wsgi.application'
 TEST_RUNNER = 'tests.DatabaselessTestRunner'
 
 
-BROKER_URL = 'redis://127.0.0.1:6379' # this is only going to work when redis is up and running 
+BROKER_URL = 'redis://127.0.0.1:6379' # this is only going to work when redis is up and running
 CELERY_RESULT_BACKEND = 'redis://127.0.0.1:6379'
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
