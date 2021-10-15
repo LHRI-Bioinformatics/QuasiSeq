@@ -8,7 +8,7 @@ All code for running QuasiSeq is available for download.  However, given the man
 
 ## Installation
 
-Docker: Follow the [Docker installation instructions] for your system in order to use [Docker]
+Docker: If you don't have Docker on your system, follow the [Docker installation instructions] for your system in order to use [Docker]
 
 After installing [Docker], change to a directory on the [Docker] host for which the user has read/write access.  You will clone the repository to this directory and it will also contain QuasiSeq logs and pipeline output once the application is run.  
 
