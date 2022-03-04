@@ -104,14 +104,19 @@ def writeFinalConsensusStats(outDir):
 		with open(readStatsFile, 'wb') as f:
     			csv.writer(f,lineterminator='\n').writerows(data)
 
-def writeFinalClusterConsensusStats(outDir,clusterName):
+def writeFinalClusterConsensusStats(outDir,clusterName,minorAlleleReadThresh):
 	start = time.time()
 	print "!!!!!!!!!!Writing final consensus stats for "+clusterName
 	readStatsFile = outDir+'final_consensus_stats.txt'
+	readCount=0
 	with open(readStatsFile, 'a+') as finalConsensusStatsFile:
-			finalConsensusStatsFile.write(str(len((open(outDir+clusterName,"r")).readlines()))+','+clusterName+'\n')
+		readCount=len((open(outDir+clusterName,"r")).readlines())
+		if readCount>=minorAlleleReadThresh:
+			finalConsensusStatsFile.write(str(readCount)+','+clusterName+'\n')
 
-def writeFinalClusterConsensus(outDir,clusterName):
+	return readCount
+
+def writeFinalClusterConsensus(outDir,clusterName, minorAlleleReadThresh):
 	start = time.time()
 	print "!!!!!!!!!!Writing final consensus for "+clusterName
 
@@ -121,11 +126,16 @@ def writeFinalClusterConsensus(outDir,clusterName):
 	polishedConsensusFile=outDir+clusterName+'.finalRoundSparc.consensus.fasta'
 	getFinalSparcClusterConsensus(outDir,clusterName,polishedConsensusFile)
 
-	clusterConsensus = SeqIO.read(polishedConsensusFile, "fasta")
-	finalConsensusFile=open(outDir+'final_consensus.fasta',"a")
-	finalConsensusFile.write('>'+clusterName+'\n')
-	finalConsensusFile.write(str(clusterConsensus.seq)+'\n')
-	writeFinalClusterConsensusStats(outDir,clusterName)
+	readCount=writeFinalClusterConsensusStats(outDir,clusterName,minorAlleleReadThresh)
+	if readCount>=minorAlleleReadThresh:
+		clusterConsensus = SeqIO.read(polishedConsensusFile, "fasta")
+		finalConsensusFile=open(outDir+'final_consensus.fasta',"a")
+		finalConsensusFile.write('>'+clusterName+'\n')
+		finalConsensusFile.write(str(clusterConsensus.seq)+'\n')
+	else:
+		print "Only "+str(readCount)+" reads for "+clusterName+": Cluster discarded due to being below minimum number of reads supporting a quasispecies ("+str(minorAlleleReadThresh)+")"
+
+
 
 def alignFastqAndIndexSam_v1_3(fastq,reference,bamFile, *optionalfilters):
 	start = time.time()
@@ -501,7 +511,7 @@ def rankSNVs_3(pileupFile, rankedFile, rankingMethod, consensusFile, startIndex,
 	for snp in rankedSNPs:
   		rankedSNPsFile.write("%i\n" % snp)
 
-def cluster(outDir,realignedBamfile, rankedFile, sampleName, snpThresh, *optionalfilters):
+def cluster(outDir,realignedBamfile, rankedFile, sampleName, snpThresh,minorAlleleReadThresh, *optionalfilters):
 
 	with open(rankedFile, 'r') as f:
 		first_line = f.readline()
@@ -517,17 +527,23 @@ def cluster(outDir,realignedBamfile, rankedFile, sampleName, snpThresh, *optiona
 			print("Running subprocess.check_call")
 			subprocess.check_call(command,shell=True,executable="/bin/bash")
 		except subprocess.CalledProcessError as e:
+			print("************Caught an error***********")
 			with open(outDir+"clusterFailures.err","a") as clusterError:
 				clusterError.write(sampleName+"\n")
 			logging.error(traceback.format_exc())
 			revoke(task_id, terminate=True)
-		return True
+		if os.path.exists(outDir+sampleName+"_clusters"):
+			return True
+		else:
+			print "Clustering for "+sampleName+ " could not be performed we will now create the consensus"
+			writeFinalClusterConsensus(outDir,sampleName,minorAlleleReadThresh)
+			return False
 	else:
 		print str(numSNPs)+" SNPs: Creating consensus for "+sampleName+ "(cluster)"
 		#command = "cat "+sampleName+".consensus.fasta >> final_consensus.fasta"
 		#command = 'cat <(echo ">'+sampleName+'") <(tail -n\+2 '+sampleName+'.consensus.fasta) >> final_consensus.fasta'
 		#subprocess.call(command, shell = True,executable="/bin/bash")
-		writeFinalClusterConsensus(outDir,sampleName)
+		writeFinalClusterConsensus(outDir,sampleName,minorAlleleReadThresh)
 		#(open(outDir+'final_consensus.fasta',"a")).write((open(outDir+sampleName+'.consensus.fasta',"r")).read())
 		return False
 
@@ -567,7 +583,7 @@ def processClusterOutput(outDir,clusterFile, fastq, consensusFile, rankingMethod
 			p.join()
 	else:
 		print "Creating consensus for "+consensusFile+ "(processClusterOutput)"
-		writeFinalClusterConsensus(outDir,consensusFile)
+		writeFinalClusterConsensus(outDir,consensusFile,minorAlleleReadThresh)
 
 
 
@@ -634,7 +650,7 @@ def pipeline(outDir, initialFastq, referenceFile, sampleName, rankingMethod, poo
 
 	rankSNVs(realignedSnpFile, rankedFile, rankingMethod, consensusFile, startIndex, endIndex, percentThresh, pvalThresh, minorAlleleReadThresh, maxSignatures)
 
-	if cluster(outDir,realignedBamfile, rankedFile, sampleName, snpThresh):
+	if cluster(outDir,realignedBamfile, rankedFile, sampleName, snpThresh, minorAlleleReadThresh):
 		print("processClusterOutput next")
 		processClusterOutput(outDir,clusterFile, initialFastq, consensusFile, rankingMethod, pool, startIndex, endIndex, snpThresh, percentThresh, minorAlleleReadThresh, pvalThresh, maxSignatures, estimatedErrorRate, readCountSNPPvalThresh, readCountSNPVarFreqThresh, readCountSNPCoverageThresh)
 
@@ -654,9 +670,9 @@ def startPipeline(outDir,initialFastq, referenceFile, sampleName, rankingMethod,
 	task_id=currTaskId
 
 	referenceLength=getConsensusLength(referenceFile)
-	if startIndex==None or int(startIndex)<1:
-		startIndex=1
-		print "*****Setting startIndex to 1"
+	if startIndex==None or int(startIndex)<0:
+		startIndex=0
+		print "*****Setting startIndex to 0"
 	else:
 		startIndex=int(startIndex)
 

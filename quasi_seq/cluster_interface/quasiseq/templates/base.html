@@ -78,12 +78,12 @@
                   {% csrf_token %}
                   <div class="row">
                     <div class="input-field col s7">
-                      <input type="text" id="textarea1" class="materialize-textarea" name = "start" value={% block startInput %}{% endblock startInput%}></input>
+                      <input type="number" min="0" id="textarea1" class="materialize-textarea" name = "start" value={% block startInput %}{% endblock startInput%}></input>
                       <label for="textarea1"> Start </label>
 
                     </div>
                     <div class = "input-field col s7" >
-                      <input type="text" id="textarea2" class="materialize-textarea" name = "end" value={% block endInput %}{% endblock endInput%}></input>
+                      <input type="number" min="1" id="textarea2" class="materialize-textarea" name = "end" value={% block endInput %}{% endblock endInput%}></input>
                       <label for="textarea2"> End </label>
                     </div>
                   </div>
@@ -99,23 +99,23 @@
 
                     </div>
                     <div class = "input-field col s7" >
-                      <input type="text" id="percentThresh" class="materialize-textarea" name="percentThresh" value={% block percentThreshInput %}{% endblock percentThreshInput%}></input>
+                      <input type="number" id="percentThresh" class="materialize-textarea" name="percentThresh" value={% block percentThreshInput %}{% endblock percentThreshInput%} min="1" max="100"></input>
                       <label for="textarea4"> Minimum SNV frequency percent (1-100) </label>
                     </div>
                     <div class = "input-field col s7" >
-                      <input type="text" id="minorAlleleReadThresh" class="materialize-textarea" name="minorAlleleReadThresh" value=30 ></input>
+                      <input type="number" id="minorAlleleReadThresh" class="materialize-textarea" name="minorAlleleReadThresh" value=30 ></input>
                       <label for="textarea5"> Minimum number of reads supporting a quasispecies </label>
                     </div>
                     <div class = "input-field col s7" >
-                      <input type="text" id="snpThresh" class="materialize-textarea" name="snpThresh" value=40 ></input>
+                      <input type="number" id="snpThresh" class="materialize-textarea" name="snpThresh" value=40 min="1" ></input>
                       <label for="textarea5"> Minumum nucleotides differentiating two quasispecies </label>
                     </div>
                     <div class = "input-field col s7" >
-                      <input type="text" id="estimatedErrorRate" class="materialize-textarea" name="estimatedErrorRate" value=0.01 ></input>
+                      <input type="number" id="estimatedErrorRate" class="materialize-textarea" name="estimatedErrorRate" value=0.01 ></input>
                       <label for="textarea5"> Estimated sequencing substitution error rate </label>
                     </div>
                     <div class = "input-field col s7" >
-                      <input type="text" id="maxSignatures" class="materialize-textarea" name="maxSignatures" value=12000 ></input>
+                      <input type="number" id="maxSignatures" class="materialize-textarea" name="maxSignatures" value=12000 ></input>
                       <label for="textarea5"> Maximum number of signatures (limits memory usage) </label>
                     </div>
                   </div>
