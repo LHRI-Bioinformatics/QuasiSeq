@@ -1,4 +1,4 @@
-# QuasiSeq
+# QuasiSeq [![DOI](https://zenodo.org/badge/340494542.svg)](https://zenodo.org/badge/latestdoi/340494542)
 
 ## Description
 
