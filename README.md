@@ -41,7 +41,8 @@ The -p 9000:9000 portion of the command maps port 9000 on the host machine to po
 
 Tom, Hiromi, Cliff, PacBio
 
-
+## Citation
+X. Jiao, H. Imamichi, B.T. Sherman, R. Nahar, R.L. Dewar, H.C. Lane, T. Imamichi and W. Chang. QuasiSeq: Profiling Viral Quasispecies via Self-tuning Spectral Clustering with PacBio Long Sequencing Reads. Bioinformatics. 15 June 2022. 38(12):3192-3199. doi:10.1093/bioinformatics/btac313. Published (online): 09 May 2022
 
 ## License
 [Matlab Runtime] is needed to run the clustering code.  By downloading and running QuasiSeq, you are accepting Matlab's license.
